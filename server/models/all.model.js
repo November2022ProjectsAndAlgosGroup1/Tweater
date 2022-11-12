@@ -79,6 +79,14 @@ const UserSchema = mongoose.Schema(
             required: [true, 'Name is required'],
             minLength: [2, 'Name must be at least 2 characters']
         },
+        email:{
+            type: String,
+            required: [true, 'Email is required'],
+            // validate: [
+            //         /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+            //         'Provided email is invalid'
+            //     ]
+        },
         password: {
             type: String,
             required: [true, 'please input a password'],

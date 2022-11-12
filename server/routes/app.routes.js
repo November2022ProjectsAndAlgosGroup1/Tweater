@@ -37,9 +37,9 @@ module.exports = (app) => {
     app.delete('/api/restaurants/:id', deleteRestaurant) //updates a single restaurant
 
     //tweat routes
-    app.post('/api/tweats/', addTweat) //finds all tweats
+    app.post('/api/tweats/', addTweat) //adds a tweat to database
     app.get('/api/tweats/:id', findTweat) //finds a single tweat
-    app.get('/api/tweats/', findAllTweats) //adds a tweat to database
+    app.get('/api/tweats/', findAllTweats) //finds all tweats
     app.put('/api/tweats/:id', updateTweat) //updates a single tweat
     app.delete('/api/tweats/:id', deleteTweat) //updates a single tweat
     // /*need controller for retweat */ app.post('/api/tweats/:id', retweat)

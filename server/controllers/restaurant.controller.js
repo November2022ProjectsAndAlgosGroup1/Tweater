@@ -33,6 +33,8 @@ module.exports = {
 //             .then(updatedRestaurant => res.json(updatedRestaurant))
 //             .catch((error) => res.status(400).json(error))
 //     },
+
+    //deletes a restaurant from the database
     deleteRestaurant: async (req, res) => {
         Restaurant.deleteOne({ _id: req.params.id })
             .then(result => res.json(result))

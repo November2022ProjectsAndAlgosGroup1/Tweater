@@ -11,9 +11,9 @@ module.exports = {
     //finds a single user in the database
     findUser: (req, res) => {
         User.findOne({ _id: req.params.id })
-            .populate('tweats')
-            .populate('replies')
-            .populate('likes')
+            .populate('tweats') //extends the user object to include the actual tweat objects
+            .populate('replies') //extends the user object to include the actual reply objects
+            .populate('likes') //extends the user object to include the actual like objects
             .then((oneUser) => res.json(oneUser))
             .catch((error) => res.status(400).json(error))
     },
@@ -21,7 +21,6 @@ module.exports = {
     //finds all users in the database
     findAllUsers: (req, res) => {
         User.find()
-            // .populate('tweat', 'reply', 'like') //is this needed in this function?
             .then(allUsers => {
                 console.log(allUsers)
                 res.json(allUsers)

@@ -1,6 +1,10 @@
 const { Like, User, Tweat } = require('../models/all.model')
 
 module.exports = {
+
+    //Adds a like to the database
+    //Adds the like's ID to the user's like array
+    //Adds the like's ID to the tweat's like array
     addLike: async (req, res) => {
         try {
             const newLike = await Like.create(req.body)
@@ -23,7 +27,7 @@ module.exports = {
 
     //TODO: Test this method - Deletes the like, removes the like from the associates User's Likes, removes the Like from the associated Tweat   
     removeLike: async (req, res) => {
-        const likeID = req.params.id 
+        const likeID = req.params.id
         try {
             //Delete the like from the Likes collection
             const deletedLike = await Like.findOneAndRemove({ _id: req.params.id })
@@ -49,24 +53,26 @@ module.exports = {
         //     .catch((error) => res.status(400).json(error))
     },
 
-    //I don't think this method is necessary
-    findLike: (req, res) => {
-        Like.findOne({ _id: req.params.id })
-            .then(oneLike => res.json(oneLike))
-            .catch((error) => res.status(400).json(error))
-    },
+    //I don't think this method is necessary - JG
+    //Agreed, commented it out just in case we decide we need it - SC
+    // findLike: (req, res) => {
+    //     Like.findOne({ _id: req.params.id })
+    //         .then(oneLike => res.json(oneLike))
+    //         .catch((error) => res.status(400).json(error))
+    // },
 
-    //I don't think this method is necessary
-    findAllLikes: (req, res) => {
-        Like.find()
-            .then(allLikes => {
-                console.log(allLikes)
-                res.json(allLikes)
-            })
-            .catch((error) => {
-                console.log('failed to find all Likes')
-                res.status(400).json(error)
-            })
-    },
+    //I don't think this method is necessary - JG
+    //Agreed, commented it out just in case we decide we need it - SC
+    // findAllLikes: (req, res) => {
+    //     Like.find()
+    //         .then(allLikes => {
+    //             console.log(allLikes)
+    //             res.json(allLikes)
+    //         })
+    //         .catch((error) => {
+    //             console.log('failed to find all Likes')
+    //             res.status(400).json(error)
+    //         })
+    // },
 
 }
