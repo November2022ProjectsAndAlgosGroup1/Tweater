@@ -56,11 +56,14 @@ module.exports.deleteTweat = (req, res) => {
     Tweat.deleteOne({ _id: req.params.id })
         .then(result => res.json(result))
         .catch((error) => res.status(400).json(error))
-},
-
-module.exports.retweat = async (req, res) => {
-    const retweat = await Tweat.findOne({ _id: req.params.id })
-    Tweat.addTweat(retweat)
-        .then()
-        .catch((error) => res.status(400).json(error))
 }
+
+//TODO:  For retweat, I think that we can just route to '/api/tweats/'
+// to add a new tweat and pass in a Tweat Schema to the retweat field in originalTweat field through
+//on the front end??
+// module.exports.retweat = (req, res) => {
+//     Tweat.addTweat(retweat)
+//         .then()
+//         .catch((error) => res.status(400).json(error))
+//     const retweat = Tweat.findOne({ _id: req.params.id })
+// }

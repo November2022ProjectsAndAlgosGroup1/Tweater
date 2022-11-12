@@ -42,7 +42,7 @@ module.exports = (app) => {
     app.get('/api/tweats/', findAllTweats) //adds a tweat to database
     app.put('/api/tweats/:id', updateTweat) //updates a single tweat
     app.delete('/api/tweats/:id', deleteTweat) //updates a single tweat
-    /*need controller for retweat */ app.post('/api/tweats/:id', retweat)
+    // /*need controller for retweat */ app.post('/api/tweats/:id', retweat)
 
     //user routes
     app.get('/api/users/', findAllUsers) //finds all users

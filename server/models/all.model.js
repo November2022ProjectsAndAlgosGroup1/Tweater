@@ -63,6 +63,10 @@ const TweatSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Like'
     }],
+    originalTweat: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tweat'
+    },
     // image: {
     //     //to be implemented
     // },
@@ -91,6 +95,7 @@ const UserSchema = mongoose.Schema(
         likes: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Like'
+            //ref: 'User'  //We could just create an array of user references here instead of creating a separate model for likes.
         }]
     }, { timestamps: true })
 
