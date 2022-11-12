@@ -12,11 +12,7 @@ const config = {
     },
     params: {
         term: "restaurants",
-        latitude: 0,
-        longitude: 0,
-        radius: 8046,
         sort_by: "distance",
-        limit: 20
     }
 }
 
