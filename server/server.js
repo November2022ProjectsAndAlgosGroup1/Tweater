@@ -18,10 +18,10 @@ app.use(
 )
 
 // import routes
-require('./routes/like.routes')(app)
-require('./routes/reply.routes')(app)
-require('./routes/restaurant.routes')(app)
-require('./routes/tweat.routes')(app)
+// require('./routes/like.routes')(app)
+// require('./routes/reply.routes')(app)
+// require('./routes/restaurant.routes')(app)
+// require('./routes/tweat.routes')(app)
 require('./routes/user.routes')(app)
 
 
