@@ -53,6 +53,6 @@ module.exports = {
 
 
     // .populate({
-    //     path: 'likes',
-    //     model: 'Like'
+    //     path: 'tweats',
+    //     model: 'tweat'
     // })

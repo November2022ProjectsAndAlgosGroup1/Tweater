@@ -10,7 +10,7 @@ module.exports = {
                 { new: true }
             )
             const updatedTweatWithReply = await Tweat.findOneAndUpdate(
-                { _id: newReply.userID },
+                { _id: newReply.tweatID },
                 { $push: { replies: newReply._id } },
                 { new: true }
             )
@@ -19,10 +19,6 @@ module.exports = {
         catch (error) {
             res.status(400).json(error)
         }
-
-        Reply.create(req.body)
-            .then(newReply = res.json(newReply))
-            .catch((error) => res.status(400).json(error))
     },
     findReply: async (req, res) => {
         Reply.findOne({ _id: req.params.id })
@@ -31,7 +27,6 @@ module.exports = {
     },
     findAllReplies: async (req, res) => {
         Reply.find()
-            // .populate('tweat', 'reply', 'like')
             .then(allReplys => {
                 console.log(allReplys)
                 res.json(allReplys)

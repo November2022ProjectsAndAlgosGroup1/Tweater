@@ -20,7 +20,8 @@ module.exports.addTweat = async (req, res) => {
 
     module.exports.findTweat = async (req, res) => {
         Tweat.findOne({ _id: req.params.id })
-            // .populate('reply', 'like')
+            .populate('replies')
+            .populate('likes') 
             .then(oneTweat => res.json(oneTweat))
             .catch((error) => res.status(400).json(error))
     },
