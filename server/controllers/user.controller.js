@@ -21,6 +21,7 @@ module.exports = {
     //finds all users in the database
     findAllUsers: async (req, res) => {
         User.find()
+            // .populate('tweat', 'reply', 'like') //is this needed in this function?
             .then(allUsers => {
                 console.log(allUsers)
                 res.json(allUsers)

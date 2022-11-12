@@ -14,7 +14,7 @@ module.exports = {
                 { $push: { replies: newReply._id } },
                 { new: true }
             )
-            res.status(200).json({ updatedTweatObj: updatedTweatWithReply, updatedUserObj: updatedUserWithReply }) //need to check if this works
+            res.status(200).json({ updatedTweatObj: updatedTweatWithReply, updatedUserObj: updatedUserWithReply })
         }
         catch (error) {
             res.status(400).json(error)
