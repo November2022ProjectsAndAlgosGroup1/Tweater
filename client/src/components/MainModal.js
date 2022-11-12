@@ -10,6 +10,7 @@ import {
     useDisclosure,
 } from "@chakra-ui/react"
 import LoginRegForm from "./LoginRegForm"
+import TweatForm from "./TweatForm"
 
 const MainModal = (props) => {
     const { onOpen, isOpen, onClose } = useDisclosure()
@@ -33,8 +34,10 @@ const MainModal = (props) => {
                 <ModalHeader>{modalTitle}</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    {modalTitle !== "Tweat" && (
+                    {modalTitle !== "Tweat" ? (
                         <LoginRegForm type={modalTitle} loggedin={loggedin} />
+                    ) : (
+                        <TweatForm />
                     )}
                 </ModalBody>
                 <ModalFooter>
