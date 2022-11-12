@@ -11,7 +11,9 @@ module.exports = {
     //finds a single user in the database
     findUser: async (req, res) => {
         User.findOne({ _id: req.params.id })
-            // .populate('tweat', 'reply', 'like')
+            .populate('tweat')
+            .populate('reply')
+            .populate('like')
             .then((oneUser) => res.json(oneUser))
             .catch((error) => res.status(400).json(error))
     },
@@ -19,7 +21,6 @@ module.exports = {
     //finds all users in the database
     findAllUsers: async (req, res) => {
         User.find()
-            // .populate('tweat', 'reply', 'like') //is this needed in this function?
             .then(allUsers => {
                 console.log(allUsers)
                 res.json(allUsers)

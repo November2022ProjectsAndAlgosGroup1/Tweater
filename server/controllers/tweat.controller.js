@@ -7,10 +7,14 @@ module.exports.addTweat = async (req, res) => {
         const newTweat = await Tweat.create(req.body)
         const updatedUserWithTweat = await User.findOneAndUpdate(
             { _id: newTweat.userID },
-            { $push: { tweats: newTweat._id } },//Push the newTweat id to the user's tweats array
+            { $push: { tweats: newTweat._id } },
             { new: true }
         )
-        //need to add to restaurant too
+        // const updatedRestaurantWithTweat = await Restaurant.findOneAndUpdate(
+        //     { _id: newTweat.restaurantID },
+        //     { $push: { tweats: newTweat._id } },
+        //     { new: true }
+        // )
         res.status(200).json(updatedUserWithTweat)
     } catch (error) {
         res.status(400).json(error)
@@ -20,14 +24,14 @@ module.exports.addTweat = async (req, res) => {
 
     module.exports.findTweat = async (req, res) => {
         Tweat.findOne({ _id: req.params.id })
-            // .populate('reply', 'like')
+            .populate('reply')
+            .populate('like')
             .then(oneTweat => res.json(oneTweat))
             .catch((error) => res.status(400).json(error))
     },
 
     module.exports.findAllTweats = async (req, res) => {
         Tweat.find()
-            // .populate('reply', 'like')
             .then(allTweats => {
                 console.log(allTweats)
                 res.json(allTweats)

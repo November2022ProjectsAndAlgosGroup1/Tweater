@@ -1,6 +1,6 @@
-// const Restaurant = require('../models/all.model')
+const Restaurant = require('../models/all.model')
 
-// module.exports = {
+module.exports = {
 //     addRestaurant: async (req, res) => {
 //         Restaurant.create(req.body)
 //             .then(newRestaurant = res.json(newRestaurant))
@@ -33,9 +33,9 @@
 //             .then(updatedRestaurant => res.json(updatedRestaurant))
 //             .catch((error) => res.status(400).json(error))
 //     },
-//     deleteRestaurant: async (req, res) => {
-//         Restaurant.deleteOne({ _id: req.params.id })
-//             .then(result => res.json(result))
-//             .catch((error) => res.status(400).json(error))
-//     },
-// }
+    deleteRestaurant: async (req, res) => {
+        Restaurant.deleteOne({ _id: req.params.id })
+            .then(result => res.json(result))
+            .catch((error) => res.status(400).json(error))
+    },
+}

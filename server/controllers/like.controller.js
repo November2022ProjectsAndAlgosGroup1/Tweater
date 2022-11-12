@@ -17,7 +17,6 @@ module.exports = {
             res.status(200).json({ updatedTweatObj: updatedTweatWithLike, updatedUserObj: updatedUserWithLike })
         }
         catch (error) {
-            console.log("you've already liked this tweat")
             res.status(400).json(error)
         }
     },

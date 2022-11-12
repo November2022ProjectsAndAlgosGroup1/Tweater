@@ -29,12 +29,12 @@ module.exports = (app) => {
     app.put('/api/replies/:id', updateReply) //updates a single Reply
     app.delete('/api/replies/:id', deleteReply) //updates a single Reply
 
-    //restaurant routes - none implemented
+    //restaurant routes
     // app.get('/api/restaurants/', findAllRestaurants) //finds all restaurants
     // app.get('/api/restaurants/:id', findRestaurant) //finds a single restaurant
     // app.post('/api/restaurants/', addRestaurant) //adds a restaurant to database
     // app.put('/api/restaurants/:id', updateRestaurant) //updates a single restaurant
-    // app.delete('/api/restaurants/:id', deleteRestaurant) //updates a single restaurant
+    app.delete('/api/restaurants/:id', deleteRestaurant) //updates a single restaurant
 
     //tweat routes
     app.post('/api/tweats/', addTweat) //finds all tweats
