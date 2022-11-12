@@ -45,29 +45,35 @@ module.exports = {
             .then(updatedReply => res.json(updatedReply))
             .catch((error) => res.status(400).json(error))
     },
+    
+    //TODO: Test this method.  When a reply is deleted, it is removed from the Replies collection, the associated User's replies array, and the associated Tweat's replies array
     deleteReply: async (req, res) => {
-        //TODO: When a reply is deleted, it is not deleted from the parent document array.
         Reply.deleteOne({ _id: req.params.id })
         .then(result => res.json(result))
         .catch((error) => res.status(400).json(error))
-    //     const replyID = req.params.id
-    //     try {
-    //         //Delete the reply from the Replies collection
-    //         const deletedReply = await Reply.findOneAndRemove({ _id: req.params.id })
-    //         //Update the User to remove the reply
-    //         const updatedUserWithReplyRemoved = await User.findOneAndUpdate(
-    //             { _id: deletedReply.userID },
-    //             { $pull: { replies: deletedReply._id } }
-    //         )
-    //         //Update the associated Tweat to remove the reply
-    //         const updatedTweatWithReplyRemoved = await Tweat.findOneAndUpdate(
-    //             { _id: deletedReply.tweatID },
-    //             { $pull: { replies: deletedReply._id } }
-    //         )
-    //         res.status(200).json({ deletedReply: deletedReply, updatedTweatObj: updatedTweatWithReplyRemoved, updatedUserObj: updatedUserWithReplyRemoved })
-    //     }
-    //     catch (error) {
-    //         res.status(400).json(error)
-    //     }
+        const replyID = req.params.id
+        try {
+            //Delete the reply from the Replies collection
+            const deletedReply = await Reply.findOneAndRemove({ _id: req.params.id })
+            //Update the User to remove the reply
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: deletedReply.userID },
+                { $pull: { replies: deletedReply._id } }
+            )
+            //Update the associated Tweat to remove the reply
+            const updatedTweat = await Tweat.findOneAndUpdate(
+                { _id: deletedReply.tweatID },
+                { $pull: { replies: deletedReply._id } }
+            )
+            res.status(200).json({ deletedReply: deletedReply, updatedTweat: updatedTweat, updatedUser: updatedUser })
+        }
+        catch (error) {
+            res.status(400).json(error)
+        }
+
+    //Previous code: When a reply is deleted, it is not deleted from the parent document array.
+    // Reply.deleteOne({ _id: req.params.id })
+    // .then(result => res.json(result))
+    // .catch((error) => res.status(400).json(error))
     },
 }

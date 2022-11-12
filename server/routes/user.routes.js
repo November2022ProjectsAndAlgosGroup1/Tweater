@@ -17,10 +17,10 @@ const { deleteUser, findUser, findAllUsers, registerUser, updateUser, } = UserCo
 module.exports = (app) => {
 
     //like routes
-    app.get('/api/likes/', findAllLikes) //finds all likes
-    app.get('/api/likes/:id', findLike) //finds a single Like
+    // app.get('/api/likes/', findAllLikes) //finds all likes
+    // app.get('/api/likes/:id', findLike) //finds a single Like
     app.post('/api/likes/', addLike) //adds a Like to database
-    app.delete('/api/likes/:id', removeLike) //updates a single Like
+    app.delete('/api/likes/:id', removeLike) //removes a single Like
 
     //reply routes
     app.get('/api/replies/', findAllReplies) //finds all Replies
