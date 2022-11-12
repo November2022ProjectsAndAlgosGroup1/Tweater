@@ -21,13 +21,15 @@ module.exports = {
         }
     },
 
-    findLike: async (req, res) => {
+    //I don't think this method is necessary
+    findLike: (req, res) => {
         Like.findOne({ _id: req.params.id })
             .then(oneLike => res.json(oneLike))
             .catch((error) => res.status(400).json(error))
     },
 
-    findAllLikes: async (req, res) => {
+    //I don't think this method is necessary
+    findAllLikes: (req, res) => {
         Like.find()
             .then(allLikes => {
                 console.log(allLikes)
@@ -39,7 +41,7 @@ module.exports = {
             })
     },
 
-    removeLike: async (req, res) => {
+    removeLike: (req, res) => {
         Like.deleteOne({ _id: req.params.id })
             .then(result => res.json(result))
             .catch((error) => res.status(400).json(error))

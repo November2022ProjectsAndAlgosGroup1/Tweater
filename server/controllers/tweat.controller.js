@@ -22,45 +22,45 @@ module.exports.addTweat = async (req, res) => {
 },
 
 
-    module.exports.findTweat = async (req, res) => {
-        Tweat.findOne({ _id: req.params.id })
-            .populate('replies')
-            .populate('likes') 
-            .then(oneTweat => res.json(oneTweat))
-            .catch((error) => res.status(400).json(error))
-    },
+module.exports.findTweat = (req, res) => {
+    Tweat.findOne({ _id: req.params.id })
+        .populate('replies')
+        .populate('likes') 
+        .then(oneTweat => res.json(oneTweat))
+        .catch((error) => res.status(400).json(error))
+},
 
-    module.exports.findAllTweats = async (req, res) => {
-        Tweat.find()
-            .then(allTweats => {
-                console.log(allTweats)
-                res.json(allTweats)
-            })
-            .catch((error) => {
-                console.log('failed to find all Tweats')
-                res.status(400).json(error)
-            })
-    },
+module.exports.findAllTweats = (req, res) => {
+    Tweat.find()
+        .then(allTweats => {
+            console.log(allTweats)
+            res.json(allTweats)
+        })
+        .catch((error) => {
+            console.log('failed to find all Tweats')
+            res.status(400).json(error)
+        })
+},
 
-    module.exports.updateTweat = async (req, res) => {
-        Tweat.findOneAndUpdate(
-            { _id: req.params.id },
-            req.body,
-            { new: true, runValidators: true }
-        )
-            .then(updatedTweat => res.json(updatedTweat))
-            .catch((error) => res.status(400).json(error))
-    },
+module.exports.updateTweat = (req, res) => {
+    Tweat.findOneAndUpdate(
+        { _id: req.params.id },
+        req.body,
+        { new: true, runValidators: true }
+    )
+        .then(updatedTweat => res.json(updatedTweat))
+        .catch((error) => res.status(400).json(error))
+},
 
-    module.exports.deleteTweat = async (req, res) => {
-        Tweat.deleteOne({ _id: req.params.id })
-            .then(result => res.json(result))
-            .catch((error) => res.status(400).json(error))
-    },
+module.exports.deleteTweat = (req, res) => {
+    Tweat.deleteOne({ _id: req.params.id })
+        .then(result => res.json(result))
+        .catch((error) => res.status(400).json(error))
+},
 
-    module.exports.retweat = async (req, res) => {
-        const retweat = await Tweat.findOne({ _id: req.params.id })
-        Tweat.addTweat(retweat)
-            .then()
-            .catch((error) => res.status(400).json(error))
-    }
+module.exports.retweat = async (req, res) => {
+    const retweat = await Tweat.findOne({ _id: req.params.id })
+    Tweat.addTweat(retweat)
+        .then()
+        .catch((error) => res.status(400).json(error))
+}

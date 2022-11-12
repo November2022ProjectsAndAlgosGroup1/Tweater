@@ -20,12 +20,12 @@ module.exports = {
             res.status(400).json(error)
         }
     },
-    findReply: async (req, res) => {
+    findReply: (req, res) => {
         Reply.findOne({ _id: req.params.id })
             .then(oneReply => res.json(oneReply))
             .catch((error) => res.status(400).json(error))
     },
-    findAllReplies: async (req, res) => {
+    findAllReplies: (req, res) => {
         Reply.find()
             .then(allReplys => {
                 console.log(allReplys)
@@ -36,7 +36,7 @@ module.exports = {
                 res.status(400).json(error)
             })
     },
-    updateReply: async (req, res) => {
+    updateReply: (req, res) => {
         Reply.findOneAndUpdate(
             { _id: req.params.id },
             req.body,
@@ -46,8 +46,28 @@ module.exports = {
             .catch((error) => res.status(400).json(error))
     },
     deleteReply: async (req, res) => {
+        //TODO: When a reply is deleted, it is not deleted from the parent document array.
         Reply.deleteOne({ _id: req.params.id })
-            .then(result => res.json(result))
-            .catch((error) => res.status(400).json(error))
+        .then(result => res.json(result))
+        .catch((error) => res.status(400).json(error))
+    //     const replyID = req.params.id
+    //     try {
+    //         //Delete the reply from the Replies collection
+    //         const deletedReply = await Reply.findOneAndRemove({ _id: req.params.id })
+    //         //Update the User to remove the reply
+    //         const updatedUserWithReplyRemoved = await User.findOneAndUpdate(
+    //             { _id: deletedReply.userID },
+    //             { $pull: { replies: deletedReply._id } }
+    //         )
+    //         //Update the associated Tweat to remove the reply
+    //         const updatedTweatWithReplyRemoved = await Tweat.findOneAndUpdate(
+    //             { _id: deletedReply.tweatID },
+    //             { $pull: { replies: deletedReply._id } }
+    //         )
+    //         res.status(200).json({ deletedReply: deletedReply, updatedTweatObj: updatedTweatWithReplyRemoved, updatedUserObj: updatedUserWithReplyRemoved })
+    //     }
+    //     catch (error) {
+    //         res.status(400).json(error)
+    //     }
     },
 }

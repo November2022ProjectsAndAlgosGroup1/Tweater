@@ -2,32 +2,37 @@ const mongoose = require('mongoose')
 
 const LikeSchema = mongoose.Schema({
     userID: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, 'User ID required']
     },
     tweatID: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, 'Tweat ID required']
     },
 }, { timestamps: true })
 
 const ReplySchema = mongoose.Schema({
     userID: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, 'User ID required']
     },
     tweatID: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, 'Tweat ID required']
     },
     text: {
         type: String,
-        required: [true, 'please respond with a comment']
+        required: [true, 'Please respond with a comment.']
     }
 }, { timestamps: true })
 
 
 const RestaurantSchema = mongoose.Schema({
-    yelpID: {
-        type: String
+    name: {
+        type:String,
+        required: [true, 'Restaurant name is required']
     },
-    tweatID: {
+    yelpID: {
         type: String
     },
     tweats: [{
@@ -38,10 +43,12 @@ const RestaurantSchema = mongoose.Schema({
 
 const TweatSchema = mongoose.Schema({
     userID: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, 'User ID is required']
     },
     restaurantID: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        // required: [true, 'Restaurant ID is required']
     },
     text: {
         type: String
@@ -50,6 +57,8 @@ const TweatSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reply'
     }],
+    //TODO:  Should likes just be an array of User IDs?  I don't think it needs to be a separate model.
+    //Just a list of references to users who like the tweat
     likes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Like'
