@@ -22,7 +22,7 @@ app.use(
 // require('./routes/reply.routes')(app)
 // require('./routes/restaurant.routes')(app)
 // require('./routes/tweat.routes')(app)
-require('./routes/user.routes')(app)
+require('./routes/app.routes')(app)
 
 
 

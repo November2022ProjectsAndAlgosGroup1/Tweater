@@ -50,23 +50,23 @@ module.exports = {
     },
 
     //I don't think this method is necessary
-    // findLike: (req, res) => {
-    //     Like.findOne({ _id: req.params.id })
-    //         .then(oneLike => res.json(oneLike))
-    //         .catch((error) => res.status(400).json(error))
-    // },
+    findLike: (req, res) => {
+        Like.findOne({ _id: req.params.id })
+            .then(oneLike => res.json(oneLike))
+            .catch((error) => res.status(400).json(error))
+    },
 
     //I don't think this method is necessary
-    // findAllLikes: (req, res) => {
-    //     Like.find()
-    //         .then(allLikes => {
-    //             console.log(allLikes)
-    //             res.json(allLikes)
-    //         })
-    //         .catch((error) => {
-    //             console.log('failed to find all Likes')
-    //             res.status(400).json(error)
-    //         })
-    // },
+    findAllLikes: (req, res) => {
+        Like.find()
+            .then(allLikes => {
+                console.log(allLikes)
+                res.json(allLikes)
+            })
+            .catch((error) => {
+                console.log('failed to find all Likes')
+                res.status(400).json(error)
+            })
+    },
 
 }
