@@ -46,8 +46,12 @@ const TweatSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: [true, 'User ID is required']
     },
+
+    //TODO - Jessica
+    //Why did you change this to reference the RestaurantSchema? Is a single tweat supposed to reference multiple restaurants?
+    //switched it back to type: String for now to test other things
     restaurantID: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         // required: [true, 'Restaurant ID is required']
     },
     text: {
@@ -59,6 +63,7 @@ const TweatSchema = mongoose.Schema({
     }],
     //TODO:  Should likes just be an array of User IDs?  I don't think it needs to be a separate model.
     //Just a list of references to users who like the tweat
+    //You can get that from the likes array when you populate
     likes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Like'

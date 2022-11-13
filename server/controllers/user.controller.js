@@ -50,7 +50,6 @@ module.exports = {
     //         .catch((error) => res.status(400).json(error))
     // },
 
-    //TODO: Test this method
     //deletes a single user and all of the user's tweats, likes, and replies from the db
     deleteUser : async (req, res) => {
         const userID = req.params.id

@@ -2,8 +2,7 @@ const { Tweat, User } = require('../models/all.model')
 
 module.exports = {
 
-    //creates new tweat and adds it to the user's tweat array
-    //adds the tweat's ID to the user's tweat array
+    //creates new tweat and adds it to the user's tweat array and adds the tweat's ID to the user's tweat array
     addTweat: async (req, res) => {
         try {
             const newTweat = await Tweat.create(req.body)
@@ -17,7 +16,7 @@ module.exports = {
             //     { $push: { tweats: newTweat._id } },
             //     { new: true }
             // )
-            res.status(200).json(updatedUserWithTweat)
+            res.status(200).json({ updatedUserObj: updatedUserWithTweat })
         } catch (error) {
             res.status(400).json(error)
         }
@@ -56,13 +55,28 @@ module.exports = {
             .catch((error) => res.status(400).json(error))
     },
 
-    //TODO: need to remove from user's tweat array
-    //deletes a single tweat in the database
-    deleteTweat: (req, res) => {
-        Tweat.deleteOne({ _id: req.params.id })
-            .then(result => res.json(result))
-            .catch((error) => res.status(400).json(error))
-    }
+    //deletes a single tweat in the database and user's tweat array
+    deleteTweat: async (req, res) => {
+        try {
+            //Delete the tweat from the Tweat collection
+            const deletedTweat = await Tweat.findOneAndRemove({ _id: req.params.id })
+            //Update the User to remove the tweat
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: deletedTweat.userID },
+                { $pull: { tweats: deletedTweat._id } }
+            )
+            //Update the associated Restaurant to remove the tweat
+            // const updatedRestaurant = await Restaurant.findOneAndUpdate(
+            //     { _id: deletedTweat.restaurantID },
+            //     { $pull: { replies: deletedTweat._id } }
+            // )
+            res.status(200).json({ deletedTweat: deletedTweat, updatedUser: updatedUser })
+        }
+        catch (error) {
+            res.status(400).json(error)
+        }
+    },
+
 }
 //TODO:  For retweat, I think that we can just route to '/api/tweats/'
 // to add a new tweat and pass in a Tweat Schema to the retweat field in originalTweat field through
