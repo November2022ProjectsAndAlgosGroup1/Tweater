@@ -11,16 +11,32 @@
 .green {
   background-color: green;
 }
-.sideBar{
+.blue {
+  background-color: dodgerblue;
+}
+.sideBar {
   width: 25%;
 }
-.feedSection{
+.feedSection {
   width: 70%;
 }
-.sideBar{
+.sideBar {
   min-height: 50vh;
 }
-.sidebarLinks{
+.sidebarLinks {
   min-height: 25vh;
   border: 1px solid #000;
+}
+.serchForm {
+  min-width: 50%;
+}
+.card > img {
+  width: 100px;
+  height: 100px;
+  background-color: gold;
+}
+.profileImg{
+  width: 100px;
+  height: 100px;
+  background-color: gold;
 }
