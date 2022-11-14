@@ -11,12 +11,11 @@ const LoginRegForm = (props) => {
   const [loginError, setLoginError] = useState(null);
   const [loginSuccess, setLoginSuccess] = useState(null);
   const [formRegisterData, setRegisterFormData] = useState({
-    status: "user",
-    password: "",
-    confirmPassword: "",
+    name: "",
+    userName: "",
     email: "",
-    tempUser: props.user_id,
-    opinions: [],
+    password: "",
+    // confirmPassword: "",
   });
 
   //track changes in the form
@@ -120,39 +119,39 @@ const LoginRegForm = (props) => {
         <>
           <div className="mb-3 row align-items-center">
             <div className="col-auto">
-              <label htmlFor="firstName" className="col-form-label">
-              First Name:
+              <label htmlFor="name" className="col-form-label">
+                Name:
               </label>
             </div>
             <div className="col">
               <input
                 type="text"
-                name="firstName"
+                name="name"
                 className="form-control"
-                id="firstName"
+                id="name"
                 onChange={handleLoginChange}
               />
             </div>
           </div>
           <div className="mb-3 row align-items-center">
             <div className="col-auto">
-              <label htmlFor="lastName" className="col-form-label">
-              Last Name:
+              <label htmlFor="userName" className="col-form-label">
+                User Name:
               </label>
             </div>
             <div className="col">
               <input
                 type="text"
-                name="lastName"
+                name="userName"
                 className="form-control"
-                id="lastName"
+                id="userName"
                 onChange={handleLoginChange}
               />
             </div>
           </div>
           <div className="mb-3 row align-items-center">
             <div className="col-auto">
-              <label htmlFor="username" className="col-form-label">
+              <label htmlFor="email" className="col-form-label">
                 Email:
               </label>
             </div>
@@ -161,7 +160,7 @@ const LoginRegForm = (props) => {
                 type="email"
                 name="email"
                 className="form-control"
-                id="username"
+                id="email"
                 onChange={handleLoginChange}
               />
             </div>
@@ -182,7 +181,7 @@ const LoginRegForm = (props) => {
               />
             </div>
           </div>
-          <div className="mb-3 row align-items-center">
+          {/* <div className="mb-3 row align-items-center">
             <div className="col-auto">
               <label htmlFor="confirmPassword" className="col-form-label">
               Confirm Password:
@@ -197,7 +196,7 @@ const LoginRegForm = (props) => {
                 onChange={handleLoginChange}
               />
             </div>
-          </div>
+          </div> */}
         </>
       )}
       {loginError && <p className="error">{loginError}</p>}
