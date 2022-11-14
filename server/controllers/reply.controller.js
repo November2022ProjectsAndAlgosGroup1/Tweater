@@ -43,9 +43,7 @@ module.exports = {
             })
     },
 
-    // TODO
     //updates a single reply in the database
-    //are we allowing users to update their replies?
     updateReply: (req, res) => {
         Reply.findOneAndUpdate(
             { _id: req.params.id },

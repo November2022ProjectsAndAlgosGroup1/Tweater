@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import LoginRegForm from "./LoginRegForm"
 import { Button } from "@chakra-ui/react"
 const Login = (props) => {
-    const { loggedin, setModalOpen, setModalTitle } = props
+    const { loggedin, handleLogout, setModalOpen, setModalTitle } = props
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -10,7 +10,7 @@ const Login = (props) => {
             setModalOpen(true)
             setModalTitle(e.target.name)
         } else {
-            props.handleLogout()
+            handleLogout()
         }
     }
     return (

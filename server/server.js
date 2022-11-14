@@ -2,6 +2,8 @@ const PORT = 8000
 const cors = require('cors')
 const express = require('express')
 const app = express()
+require('dotenv').config()
+const cookieParser = require('cookie-parser')
 
 //require config file
 require('./config/mongoose.config')
@@ -9,6 +11,8 @@ require('./config/mongoose.config')
 //Middleware for formatting and allowing POST requests
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cookieParser())
 
 //connect front-end to back-end
 app.use(
@@ -18,13 +22,7 @@ app.use(
 )
 
 // import routes
-// require('./routes/like.routes')(app)
-// require('./routes/reply.routes')(app)
-// require('./routes/restaurant.routes')(app)
-// require('./routes/tweat.routes')(app)
 require('./routes/app.routes')(app)
-
-
 
 //start server
 app.listen(PORT, () => {

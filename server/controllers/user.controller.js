@@ -1,12 +1,15 @@
-const { User, Tweat, Like, Reply } = require('../models/all.model')
+const { Tweat, Like, User, Reply } = require('../models/all.model')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const SECRET = process.env.SECRET_KEY
 
 module.exports = {
     //adds user to database
     registerUser: async (req, res) => {
         try {
             //Create New User
-            const newUser = await User.create(req.body.obj)
-            res.status(200).json({ newUser: newUser })
+            const newUser = await User.create(req.body)
+            res.status(200).json('hi') //{ newUser: newUser }
         } catch (error) {
             res.status(400).json(error)
         }
@@ -60,8 +63,34 @@ module.exports = {
             await User.findByIdAndDelete(userID)
             res.json({ successMessage: "User deleted", deletedUserID: userID })
         } catch (err) {
-            console.log(err)
-            res.status(400).json(err)
+            console.log(error)
+            res.status(400).json(error)
         }
+    },
+    
+    //Logs user in using cookies
+    loginUser: async (req, res) => {
+        const user = await User.findOne({ email: req.body.email })
+        if (!user) {
+            res.status(400).json({ error: 'Invalid email/password' })
+        }
+        try {
+            const isPasswordValid = await bcrypt.compare(req.body.password, user.password)
+            console.log(isPasswordValid)
+            if (!isPasswordValid) {
+                res.status(400).json({ error: 'Invalid email/password' })
+            } else {
+                const userToken = jwt.sign({ _id: user._id, email: user.email }, SECRET)
+                res.status(201).cookie('userToken', userToken, { httpOnly: true, expires: new Date(Date.now() + 90000) }).json({ successMessage: 'User logged in', user: user })
+            }
+        } catch (error) {
+            res.status(400).json({ error: 'Invalid email/password' })
+        }
+    },
+
+    //Logs user out by clearing cookies
+    logoutUser: (req, res) => {
+        res.clearCookie('userToken')
+        res.json({ success: 'User logged out' })
     }
 }

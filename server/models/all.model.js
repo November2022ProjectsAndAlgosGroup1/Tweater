@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 const LikeSchema = mongoose.Schema({
     userID: {
@@ -26,30 +27,26 @@ const ReplySchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
-//TODO - Merge into tweat schema
-const RestaurantSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, 'Restaurant name is required']
-    },
-    latitude:{
-        type: Number,
-        required: [true]
-    },
-    logitude:{
-        type: Number,
-        required: [true]
-    },
-}, { timestamps: true })
-
 const TweatSchema = mongoose.Schema({
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         required: [true, 'User ID is required']
     },
-    restaurantID: {
-        type: mongoose.Schema.Types.ObjectId,
-        // required: [true, 'Restaurant ID is required']
+
+    //This is a Map. I'm not really sure what that means, and I'm too tired to figure it out tonight
+    restaurantInfo: {
+        name: {
+            type: String,
+            required: [true, 'Restaurant name is required']
+        },
+        latitude: {
+            type: Number,
+            required: [true]
+        },
+        logitude: {
+            type: Number,
+            required: [true]
+        }
     },
     text: {
         type: String
@@ -58,9 +55,6 @@ const TweatSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reply'
     }],
-    //TODO:  Should likes just be an array of User IDs?  I don't think it needs to be a separate model.
-    //Just a list of references to users who like the tweat
-    //You can get that from the likes array when you populate - SC
     likes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Like'
@@ -97,7 +91,7 @@ const UserSchema = mongoose.Schema(
         },
         password: {
             type: String,
-            required: [true, 'please input a password'],
+            required: [true, 'Password is required'],
             minLength: [8, 'Password must be at least 8 characters']
         },
         tweats: [{
@@ -115,19 +109,29 @@ const UserSchema = mongoose.Schema(
         }]
     }, { timestamps: true })
 
+UserSchema.virtual('confirmPassword')
+    .get(() => this._confirmPassword)
+    .set(value => this._confirmPassword = value)
 
+// Middleware for password confirmation
+UserSchema.pre('validate', function (next) {
+    if (this.password !== this.confirmPassword) {
+        this.invalidate('confirmPassword', 'Passwords must match!')
+    }
+    next()
+})
 
-//Middleware for password Confirmation
-// UserSchema.virtual('confirmPassword')
-//     .get(() => this._confirmPassword)
-//     .set(value => this._confirmPassword = value)
-
-// UserSchema.pre('validate', function (next) {
-//     if (this.password !== this._confirmPassword) {
-//         this.invalidate('confirmPassword', 'Passwords must match!')
-//     }
-//     next()
-// })
+//Middleware for password encryption
+UserSchema.pre('save', async function (next) {
+    try {
+        const hashedPassword = await bcrypt.hash(this.password, 10)
+        // console.log(`Hashed password: ${hashedPassword}`)
+        this.password = hashedPassword
+        next()
+    } catch (error) {
+        console.log('error in save', error)
+    }
+})
 
 
 const Like = mongoose.model('Like', LikeSchema)
