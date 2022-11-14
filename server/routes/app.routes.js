@@ -54,9 +54,10 @@ module.exports = (app) => {
   //user routes
   app.get("/api/users/", findAllUsers); //finds all users
   app.get("/api/users/:id", findUser); //finds a single user
-  app.post("/api/users/", registerUser); //adds a user to database
+  // app.post("/api/users/", registerUser); //adds a user to database
   app.put("/api/users/:id", updateUser); //updates a single user
   app.delete("/api/users/:id", deleteUser); //updates a single user
   app.post("/api/users/login", loginUser); //logs a user in
   app.post("/api/users/logout", logoutUser); //logs a user out
+  app.post("/api/users/register", registerUser); //register a user
 };
