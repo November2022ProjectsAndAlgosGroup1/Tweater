@@ -84,7 +84,7 @@ const LoginRegForm = (props) => {
         <>
           <div className="mb-3 row align-items-center">
             <div className="col-auto">
-              <label htmlFor="username" className="col-form-label">
+              <label htmlFor="email" className="col-form-label">
                 Email:
               </label>
             </div>
@@ -93,7 +93,7 @@ const LoginRegForm = (props) => {
                 type="email"
                 name="email"
                 className="form-control"
-                id="username"
+                id="email"
                 onChange={handleLoginChange}
               />
             </div>
