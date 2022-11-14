@@ -11,11 +11,6 @@ module.exports = {
                 { $push: { tweats: newTweat._id } },
                 { new: true }
             )
-            // const updatedRestaurantWithTweat = await Restaurant.findOneAndUpdate(
-            //     { _id: newTweat.restaurantID },
-            //     { $push: { tweats: newTweat._id } },
-            //     { new: true }
-            // )
             res.status(200).json({ updatedUserObj: updatedUserWithTweat })
         } catch (error) {
             res.status(400).json(error)
@@ -65,16 +60,11 @@ module.exports = {
                 { _id: deletedTweat.userID },
                 { $pull: { tweats: deletedTweat._id } }
             )
+            //delete all user likes
+            const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
+            //delete all user replies
+            const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
 
-                //TODO REMOVE LIKES AND REPLIES
-
-
-
-            //Update the associated Restaurant to remove the tweat
-            // const updatedRestaurant = await Restaurant.findOneAndUpdate(
-            //     { _id: deletedTweat.restaurantID },
-            //     { $pull: { replies: deletedTweat._id } }
-            // )
             res.status(200).json({ deletedTweat: deletedTweat, updatedUser: updatedUser })
         }
         catch (error) {
