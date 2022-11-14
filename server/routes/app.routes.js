@@ -59,5 +59,4 @@ module.exports = (app) => {
   app.delete("/api/users/:id", deleteUser); //updates a single user
   app.post("/api/users/login", loginUser); //logs a user in
   app.post("/api/users/logout", logoutUser); //logs a user out
-  app.post("/api/users/register", registerUser); //register a user
 };
