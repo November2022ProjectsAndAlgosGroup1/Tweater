@@ -20,7 +20,7 @@ const Map = (props) => {
   console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
   const mapContainerStyle = {
-    height: "500px",
+    height: "250px",
     width: page === "Explore" ? "75vw" : "100vw",
   };
 
