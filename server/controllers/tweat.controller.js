@@ -65,6 +65,11 @@ module.exports = {
                 { _id: deletedTweat.userID },
                 { $pull: { tweats: deletedTweat._id } }
             )
+
+                //TODO REMOVE LIKES AND REPLIES
+
+
+
             //Update the associated Restaurant to remove the tweat
             // const updatedRestaurant = await Restaurant.findOneAndUpdate(
             //     { _id: deletedTweat.restaurantID },

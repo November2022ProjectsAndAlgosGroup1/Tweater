@@ -4,8 +4,8 @@ const { findAllLikes, findLike, addLike, removeLike } = LikeController
 const ReplyController = require('../controllers/reply.controller')
 const { findAllReplies, findReply, addReply, updateReply, deleteReply } = ReplyController
 
-const RestaurantController = require('../controllers/restaurant.controller')
-const { findAllRestaurants, findRestaurant, addRestaurant, updateRestaurant, deleteRestaurant } = RestaurantController
+// const RestaurantController = require('../controllers/restaurant.controller')
+// const { findAllRestaurants, findRestaurant, addRestaurant, updateRestaurant, deleteRestaurant } = RestaurantController
 
 const TweatController = require('../controllers/tweat.controller')
 const { addTweat, findTweat, findAllTweats, updateTweat, deleteTweat, retweat } = TweatController
@@ -34,7 +34,7 @@ module.exports = (app) => {
     // app.get('/api/restaurants/:id', findRestaurant) //finds a single restaurant
     // app.post('/api/restaurants/', addRestaurant) //adds a restaurant to database
     // app.put('/api/restaurants/:id', updateRestaurant) //updates a single restaurant
-    app.delete('/api/restaurants/:id', deleteRestaurant) //updates a single restaurant
+    // app.delete('/api/restaurants/:id', deleteRestaurant) //updates a single restaurant
 
     //tweat routes
     app.post('/api/tweats/', addTweat) //adds a tweat to database

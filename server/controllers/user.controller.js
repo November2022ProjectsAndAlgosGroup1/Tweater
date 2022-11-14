@@ -2,10 +2,14 @@ const { User, Tweat, Like, Reply } = require('../models/all.model')
 
 module.exports = {
     //adds user to database
-    registerUser: (req, res) => {
-        User.create(req.body)
-            .then((result) => res.json(result))
-            .catch((error) => res.status(400).json(error))
+    registerUser: async (req, res) => {
+        try {
+            //Create New User
+            const newUser = await User.create(req.body.obj)
+            res.status(200).json({ newUser: newUser })
+        } catch (error) {
+            res.status(400).json(error)
+        }
     },
 
     //finds a single user in the database
@@ -42,27 +46,19 @@ module.exports = {
             .catch((error) => res.status(400).json(error))
     },
 
-    //TODO: This method will not remove the subdocuments associated with the parent from the db
-    // removes a single user from the database
-    // deleteUser: (req, res) => {
-    //     User.deleteOne({ _id: req.params.id })
-    //         .then(result => res.json(result))
-    //         .catch((error) => res.status(400).json(error))
-    // },
-
     //deletes a single user and all of the user's tweats, likes, and replies from the db
-    deleteUser : async (req, res) => {
+    deleteUser: async (req, res) => {
         const userID = req.params.id
         try {
             //delete all user tweats
-            const userTweats = await Tweat.deleteMany({userID: userID})
+            const userTweats = await Tweat.deleteMany({ userID: userID })
             //delete all user likes
-            const userLikes = await Like.deleteMany({userID: userID})
+            const userLikes = await Like.deleteMany({ userID: userID })
             //delete all user replies
-            const userReplies = await Reply.deleteMany({userID: userID})
+            const userReplies = await Reply.deleteMany({ userID: userID })
             //delete the user
             await User.findByIdAndDelete(userID)
-            res.json({successMessage: "User deleted", deletedUserID: userID})
+            res.json({ successMessage: "User deleted", deletedUserID: userID })
         } catch (err) {
             console.log(err)
             res.status(400).json(err)

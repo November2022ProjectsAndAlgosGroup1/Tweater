@@ -27,31 +27,27 @@ const ReplySchema = mongoose.Schema({
 }, { timestamps: true })
 
 
-const RestaurantSchema = mongoose.Schema({
-    name: {
-        type:String,
-        required: [true, 'Restaurant name is required']
-    },
-    yelpID: {
-        type: String
-    },
-    tweats: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tweat'
-    }]
-}, { timestamps: true })
+// const RestaurantSchema = mongoose.Schema({
+//     name: {
+//         type: String,
+//         required: [true, 'Restaurant name is required']
+//     },
+//     yelpID: {
+//         type: mongoose.Schema.Types.ObjectId
+//     },
+//     tweats: [{
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'Tweat'
+//     }]
+// }, { timestamps: true })
 
 const TweatSchema = mongoose.Schema({
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         required: [true, 'User ID is required']
     },
-
-    //TODO - Jessica
-    //Why did you change this to reference the RestaurantSchema? Is a single tweat supposed to reference multiple restaurants?
-    //switched it back to type: String for now to test other things
     restaurantID: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         // required: [true, 'Restaurant ID is required']
     },
     text: {
@@ -63,7 +59,7 @@ const TweatSchema = mongoose.Schema({
     }],
     //TODO:  Should likes just be an array of User IDs?  I don't think it needs to be a separate model.
     //Just a list of references to users who like the tweat
-    //You can get that from the likes array when you populate
+    //You can get that from the likes array when you populate - SC
     likes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Like'
@@ -84,9 +80,15 @@ const UserSchema = mongoose.Schema(
             required: [true, 'Name is required'],
             minLength: [2, 'Name must be at least 2 characters']
         },
-        email:{
+        userName: {
+            type: String,
+            required: [true, 'Username is required'],
+            minLength: [2, 'Username must be at least 2 characters']
+        },
+        email: {
             type: String,
             required: [true, 'Email is required'],
+            //Validation is ready to be used, commented to be easier to test
             // validate: [
             //         /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
             //         'Provided email is invalid'
@@ -112,10 +114,25 @@ const UserSchema = mongoose.Schema(
         }]
     }, { timestamps: true })
 
+
+
+//Middleware for password Confirmation
+// UserSchema.virtual('confirmPassword')
+//     .get(() => this._confirmPassword)
+//     .set(value => this._confirmPassword = value)
+
+// UserSchema.pre('validate', function (next) {
+//     if (this.password !== this._confirmPassword) {
+//         this.invalidate('confirmPassword', 'Passwords must match!')
+//     }
+//     next()
+// })
+
+
 const Like = mongoose.model('Like', LikeSchema)
 const Reply = mongoose.model('Reply', ReplySchema)
-const Restaurant = mongoose.model('Restaurant', RestaurantSchema)
 const Tweat = mongoose.model('Tweat', TweatSchema)
 const User = mongoose.model('User', UserSchema)
+// const Restaurant = mongoose.model('Restaurant', RestaurantSchema)
 
-module.exports = { Like, Reply, Restaurant, Tweat, User }
+module.exports = { Like, Reply, Tweat, User } //Restaurant
