@@ -2,8 +2,8 @@ import React from "react";
 
 const Feeds = () => {
   return (
-    <div className="feedSection pink container p-4">
-      <h2 className="fs-4 mb-3">What your friends are eating</h2>
+    <div className="feedSection container p-4">
+      <h2 className="fs-4 mb-3 text-light">What your friends are eating</h2>
       <div className="container comments">
         <div className="card d-flex flex-row">
           <img src="..." className="card-img-top" alt="..." />
@@ -19,7 +19,6 @@ const Feeds = () => {
             </p>
             <div className="feedOptions w-50 border-2 p-2  mx-auto d-flex justify-content-between">
               <a href="/">
-                {" "}
                 <i className="fa fa-reply" aria-hidden="true"></i> Reply
               </a>
               <a href="/">

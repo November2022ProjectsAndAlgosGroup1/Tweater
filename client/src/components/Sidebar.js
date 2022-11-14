@@ -11,7 +11,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div className="sideBar green container d-flex flex-column align-items-center justify-content-around p-4">
+    <div className="sideBar container d-flex flex-column align-items-center justify-content-around p-4">
       <div className="container sidebarLinks d-flex flex-column align-items-center justify-content-between p-3">
         <Link to="/">Home</Link>
         <Link to="/explore">Explore</Link>

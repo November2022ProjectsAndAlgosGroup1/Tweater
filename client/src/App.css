@@ -5,6 +5,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* html,
+body {
+  width: 100%;
+  height: 100%;
+} */
+/* #map {
+  height: 30vh;
+} */
+.logoFont {
+  font-family: "Satisfy", cursive;
+}
 .pink {
   background-color: pink;
 }
@@ -14,29 +25,56 @@
 .blue {
   background-color: dodgerblue;
 }
+.header {
+  background-color: #16213ee1;
+  /* border-bottom: 2px dotted #ccc; */
+}
+.logo {
+  /* color: #ef3151; */
+  color: gold;
+  font-size: 1.6rem;
+  font-weight: bolder;
+}
 .sideBar {
   width: 25%;
 }
 .feedSection {
   width: 70%;
+  background-color: #234a7a;
 }
 .sideBar {
   min-height: 50vh;
+  background-color: #435a76;
 }
 .sidebarLinks {
   min-height: 25vh;
-  border: 1px solid #000;
+  border: 1px solid #eee;
+}
+.sidebarLinks > a {
+  color: #ccc;
 }
 .serchForm {
   min-width: 50%;
+}
+.searchBtn {
+  color: #ccc;
 }
 .card > img {
   width: 100px;
   height: 100px;
   background-color: gold;
 }
-.profileImg{
+.profileImg {
   width: 100px;
   height: 100px;
   background-color: gold;
+}
+
+.mapContainer {
+  width: 100%;
+  /* height: 30vh; */
+}
+.mainPage {
+  background-color: #16213e;
+  min-height: 100vh;
 }
