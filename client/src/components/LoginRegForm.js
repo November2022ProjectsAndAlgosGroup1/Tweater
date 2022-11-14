@@ -47,16 +47,15 @@ const LoginRegForm = (props) => {
     //     setLoginError(null);
     //     setLoginSuccess(res.data.message);
     //     // todo (close modal when successful)
-           //console.log("logged in!");
+           //TODO: setUser()             //How do we get the user?
+          setloggedin(true)
+          console.log("logged in!");
     //   })
     //   .catch((err) => {
     //     console.log(err);
     //     setLoginError(err.response.data.errorMessage);
     //     setLoginSuccess(null);
     //   });
-    console.log("logged in!");
-    //TODO: setUser()             //How do we get the user?
-    setloggedin(true)
   };
   const handleRegister = (e) => {
     e.preventDefault();
