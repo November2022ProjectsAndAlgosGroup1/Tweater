@@ -5,7 +5,7 @@ module.exports = {
     registerUser: async (req, res) => {
         try {
             //Create New User
-            const newUser = await User.create(req.body.obj)
+            const newUser = await User.create(req.body)
             res.status(200).json({ newUser: newUser })
         } catch (error) {
             res.status(400).json(error)

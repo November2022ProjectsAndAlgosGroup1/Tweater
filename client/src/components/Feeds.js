@@ -1,6 +1,21 @@
-import React from "react";
+import {useState, useEffect} from "react"
+import axios from "axios"
 
 const Feeds = () => {
+  const [allTweats, setAllTweats] = useState([])
+
+  //TODO Get tweats...This is not working for some odd reason - JG
+  // useEffect(()=>{
+  //   const getTweats = () => {
+  //     axios.get('http://localhost:8000/api/tweats')
+  //       .then( res => {
+  //         console.log(res.data)
+  //         setAllTweats(res.data)
+  //       })
+  //       .catch((err) => console.log(err))
+  //   }
+  // }, [])
+
   return (
     <div className="feedSection container p-4">
       <h2 className="fs-4 mb-3 text-light">What your friends are eating</h2>
@@ -10,7 +25,7 @@ const Feeds = () => {
           <div className="card-body">
             <div className="card-title d-flex">
               <h5>name</h5>
-              <h5 className="ms-3 me-3">@nickName</h5>
+              <h5 className="ms-3 me-3">@nickName</h5>      {/* TODO hyperlink to the user's profile route*/}
               <h5>- time posted</h5>
             </div>
             <p className="card-text mb-3 mt-3">

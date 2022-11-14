@@ -3,7 +3,7 @@ import Login from "./Login";
 import Search from "./Search";
 
 const Header = (props) => {
-  const { loggedin, setModalOpen, setModalTitle } = props;
+  const { loggedin, handleLogout, user, setUser, setModalOpen, setModalTitle } = props;
 
   return (
     <div className="container-fluid  ">
@@ -18,6 +18,7 @@ const Header = (props) => {
           <Search />
           <Login
             loggedin={loggedin}
+            handleLogout={handleLogout}
             setModalOpen={setModalOpen}
             setModalTitle={setModalTitle}
           />

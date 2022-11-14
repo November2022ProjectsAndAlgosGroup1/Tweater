@@ -3,6 +3,8 @@ import { Button } from "@chakra-ui/react";
 import axios from "axios";
 
 const LoginRegForm = (props) => {
+  const {user, setUser, setloggedin} = props
+
   //set up state for the form
   const [formLoginData, setLoginFormData] = useState({
     email: "",
@@ -35,7 +37,6 @@ const LoginRegForm = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("logged in!");
     //TODO: verify express routes and mongoose controllers are setup
     // axios
     //   .post("http://localhost:8000/api/users/login", formLoginData, {
@@ -46,31 +47,37 @@ const LoginRegForm = (props) => {
     //     setLoginError(null);
     //     setLoginSuccess(res.data.message);
     //     // todo (close modal when successful)
+           //console.log("logged in!");
     //   })
     //   .catch((err) => {
     //     console.log(err);
     //     setLoginError(err.response.data.errorMessage);
     //     setLoginSuccess(null);
     //   });
+    console.log("logged in!");
+    //TODO: setUser()             //How do we get the user?
+    setloggedin(true)
   };
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("registered!");
     //TODO: verify express routes and mongoose controllers are setup
-    // axios
-    //   .post("http://localhost:8000/api/users/register", formRegisterData, {
-    //     withCredentials: true,
-    //     credentials: "include",
-    //   })
-    //   .then((res) => {
-    //     setLoginSuccess(res.data.message);
-    //     setLoginError(null);
-    //     // todo (when successful register close modal)
-    //   })
-    //   .catch((err) => {
-    //     setLoginError(err.response.data.message);
-    //     setLoginSuccess(null);
-    //   });
+    axios
+      .post("http://localhost:8000/api/users", formRegisterData, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setLoginSuccess(res.data.message);
+        setLoginError(null);
+        console.log("registered!");
+        // todo (when successful register close modal)
+      })
+      .catch((err) => {
+        console.log("Uh oh!  Something went wrong!")
+        console.log(err.response.data)
+        setLoginError(err.response.data.message);
+        setLoginSuccess(null);
+      });
   };
 
   return (

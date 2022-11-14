@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Feeds from "./components/Feeds";
@@ -24,20 +24,22 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
 
   // const getUser= ()=>{
   //     axios.get("http://localhost:8000/api/users/")
   // }
+
   const handleLogout = () => {
-    axios
-      .post("http://localhost:8000/api/users/logout", {
-        withCredentials: true,
-        credentials: "include",
-      })
-      .then((res) => {
+    //TODO:  Logout user route
+    // axios
+    //   .post("http://localhost:8000/api/users/logout", {
+    //     withCredentials: true,
+    //     credentials: "include",
+    //   })
+    //   .then((res) => {
         setloggedin(false);
-      });
+    // });
   };
 
   const getSearchResults = (search) => {
@@ -62,10 +64,13 @@ function App() {
         modalTitle={modalTitle}
         setModalTitle={setModalTitle}
         loggedin={loggedin}
+        setloggedin={setloggedin}
       />
       <Header
         loggedin={loggedin}
         setloggedin={setloggedin}
+        user={user}
+        setUser={setUser}
         setModalOpen={setModalOpen}
         setModalTitle={setModalTitle}
         handleLogout={handleLogout}
