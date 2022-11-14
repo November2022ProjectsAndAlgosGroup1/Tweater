@@ -26,20 +26,21 @@ const ReplySchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
-
-// const RestaurantSchema = mongoose.Schema({
-//     name: {
-//         type: String,
-//         required: [true, 'Restaurant name is required']
-//     },
-//     yelpID: {
-//         type: mongoose.Schema.Types.ObjectId
-//     },
-//     tweats: [{
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: 'Tweat'
-//     }]
-// }, { timestamps: true })
+//TODO - Merge into tweat schema
+const RestaurantSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, 'Restaurant name is required']
+    },
+    latitude:{
+        type: Number,
+        required: [true]
+    },
+    logitude:{
+        type: Number,
+        required: [true]
+    },
+}, { timestamps: true })
 
 const TweatSchema = mongoose.Schema({
     userID: {
@@ -133,6 +134,5 @@ const Like = mongoose.model('Like', LikeSchema)
 const Reply = mongoose.model('Reply', ReplySchema)
 const Tweat = mongoose.model('Tweat', TweatSchema)
 const User = mongoose.model('User', UserSchema)
-// const Restaurant = mongoose.model('Restaurant', RestaurantSchema)
 
-module.exports = { Like, Reply, Tweat, User } //Restaurant
+module.exports = { Like, Reply, Tweat, User }
