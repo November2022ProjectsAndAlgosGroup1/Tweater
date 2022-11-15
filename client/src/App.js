@@ -60,29 +60,29 @@ function App() {
     search && getSearchResults(search)
     return (
         <div className="App">
-            <MainModal
-                loggedin={loggedin}
-                modalOpen={modalOpen}
-                modalTitle={modalTitle}
-                setloggedin={setloggedin}
-                setModalOpen={setModalOpen}
-                setModalTitle={setModalTitle}
-                setUser={setUser}
-                user={user}
-            />
-            <Header
-                handleLogout={handleLogout}
-                loggedin={loggedin}
-                search={search}
-                setloggedin={setloggedin}
-                setUser={setUser}
-                setModalOpen={setModalOpen}
-                setModalTitle={setModalTitle}
-                setSearch={setSearch}
-                setSearchResults={setSearchResults}
-                user={user}
-            />
             <BrowserRouter>
+                <MainModal
+                    loggedin={loggedin}
+                    modalOpen={modalOpen}
+                    modalTitle={modalTitle}
+                    setloggedin={setloggedin}
+                    setModalOpen={setModalOpen}
+                    setModalTitle={setModalTitle}
+                    setUser={setUser}
+                    user={user}
+                />
+                <Header
+                    handleLogout={handleLogout}
+                    loggedin={loggedin}
+                    search={search}
+                    setloggedin={setloggedin}
+                    setUser={setUser}
+                    setModalOpen={setModalOpen}
+                    setModalTitle={setModalTitle}
+                    setSearch={setSearch}
+                    setSearchResults={setSearchResults}
+                    user={user}
+                />
                 <Routes>
                     <Route
                         path="/"
