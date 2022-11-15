@@ -17,7 +17,7 @@ const Sidebar = (props) => {
         <Link to="/explore">Explore</Link>
         {/* //! uncomment it after getting id  from the API */}
         {/* <Link to={`/profile/${user._id}`}>Profile</Link> */}
-        <Link to="/profile">Profile</Link>
+        <Link to={`/profile/${user._id}`}>Profile</Link>
       </div>
       <Button className="btn btn-info" onClick={(e) => handleTweat(e)}>
         TWEAT

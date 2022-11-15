@@ -48,31 +48,35 @@ const LoginRegForm = (props) => {
         credentials: "include",
       })
       .then((res) => {
-        setLoginError(null);
-        setLoginSuccess(res.data.message);
+        console.log(res)
+        setLoginError(null)
+        setLoginSuccess(res.data.successMessage)
+        setUser(res.data.user)
     //     // todo (close modal when successful)
     //TODO: setUser()             //How do we get the user?
     setloggedin(true);
     console.log("logged in!");
       })
       .catch((err) => {
-        console.log(err);
-        setLoginError(err.response.data.errorMessage);
-        setLoginSuccess(null);
+        console.log(err)
+        setLoginError(err.response.data.errorMessage)
+        setLoginSuccess(null)
       });
   };
   const handleRegister = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     axios
       .post("http://localhost:8000/api/users/register", formRegisterData, {
         withCredentials: true,
         credentials: "include",
       })
       .then((res) => {
-        setLoginSuccess(res.data.message);
-        setLoginError(null);
-        console.log("registered!");
-        // navigate(`/profile-page/${id}`);
+        console.log(res)
+        setLoginSuccess(res.data.successMessage)
+        setUser(res.data.user)
+        setLoginError(null)
+        console.log("registered!")
+        // navigate(`/profile-page/${id}`)
 
         // todo (when successful register close modal)
       })

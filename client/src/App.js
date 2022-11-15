@@ -65,6 +65,8 @@ function App() {
         setModalTitle={setModalTitle}
         loggedin={loggedin}
         setloggedin={setloggedin}
+        user={user}
+        setUser={setUser}
       />
       <Header
         loggedin={loggedin}
@@ -151,7 +153,9 @@ function App() {
                     modalTitle={modalTitle}
                     setModalTitle={setModalTitle}
                   />
-                  <Profile />
+                  <Profile 
+                    user={user}
+                  />
                   <Feeds page={"explore"} />
                 </div>
               </Main>
