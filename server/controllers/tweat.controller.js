@@ -26,19 +26,22 @@ module.exports = {
     },
 
     //finds all tweats in the database
-    findAllTweats: async (req, res) => {
+    findAllTweats: (req, res) => {
         Tweat.find()
-            // .populate("users")
+            .populate({ 
+                path: 'userID',
+                select: 'name userName'
+            })
             .then((allTweats) => {
                 //map through tweats and attach the user object to each tweat
-                const tweatsWithUsers = allTweats.map((tweat) => {
-                    return User.findOne({ tweats: tweat._id }).then((user) => {
-                        tweat.user = user
-                        return tweat
-                    })
-                })
-                console.log(tweatsWithUsers)
-                res.json(tweatsWithUsers)
+                // const tweatsWithUsers = allTweats.map((tweat) => {
+                //     return User.findOne({ tweats: tweat._id }).then((user) => {
+                //         tweat.user = user
+                //         return tweat
+                //     })
+                // })
+                console.log(allTweats)
+                res.json(allTweats)
             })
             .catch((error) => {
                 console.log("failed to find all Tweats")

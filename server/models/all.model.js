@@ -38,6 +38,7 @@ const TweatSchema = mongoose.Schema(
     userID: {
       type: mongoose.Schema.Types.ObjectId,
       required: [true, "User ID is required"],
+      ref: "User"
     },
 
     //This is a Map. I'm not really sure what that means, and I'm too tired to figure it out tonight
@@ -68,6 +69,12 @@ const TweatSchema = mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Like",
+      },
+    ],
+    retweat: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tweat"
       },
     ],
     originalTweat: {
