@@ -28,9 +28,7 @@ const Sidebar = (props) => {
             <div className="container sidebarLinks d-flex flex-column align-items-center justify-content-between p-3">
                 <Link to="/">Home</Link>
                 <Link to="/explore">Explore</Link>
-                {/* //! uncomment it after getting id  from the API */}
                 {/* <Link to={`/profile/${user._id}`}>Profile</Link> */}
-                <Link to={`/profile/${user._id}`}>Profile</Link>
             </div>
             <Button className="btn btn-info" onClick={(e) => handleTweat(e)}>
                 twEAT

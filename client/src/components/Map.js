@@ -14,10 +14,10 @@ const options = {
 const Map = (props) => {
   const { page, markers, center } = props;
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
 
-  console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+  // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
   const mapContainerStyle = {
     height: "250px",
