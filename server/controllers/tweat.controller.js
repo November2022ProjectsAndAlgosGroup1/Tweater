@@ -30,8 +30,8 @@ module.exports = {
     findAllTweats: (req, res) => {
         Tweat.find()
             .populate({
-                path: 'userID',
-                select: 'name userName'
+                path: "userID",
+                select: "name userName",
             })
             .then((allTweats) => {
                 //map through tweats and attach the user object to each tweat
@@ -41,7 +41,6 @@ module.exports = {
                 //         return tweat
                 //     })
                 // })
-                console.log(allTweats)
                 res.json(allTweats)
             })
             .catch((error) => {

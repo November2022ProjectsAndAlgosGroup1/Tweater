@@ -27,7 +27,7 @@ const Feeds = (props) => {
                 What your friends are eating
             </h2>
             <div className="container comments">
-                {allTweats ? (
+                {allTweats && allTweats.length > 0 ? (
                     allTweats.map((tweat, i) => {
                         return <Tweat key={i} tweat={tweat} />
                     })

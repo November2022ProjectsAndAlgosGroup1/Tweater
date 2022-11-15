@@ -14,8 +14,19 @@ import TweatForm from "./TweatForm"
 
 const MainModal = (props) => {
     const { onOpen, isOpen, onClose } = useDisclosure()
-    const { user, setUser, modalOpen, setModalOpen, loggedin, setloggedin, modalTitle, setModalTitle } =
-        props
+    const {
+        user,
+        setUser,
+        modalOpen,
+        modalSubtitle,
+        setModalOpen,
+        loggedin,
+        setloggedin,
+        modalTitle,
+        setModalTitle,
+        setModalSubtitle,
+        whereTo,
+    } = props
 
     useEffect(() => {
         const handleModal = () => {
@@ -31,19 +42,26 @@ const MainModal = (props) => {
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>{modalTitle}</ModalHeader>
+                <ModalHeader>
+                    <h3> {modalTitle}</h3>
+                    {modalSubtitle && <p> {modalSubtitle}</p>}
+                </ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     {modalTitle !== "Tweat" ? (
-                        <LoginRegForm 
-                            type={modalTitle} 
-                            loggedin={loggedin} 
+                        <LoginRegForm
+                            loggedin={loggedin}
+                            type={modalTitle}
                             setloggedin={setloggedin}
-                            user={user}
+                            setModalOpen={setModalOpen}
+                            setModalTitle={setModalTitle}
+                            setModalSubtitle={setModalSubtitle}
                             setUser={setUser}
+                            user={user}
+                            whereTo={whereTo}
                         />
                     ) : (
-                        <TweatForm />
+                        <TweatForm user={user} />
                     )}
                 </ModalBody>
                 <ModalFooter>

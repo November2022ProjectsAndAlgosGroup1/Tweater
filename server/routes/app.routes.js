@@ -26,6 +26,9 @@ const {
     logoutUser,
 } = UserController
 
+const YelpController = require("../controllers/yelp.controller")
+const { getNearbyRestaurants } = YelpController
+
 // TODO: where are we using the authentication function?
 const { authenticate } = require("../config/jwt.config")
 
@@ -60,4 +63,6 @@ module.exports = (app) => {
     app.post("/api/users/login", loginUser) //logs a user in
     app.post("/api/users/logout", logoutUser) //logs a user out
     app.post("/api/users/register", registerUser) //register a user
+
+    app.post("/api/yelp/", getNearbyRestaurants) //finds nearby restaurants
 }

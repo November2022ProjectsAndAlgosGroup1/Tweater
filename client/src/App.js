@@ -21,11 +21,12 @@ function App() {
     })
     const [loggedin, setloggedin] = useState(false)
     const [modalTitle, setModalTitle] = useState("")
+    const [modalSubtitle, setModalSubtitle] = useState("")
     const [modalOpen, setModalOpen] = useState(false)
     const [search, setSearch] = useState("")
-
     const [searchResults, setSearchResults] = useState([])
     const [user, setUser] = useState({})
+    const [whereTo, setWhereTo] = useState({})
 
     // const getUser= ()=>{
     //     axios.get("http://localhost:8000/api/users/")
@@ -39,8 +40,10 @@ function App() {
                 credentials: "include",
             })
             .then((res) => {
+                console.log(res)
                 setloggedin(false)
             })
+            .catch((err) => console.log(err))
     }
 
     const getSearchResults = (search) => {
@@ -64,11 +67,14 @@ function App() {
                 <MainModal
                     loggedin={loggedin}
                     modalOpen={modalOpen}
+                    modalSubtitle={modalSubtitle}
                     modalTitle={modalTitle}
                     setloggedin={setloggedin}
                     setModalOpen={setModalOpen}
                     setModalTitle={setModalTitle}
+                    setModalSubtitle={setModalSubtitle}
                     setUser={setUser}
+                    whereTo={whereTo}
                     user={user}
                 />
                 <Header
@@ -82,6 +88,7 @@ function App() {
                     setSearch={setSearch}
                     setSearchResults={setSearchResults}
                     user={user}
+                    setWhereTo={setWhereTo}
                 />
                 <Routes>
                     <Route
@@ -109,6 +116,8 @@ function App() {
                                             setModalOpen={setModalOpen}
                                             modalTitle={modalTitle}
                                             setModalTitle={setModalTitle}
+                                            setModalSubtitle={setModalSubtitle}
+                                            setWhereTo={setWhereTo}
                                         />
                                         <Feeds page={"home"} />
                                     </div>
@@ -139,6 +148,8 @@ function App() {
                                             setModalOpen={setModalOpen}
                                             modalTitle={modalTitle}
                                             setModalTitle={setModalTitle}
+                                            setModalSubtitle={setModalSubtitle}
+                                            setWhereTo={setWhereTo}
                                         />
 
                                         <Feeds page={"explore"} />
@@ -158,6 +169,8 @@ function App() {
                                         setModalOpen={setModalOpen}
                                         modalTitle={modalTitle}
                                         setModalTitle={setModalTitle}
+                                        setModalSubtitle={setModalSubtitle}
+                                        setWhereTo={setWhereTo}
                                     />
                                     <Profile user={user} />
                                     <Feeds page={"explore"} />
