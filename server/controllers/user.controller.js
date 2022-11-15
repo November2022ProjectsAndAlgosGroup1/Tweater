@@ -1,4 +1,7 @@
-const { Tweat, Like, User, Reply } = require("../models/all.model");
+const { Tweat } = require("../models/tweat.model");
+const { Like } = require("../models/like.model");
+const { User } = require("../models/user.model");
+const { Reply } = require("../models/reply.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET_KEY;

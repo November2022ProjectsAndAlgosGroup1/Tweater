@@ -1,4 +1,5 @@
-const { Tweat, User } = require("../models/all.model")
+const { Tweat } = require("../models/tweat.model")
+const { User } = require("../models/user.model")
 
 module.exports = {
     //creates new tweat and adds it to the user's tweat array and adds the tweat's ID to the user's tweat array
@@ -28,7 +29,7 @@ module.exports = {
     //finds all tweats in the database
     findAllTweats: (req, res) => {
         Tweat.find()
-            .populate({ 
+            .populate({
                 path: 'userID',
                 select: 'name userName'
             })

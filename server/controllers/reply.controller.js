@@ -1,4 +1,6 @@
-const { Reply, User, Tweat } = require('../models/all.model')
+const { Reply } = require('../models/reply.model')
+const { User } = require('../models/user.model')
+const { Tweat } = require('../models/tweat.model')
 
 module.exports = {
 
