@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Button } from "@chakra-ui/react";
 import axios from "axios";
+// import { useNavigate, Link,useParams } from "react-router-dom";
 
 const LoginRegForm = (props) => {
-  const {user, setUser, setloggedin} = props
+  const { user, setUser, setloggedin } = props;
 
   //set up state for the form
   const [formLoginData, setLoginFormData] = useState({
@@ -17,8 +18,12 @@ const LoginRegForm = (props) => {
     userName: "",
     email: "",
     password: "",
-    // confirmPassword: "",
+    confirmPassword: "",
   });
+
+  // const navigate = useNavigate();
+  // const { id } = useParams();
+
 
   //track changes in the form
   const handleLoginChange = (e) => {
@@ -37,31 +42,29 @@ const LoginRegForm = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    //TODO: verify express routes and mongoose controllers are setup
-    // axios
-    //   .post("http://localhost:8000/api/users/login", formLoginData, {
-    //     withCredentials: true,
-    //     credentials: "include",
-    //   })
-    //   .then((res) => {
-    //     setLoginError(null);
-    //     setLoginSuccess(res.data.message);
+    axios
+      .post("http://localhost:8000/api/users/login", formLoginData, {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
+        setLoginError(null);
+        setLoginSuccess(res.data.message);
     //     // todo (close modal when successful)
-           //TODO: setUser()             //How do we get the user?
-          setloggedin(true)
-          console.log("logged in!");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setLoginError(err.response.data.errorMessage);
-    //     setLoginSuccess(null);
-    //   });
+    //TODO: setUser()             //How do we get the user?
+    setloggedin(true);
+    console.log("logged in!");
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoginError(err.response.data.errorMessage);
+        setLoginSuccess(null);
+      });
   };
   const handleRegister = (e) => {
     e.preventDefault();
-    //TODO: verify express routes and mongoose controllers are setup
     axios
-      .post("http://localhost:8000/api/users", formRegisterData, {
+      .post("http://localhost:8000/api/users/register", formRegisterData, {
         withCredentials: true,
         credentials: "include",
       })
@@ -69,11 +72,13 @@ const LoginRegForm = (props) => {
         setLoginSuccess(res.data.message);
         setLoginError(null);
         console.log("registered!");
+        // navigate(`/profile-page/${id}`);
+
         // todo (when successful register close modal)
       })
       .catch((err) => {
-        console.log("Uh oh!  Something went wrong!")
-        console.log(err.response.data)
+        console.log("Uh oh!  Something went wrong!");
+        console.log(err.response.data);
         setLoginError(err.response.data.message);
         setLoginSuccess(null);
       });
@@ -90,7 +95,7 @@ const LoginRegForm = (props) => {
         <>
           <div className="mb-3 row align-items-center">
             <div className="col-auto">
-              <label htmlFor="username" className="col-form-label">
+              <label htmlFor="email" className="col-form-label">
                 Email:
               </label>
             </div>
@@ -99,7 +104,7 @@ const LoginRegForm = (props) => {
                 type="email"
                 name="email"
                 className="form-control"
-                id="username"
+                id="email"
                 onChange={handleLoginChange}
               />
             </div>
@@ -187,10 +192,10 @@ const LoginRegForm = (props) => {
               />
             </div>
           </div>
-          {/* <div className="mb-3 row align-items-center">
+          <div className="mb-3 row align-items-center">
             <div className="col-auto">
               <label htmlFor="confirmPassword" className="col-form-label">
-              Confirm Password:
+                Confirm Password:
               </label>
             </div>
             <div className="col">
@@ -198,11 +203,11 @@ const LoginRegForm = (props) => {
                 type="password"
                 name="confirmPassword"
                 className="form-control"
-                id="password"
+                id="confirmPassword"
                 onChange={handleLoginChange}
               />
             </div>
-          </div> */}
+          </div>
         </>
       )}
       {loginError && <p className="error">{loginError}</p>}

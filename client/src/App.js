@@ -30,16 +30,16 @@ function App() {
   //     axios.get("http://localhost:8000/api/users/")
   // }
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
     //TODO:  Logout user route
-    // axios
-    //   .post("http://localhost:8000/api/users/logout", {
-    //     withCredentials: true,
-    //     credentials: "include",
-    //   })
-    //   .then((res) => {
+    axios
+      .get("http://localhost:8000/api/users/logout", {
+        withCredentials: true,
+        credentials: "include",
+      })
+      .then((res) => {
         setloggedin(false);
-    // });
+    });
   };
 
   const getSearchResults = (search) => {
@@ -140,7 +140,7 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="/profile/:id"
             element={
               <Main>
                 <div className="container d-flex">

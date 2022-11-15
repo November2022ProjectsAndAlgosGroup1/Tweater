@@ -8,11 +8,16 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
-// import React from "react";
+import axios from 'axios'
 
 const Search = (props) => {
   const { page, search, setSearch } = props;
   const [value, setValue] = useState("");
+
+const getYelp = () => {
+  axios
+    .get("")
+}
 
   const SearchIcon = () => {
     return <Icon as={BsSearch} />;
