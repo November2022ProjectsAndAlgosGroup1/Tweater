@@ -1,7 +1,6 @@
-const { Tweat, User } = require('../models/all.model')
+const { Tweat, User } = require("../models/all.model")
 
 module.exports = {
-
     //creates new tweat and adds it to the user's tweat array and adds the tweat's ID to the user's tweat array
     addTweat: async (req, res) => {
         try {
@@ -20,33 +19,40 @@ module.exports = {
     //finds a single tweat in the database
     findTweat: (req, res) => {
         Tweat.findOne({ _id: req.params.id })
-            .populate('replies') //extends the tweat object to include the actual reply objects
-            .populate('likes') //extends the tweat object to include the actual like objects
-            .then(oneTweat => res.json(oneTweat))
+            .populate("replies") //extends the tweat object to include the actual reply objects
+            .populate("likes") //extends the tweat object to include the actual like objects
+            .then((oneTweat) => res.json(oneTweat))
             .catch((error) => res.status(400).json(error))
     },
 
     //finds all tweats in the database
-    findAllTweats: (req, res) => {
+    findAllTweats: async (req, res) => {
         Tweat.find()
-            .then(allTweats => {
-                console.log(allTweats)
-                res.json(allTweats)
+            // .populate("users")
+            .then((allTweats) => {
+                //map through tweats and attach the user object to each tweat
+                const tweatsWithUsers = allTweats.map((tweat) => {
+                    return User.findOne({ tweats: tweat._id }).then((user) => {
+                        tweat.user = user
+                        return tweat
+                    })
+                })
+                console.log(tweatsWithUsers)
+                res.json(tweatsWithUsers)
             })
             .catch((error) => {
-                console.log('failed to find all Tweats')
+                console.log("failed to find all Tweats")
                 res.status(400).json(error)
             })
     },
 
     //updates a single tweat in the database
     updateTweat: (req, res) => {
-        Tweat.findOneAndUpdate(
-            { _id: req.params.id },
-            req.body,
-            { new: true, runValidators: true }
-        )
-            .then(updatedTweat => res.json(updatedTweat))
+        Tweat.findOneAndUpdate({ _id: req.params.id }, req.body, {
+            new: true,
+            runValidators: true,
+        })
+            .then((updatedTweat) => res.json(updatedTweat))
             .catch((error) => res.status(400).json(error))
     },
 
@@ -54,7 +60,9 @@ module.exports = {
     deleteTweat: async (req, res) => {
         try {
             //Delete the tweat from the Tweat collection
-            const deletedTweat = await Tweat.findOneAndRemove({ _id: req.params.id })
+            const deletedTweat = await Tweat.findOneAndRemove({
+                _id: req.params.id,
+            })
             //Update the User to remove the tweat
             const updatedUser = await User.findOneAndUpdate(
                 { _id: deletedTweat.userID },
@@ -65,13 +73,14 @@ module.exports = {
             //delete all user replies
             const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
 
-            res.status(200).json({ deletedTweat: deletedTweat, updatedUser: updatedUser })
-        }
-        catch (error) {
+            res.status(200).json({
+                deletedTweat: deletedTweat,
+                updatedUser: updatedUser,
+            })
+        } catch (error) {
             res.status(400).json(error)
         }
     },
-
 }
 //TODO:  For retweat, I think that we can just route to '/api/tweats/'
 // to add a new tweat and pass in a Tweat Schema to the retweat field in originalTweat field through
