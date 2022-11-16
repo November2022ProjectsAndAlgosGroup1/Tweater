@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 import {
     Button,
     InputGroup,
@@ -12,26 +12,36 @@ import axios from "axios"
 
 const SearchBar = (props) => {
     // console.log(props)
-    const { type, setSearchResults, results, setResults } = props
-    const { navigate } = useNavigate()
+    const { type, searchResults, setSearchResults, setOptions, setResults } =
+        props
+    const navigate = useNavigate()
+    const { pathname } = useLocation()
     const [value, setValue] = useState("")
 
     const getYelp = (val) => {
         axios
             .post("http://localhost:8000/api/yelp", { location: val })
             .then((res) => {
-                console.log("getYelp res.data", res.data)
-                type === "home"
-                    ? setSearchResults(res.data)
-                    : setResults(res.data)
+                if (type !== "modal") {
+                    setSearchResults(res.data)
+                    if (pathname !== "/explore") {
+                        navigate("/explore")
+                    }
+                } else {
+                    setResults(res.data)
+                }
             })
             .catch((err) => console.log(err))
     }
-
-    // search && getYelp()
+    useEffect(() => {}, [navigate, pathname, searchResults])
 
     const SearchIcon = () => {
         return <Icon as={BsSearch} />
+    }
+
+    const handleChange = (e) => {
+        setValue(e.target.value)
+        type === "modal" && setOptions([])
     }
 
     const handleSearch = (e) => {
@@ -42,7 +52,6 @@ const SearchBar = (props) => {
         // TODO:  Navigate to search page
         // page !== "Explore" || page !== 'Modal' ? navigate(`/explore/`) : null
     }
-    results && console.log("results", results)
     return (
         <form className="serchForm " onSubmit={(e) => handleSearch(e)}>
             <InputGroup className="searchBtn">
@@ -56,7 +65,7 @@ const SearchBar = (props) => {
                     placeholder="Search"
                     aria-label="Search"
                     // defaultValue={type !== "home" ? results[0].name : null}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={(e) => handleChange(e)}
                 />
 
                 <Button

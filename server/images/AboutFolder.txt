@@ -1,0 +1,5 @@
+Do NOT delete this file.
+
+The images folder is necessary for file upload in this application.
+
+This file ensures that the images folder will be pushed to git even if there are no image files inside /images

@@ -11,8 +11,10 @@
 # production
 /build
 
-#images
-/images/*
+#Ignores all the image files...
+**/images/*.png
+**/images/*.jpg
+**/images/*.jpeg
 
 # misc
 .DS_Store

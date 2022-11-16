@@ -89,3 +89,39 @@ body {
     font-size: 5rem;
     font-weight: bolder;
 }
+
+.infoBox {
+    background-color: #fff;
+    color: #16213e;
+    padding: 7px;
+    border-radius: 5px;
+    width: 120px !important;
+    height: 70px;
+    font-size: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoBox h3 {
+    z-index: 1;
+}
+
+.infoBox button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    color: rgb(66, 66, 66);
+    border: none;
+    font-size: 0.5rem;
+    font-weight: bolder;
+    padding: 1px;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.infoBox > img {
+    display: none;
+}
