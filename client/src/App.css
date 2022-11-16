@@ -1,120 +1,139 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .logoFont {
-    font-family: "Satisfy", cursive;
+  font-family: "Satisfy", cursive;
 }
 .pink {
-    background-color: pink;
+  background-color: pink;
 }
 .green {
-    background-color: green;
+  background-color: green;
 }
 .blue {
-    background-color: dodgerblue;
+  background-color: dodgerblue;
+}
+.gold {
+  color: gold;
 }
 .header {
-    background-color: #16213ee1;
-    /* border-bottom: 2px dotted #ccc; */
+  background-color: #16213ee1;
 }
 .logo {
-    color: gold;
-    font-size: 1.6rem;
-    font-weight: bolder;
+  color: gold;
+  font-size: 1.6rem;
+  font-weight: bolder;
 }
 .sideBar {
-    width: 25%;
+  width: 25%;
 }
 .feedSection {
-    width: 70%;
-    min-height: 60vh;
-    background-color: #234a7a;
+  width: 70%;
+  min-height: 60vh;
+  background-color: #234a7a;
 }
 .sideBar {
-    min-height: 60vh;
-    background-color: #435a76;
+  min-height: 60vh;
+  background-color: #435a76;
 }
 .sidebarLinks {
-    min-height: 25vh;
-    border: 1px solid #eee;
+  min-height: 25vh;
+  border: 1px solid #eee;
 }
 .sidebarLinks > a {
-    color: #ccc;
+  color: #ccc;
 }
 .serchForm {
-    min-width: 50%;
+  min-width: 50%;
 }
 .searchBtn {
-    color: #ccc;
+  color: grey;
+  /* background-color: #ccc; */
 }
-.card > img {
-    width: 100px;
-    height: 100px;
-    background-color: gold;
-}
-.profileImg {
-    width: 100px;
-    height: 100px;
-    background-color: gold;
+
+.profileImg, .card > img {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
 }
 
 .mapContainer {
-    width: 100%;
-    /* height: 30vh; */
+  width: 100%;
 }
 .mainPage {
-    background-color: #16213e;
-    min-height: 100vh;
+  background-color: #16213e;
+  min-height: 100vh;
 }
 .chakra-modal__body .success-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .chakra-modal__body .success {
-    color: green;
-    font-size: 5rem;
-    font-weight: bolder;
+  color: green;
+  font-size: 5rem;
+  font-weight: bolder;
 }
 
 .infoBox {
-    background-color: #fff;
-    color: #16213e;
-    padding: 7px;
-    border-radius: 5px;
-    width: 120px !important;
-    height: 70px;
-    font-size: 14px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: #fff;
+  color: #16213e;
+  padding: 7px;
+  border-radius: 5px;
+  width: 120px !important;
+  height: 70px;
+  font-size: 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .infoBox h3 {
-    z-index: 1;
+  z-index: 1;
 }
 
 .infoBox button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #fff;
-    color: rgb(66, 66, 66);
-    border: none;
-    font-size: 0.5rem;
-    font-weight: bolder;
-    padding: 1px;
-    cursor: pointer;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  color: rgb(66, 66, 66);
+  border: none;
+  font-size: 0.5rem;
+  font-weight: bolder;
+  padding: 1px;
+  cursor: pointer;
+  z-index: -1;
 }
 
 .infoBox > img {
-    display: none;
+  display: none;
+}
+.results-list {
+  background-color: #eee;
+  height: 250px;
+  overflow: scroll;
+}
+.result-item {
+  background-color: #16213ee1;
+  color: #eee;
+  border: 1px solid #000;
+}
+.profile{
+color: #eee;
+border: 2px solid #ccc;
+}
+.profileNameContainer {
+width: 80%;
+height: 45px;
+}
+.ee{
+    border: 1px solid #000;
 }

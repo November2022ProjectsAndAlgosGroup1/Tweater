@@ -105,7 +105,7 @@ function App() {
                             <Main>
                                 <div className="mainPage">
                                     <div className="title-container container-fluid pe-5 ps-5 mt-3 text-light">
-                                        <h1 className="text-center">title</h1>
+                                        <h1 className="text-center">Title</h1>
                                         <p>
                                             Lorem ipsum dolor sit amet
                                             consectetur adipisicing elit. Veniam
@@ -137,9 +137,9 @@ function App() {
                         path="/explore"
                         element={
                             <Main>
-                                <div className=" mainPage w-100">
+                                <div className="mainPage w-100">
                                     <div
-                                        className="location-results d-flex justify-content-between mapContainer blue"
+                                        className="location-results d-flex mb-2 mapContainer"
                                         id="map"
                                     >
                                         <Map
@@ -171,8 +171,9 @@ function App() {
                         path="/profile/:id"
                         element={
                             <Main>
-                                <div className="container d-flex">
-                                    <Sidebar
+                                <div className="mainPage w-100">
+                                   <div className="d-flex mt-3 p-2">
+                                   <Sidebar
                                         user={user}
                                         loggedin={loggedin}
                                         setModalOpen={setModalOpen}
@@ -183,6 +184,7 @@ function App() {
                                     />
                                     <Profile user={user} />
                                     <Feeds page={"explore"} user={user} />
+                                   </div>
                                 </div>
                             </Main>
                         }
