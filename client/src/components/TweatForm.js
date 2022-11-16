@@ -126,7 +126,7 @@ const TweatForm = (props) => {
                     </Tooltip>
                 </Button>
                 <Button
-                    className="btn btn-info ms-3"
+                    className="btn btn-info ms-3 mt-3"
                     type="submit"
                     disabled={selectedOption ? false : true}
                 >

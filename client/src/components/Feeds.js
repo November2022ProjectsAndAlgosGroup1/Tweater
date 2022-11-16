@@ -37,7 +37,7 @@ const Feeds = (props) => {
                             setAllTweats={setAllTweats} />
                     })
                 ) : (
-                    <h3>No TwEATs</h3>
+                    <h2 className="text-warning">No TwEATs</h2>
                 )}
             </div>
         </div>

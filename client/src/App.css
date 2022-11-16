@@ -5,14 +5,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-/* html,
-body {
-  width: 100%;
-  height: 100%;
-} */
-/* #map {
-  height: 30vh;
-} */
+
 .logoFont {
     font-family: "Satisfy", cursive;
 }
@@ -30,7 +23,6 @@ body {
     /* border-bottom: 2px dotted #ccc; */
 }
 .logo {
-    /* color: #ef3151; */
     color: gold;
     font-size: 1.6rem;
     font-weight: bolder;
@@ -40,10 +32,11 @@ body {
 }
 .feedSection {
     width: 70%;
+    min-height: 60vh;
     background-color: #234a7a;
 }
 .sideBar {
-    min-height: 50vh;
+    min-height: 60vh;
     background-color: #435a76;
 }
 .sidebarLinks {
