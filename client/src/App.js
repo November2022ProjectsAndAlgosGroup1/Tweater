@@ -25,14 +25,10 @@ function App() {
     const [modalTitle, setModalTitle] = useState("")
     const [modalSubtitle, setModalSubtitle] = useState("")
     const [modalOpen, setModalOpen] = useState(false)
-    const [search, setSearch] = useState([])
     const [searchResults, setSearchResults] = useState([])
     const [user, setUser] = useState({})
     const [whereTo, setWhereTo] = useState({})
 
-    // const getUser= ()=>{
-    //     axios.get("http://localhost:8000/api/users/")
-    // }
     const logged = () => {
         axios
             .get("http://localhost:8000/api/users/getLoggedUser", {
@@ -62,7 +58,16 @@ function App() {
             })
             .catch((err) => console.log(err))
     }
-    // searchResults && setCenter( [0].coordinates)
+    useEffect(() => {
+        //if searchResults set center of map to first result
+        if (searchResults.length > 0) {
+            setCenter({
+                lat: searchResults[0].coordinates.latitude,
+                lng: searchResults[0].coordinates.longitude,
+            })
+        }
+    }, [searchResults])
+
     return (
         <div className="App">
             <BrowserRouter>
@@ -83,12 +88,11 @@ function App() {
                 <Header
                     handleLogout={handleLogout}
                     loggedin={loggedin}
-                    search={search}
+                    searchResults={searchResults}
                     setloggedin={setloggedin}
                     setUser={setUser}
                     setModalOpen={setModalOpen}
                     setModalTitle={setModalTitle}
-                    setSearch={setSearch}
                     setSearchResults={setSearchResults}
                     user={user}
                     setWhereTo={setWhereTo}
@@ -122,7 +126,7 @@ function App() {
                                             setModalSubtitle={setModalSubtitle}
                                             setWhereTo={setWhereTo}
                                         />
-                                        <Feeds page={"home"} user={user}/>
+                                        <Feeds page={"home"} user={user} />
                                     </div>
                                 </div>
                             </Main>
@@ -141,6 +145,7 @@ function App() {
                                             center={center}
                                             page={"Explore"}
                                             searchResults={searchResults}
+                                            setCenter={setCenter}
                                         />
                                         <ResultsList results={searchResults} />
                                     </div>
@@ -155,7 +160,7 @@ function App() {
                                             setWhereTo={setWhereTo}
                                         />
 
-                                        <Feeds page={"explore"} user={user}/>
+                                        <Feeds page={"explore"} user={user} />
                                     </div>
                                 </div>
                             </Main>
@@ -176,7 +181,7 @@ function App() {
                                         setWhereTo={setWhereTo}
                                     />
                                     <Profile user={user} />
-                                    <Feeds page={"explore"} user={user}/>
+                                    <Feeds page={"explore"} user={user} />
                                 </div>
                             </Main>
                         }
