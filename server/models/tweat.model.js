@@ -13,19 +13,20 @@ const TweatSchema = mongoose.Schema(
             yelpID: String,
             name: {
                 type: String,
-                required: [true, "Restaurant name is required"],
+                // required: [true, "Restaurant name is required"],
             },
             latitude: {
                 type: Number,
-                required: [true],
+                // required: [true],
             },
             logitude: {
                 type: Number,
-                required: [true],
+                // required: [true],
             },
         },
         text: {
             type: String,
+            required: [true, "Text is required"],
         },
         replies: [
             {
@@ -49,9 +50,9 @@ const TweatSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Tweat",
         },
-        // image: {
-        //     //to be implemented
-        // },
+        image: {
+            type: String
+        },
     },
     { timestamps: true }
 )

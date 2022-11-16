@@ -5,16 +5,6 @@ const ReplyController = require("../controllers/reply.controller");
 const { findAllReplies, findReply, addReply, updateReply, deleteReply } =
   ReplyController;
 
-const TweatController = require("../controllers/tweat.controller");
-const {
-  addTweat,
-  findTweat,
-  findAllTweats,
-  updateTweat,
-  deleteTweat,
-  retweat,
-} = TweatController;
-
 const UserController = require("../controllers/user.controller");
 const {
   deleteUser,
@@ -30,9 +20,6 @@ const {
 const YelpController = require("../controllers/yelp.controller");
 const { getNearbyRestaurants } = YelpController;
 
-// TODO: where are we using the authentication function?
-const { authenticate } = require("../config/jwt.config");
-
 module.exports = (app) => {
   //like routes
   // app.get('/api/likes/', findAllLikes) //finds all likes
@@ -47,23 +34,6 @@ module.exports = (app) => {
   app.put("/api/replies/:id", updateReply); //updates a single Reply
   app.delete("/api/replies/:id", deleteReply); //updates a single Reply
 
-  //tweat routes
-  app.post("/api/tweats/", addTweat); //adds a tweat to database
-  app.get("/api/tweats/:id", findTweat); //finds a single tweat
-  app.get("/api/tweats/", findAllTweats); //finds all tweats
-  app.put("/api/tweats/:id", updateTweat); //updates a single tweat
-  app.delete("/api/tweats/:id", deleteTweat); //updates a single tweat
-  // /*need controller for retweat */ app.post('/api/tweats/:id', retweat)
-
-  //user routes
-  app.get("/api/users/getLoggedUser", getLoggedUser); //get a user by id
-  app.post("/api/users/register", registerUser); //register a user
-  app.post("/api/users/login", loginUser); //logs a user in
-  app.get("/api/users/logout", logoutUser); //logs a user out
-  app.get("/api/users/", findAllUsers); //finds all users
-  app.get("/api/users/:id", findUser); //finds a single user
-  app.put("/api/users/:id", updateUser); //updates a single user
-  app.delete("/api/users/:id", deleteUser); //updates a single user
-
+  //yelp routes
   app.post("/api/yelp/", getNearbyRestaurants); //finds nearby restaurants
 };

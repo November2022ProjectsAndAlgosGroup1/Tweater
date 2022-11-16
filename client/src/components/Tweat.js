@@ -2,7 +2,7 @@ const Tweat = (props) => {
     const { tweat } = props
     return (
         <div className="card d-flex flex-row">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={`http://localhost:8000/images/${tweat.image}`} className="card-img-top" alt={`${tweat.image}`} />
             <div className="card-body">
                 <div className="card-title d-flex">
                     <h5>{tweat.userID && tweat.userID.name}</h5>

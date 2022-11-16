@@ -4,14 +4,27 @@ const { User } = require("../models/user.model")
 module.exports = {
     //creates new tweat and adds it to the user's tweat array and adds the tweat's ID to the user's tweat array
     addTweat: async (req, res) => {
+        // console.log('Adding the tweat!')
+        // console.log('Here is the request body when a tweat is created:', req.body)
+
+        const userID = req.body.userID
+        const text = req.body.text
+        const image = req.file.filename
+
+        const tweatData = {
+            userID,
+            text,
+            image
+        }
         try {
-            const newTweat = await Tweat.create(req.body)
+            const newTweat = await Tweat.create(tweatData)
             const updatedUserWithTweat = await User.findOneAndUpdate(
                 { _id: newTweat.userID },
                 { $push: { tweats: newTweat._id } },
                 { new: true }
             )
             res.status(200).json({ updatedUserObj: updatedUserWithTweat })
+
         } catch (error) {
             res.status(400).json(error)
         }

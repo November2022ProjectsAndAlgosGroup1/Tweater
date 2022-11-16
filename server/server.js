@@ -1,12 +1,12 @@
 const PORT = 8000
-const cors = require('cors')
 const express = require('express')
+const cors = require('cors')
 const app = express()
 require('dotenv').config()
 const cookieParser = require('cookie-parser')
 
 //require config file
-require('./config/mongoose.config')
+const mongoose = require('./config/mongoose.config')
 
 //Middleware for formatting and allowing POST requests
 app.use(express.json())
@@ -23,6 +23,12 @@ app.use(
 
 // import routes
 require('./routes/app.routes')(app)
+require('./routes/user.routes')(app)
+require('./routes/tweat.routes')(app)
+
+//Serve the static file (Documentation: https://expressjs.com/en/starter/static-files.html)
+const path = require('path')
+app.use('/images', express.static(path.join(__dirname, 'images')))
 
 //start server
 app.listen(PORT, () => {
