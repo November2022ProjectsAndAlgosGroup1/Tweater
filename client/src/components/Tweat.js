@@ -1,5 +1,23 @@
+import axios from "axios"
+
 const Tweat = (props) => {
-    const { tweat } = props
+    const { tweat, user, allTweats, setAllTweats } = props
+
+    const deleteHandler = () => {
+        const deletedTweat = tweat
+        axios.delete('http://localhost:8000/api/tweats/' + tweat._id)
+            .then((res) => {
+                const tweats = allTweats.filter((tweat) => (tweat._id !== deletedTweat._id))
+                setAllTweats([tweats])
+                console.log('tweat deleted', res)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const editHandler = () =>{
+        
+    }
+
     return (
         <div className="card d-flex flex-row">
             <img src={`http://localhost:8000/images/${tweat.image}`} className="card-img-top" alt={`${tweat.image}`} />
@@ -28,6 +46,16 @@ const Tweat = (props) => {
                         Like
                         {tweat.likes && tweat.likes.length}
                     </a>
+                    <button onClick={editHandler}>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    {/* {user._id && user._id === tweat.userID ? */}
+                    <button onClick={deleteHandler}>
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    {/* : null */}
+                    {/* } */}
+
                 </div>
             </div>
         </div>

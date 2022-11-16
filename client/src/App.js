@@ -122,7 +122,7 @@ function App() {
                                             setModalSubtitle={setModalSubtitle}
                                             setWhereTo={setWhereTo}
                                         />
-                                        <Feeds page={"home"} />
+                                        <Feeds page={"home"} user={user}/>
                                     </div>
                                 </div>
                             </Main>
@@ -155,7 +155,7 @@ function App() {
                                             setWhereTo={setWhereTo}
                                         />
 
-                                        <Feeds page={"explore"} />
+                                        <Feeds page={"explore"} user={user}/>
                                     </div>
                                 </div>
                             </Main>
@@ -176,7 +176,7 @@ function App() {
                                         setWhereTo={setWhereTo}
                                     />
                                     <Profile user={user} />
-                                    <Feeds page={"explore"} />
+                                    <Feeds page={"explore"} user={user}/>
                                 </div>
                             </Main>
                         }
