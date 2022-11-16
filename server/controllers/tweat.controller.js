@@ -29,7 +29,10 @@ module.exports = {
                 { $push: { tweats: newTweat._id } },
                 { new: true }
             )
-            res.status(200).json(newTweat)
+            res.status(200).json({
+                successMessage: "Success! You Tweated!", 
+                newTweat: newTweat, 
+                updatedUserObj: updatedUserWithTweat})
 
         } catch (error) {
             res.status(400).json(error)
