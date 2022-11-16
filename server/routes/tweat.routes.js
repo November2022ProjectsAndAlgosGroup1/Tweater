@@ -1,10 +1,6 @@
 const TweatController = require("../controllers/tweat.controller");
 const { addTweat, findTweat, findAllTweats, updateTweat, deleteTweat, retweat, } = TweatController;
-const router = require('express').Router()
-const { json } = require('express')
 const multer = require('multer')
-const path = require('path')
-const { Tweat } = require('../models/tweat.model')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -34,6 +30,6 @@ module.exports = (app) => {
     app.get("/api/tweats/:id", findTweat); //finds a single tweat
     app.get("/api/tweats/", findAllTweats); //finds all tweats
     app.put("/api/tweats/:id", updateTweat); //updates a single tweat
-    app.delete("/api/tweats/:id", deleteTweat); //updates a single tweat
+    app.delete("/api/tweats/:id", deleteTweat); //deletes a single tweat
     // /*need controller for retweat */ app.post('/api/tweats/:id', retweat)
 }
