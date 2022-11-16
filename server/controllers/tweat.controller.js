@@ -13,11 +13,11 @@ module.exports = {
 
         const userID = req.body.userID
         const text = req.body.text
-        const image = ""
+        let image = ""
 
         //If there is a photo in the file, set the image field
         if (req.file !== undefined) {
-            const image = req.file.filename
+            image = req.file.filename
         }
 
         const tweatData = {
