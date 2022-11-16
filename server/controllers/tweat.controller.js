@@ -83,10 +83,11 @@ module.exports = {
 
     //deletes a single tweat in the database and user's tweat array
     deleteTweat: async (req, res) => {
+        const tweatID = req.params.id
         try {
             //Delete the tweat from the Tweat collection
             const deletedTweat = await Tweat.findOneAndRemove({
-                _id: req.params.id,
+                _id: tweatID,
             })
             console.log('Just deleted this tweat:', deletedTweat)
             console.log('Deleted Tweet ID:', deletedTweat._id)
@@ -96,10 +97,11 @@ module.exports = {
                 { $pull: { tweats: deletedTweat._id } }
             )
             console.log('Just updated this user:', updatedUser)
-            //delete all user likes
-            // const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
-            //delete all user replies
-            // const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
+
+            //delete all tweat likes
+            const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
+            //delete all tweat replies
+            const tweatReplies = await Reply.deleteMany({ tweatID: tweatID }) 
 
             res.status(200).json({
                 deletedTweat: deletedTweat,
