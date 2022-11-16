@@ -15,11 +15,11 @@ const TweatForm = (props) => {
 
     const [tweat, setTweat] = useState({
         userID: `${user._id}`,
-        // restaurantInfo: {
-        //     name: '',
-        //     latitude: '',
-        //     logitude: '',
-        //   },
+        restaurantInfo: {
+            name: '',
+            latitude: '',
+            logitude: '',
+          },
         text: "",
         image: "",
     })
