@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import {
     Modal,
     ModalOverlay,
@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react"
 import LoginRegForm from "./LoginRegForm"
 import TweatForm from "./TweatForm"
+import ModalSuccess from "./ModalSuccess"
 
 const MainModal = (props) => {
     const { onOpen, isOpen, onClose } = useDisclosure()
@@ -25,8 +26,10 @@ const MainModal = (props) => {
         modalTitle,
         setModalTitle,
         setModalSubtitle,
+        setSearchResults,
         whereTo,
     } = props
+    const [message, setMessage] = useState(null)
 
     useEffect(() => {
         const handleModal = () => {
@@ -48,11 +51,19 @@ const MainModal = (props) => {
                 </ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    {modalTitle !== "Tweat" ? (
+                    {modalTitle === "Tweat" ? (
+                        <TweatForm
+                            user={user}
+                            setSearchResults={setSearchResults}
+                        />
+                    ) : modalTitle === "Success" ? (
+                        <ModalSuccess message={message} onClose={onClose} />
+                    ) : (
                         <LoginRegForm
                             loggedin={loggedin}
                             type={modalTitle}
                             setloggedin={setloggedin}
+                            setMessage={setMessage}
                             setModalOpen={setModalOpen}
                             setModalTitle={setModalTitle}
                             setModalSubtitle={setModalSubtitle}
@@ -60,8 +71,6 @@ const MainModal = (props) => {
                             user={user}
                             whereTo={whereTo}
                         />
-                    ) : (
-                        <TweatForm user={user} />
                     )}
                 </ModalBody>
                 <ModalFooter>
@@ -69,16 +78,18 @@ const MainModal = (props) => {
                 //? React doesn't links that don't go anywhere '#' 
                 //TODO: style this button to look like a link
                 */}
-                    {modalTitle !== "Tweat" && (
+                    {modalTitle !== "Tweat" || modalTitle !== "Success" ? (
                         <button
                             name={modalTitle === "Login" ? "Register" : "Login"}
                             onClick={(e) => setModalTitle(e.target.name)}
                         >
-                            {modalTitle !== "Login"
+                            {modalTitle === "Login"
+                                ? "Or create an account"
+                                : modalTitle === "Register"
                                 ? "Already a member? Login"
-                                : "Or create an account"}
+                                : null}
                         </button>
-                    )}
+                    ) : null}
                 </ModalFooter>
             </ModalContent>
         </Modal>

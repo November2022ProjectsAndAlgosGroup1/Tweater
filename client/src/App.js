@@ -62,7 +62,7 @@ function App() {
             })
             .catch((err) => console.log(err))
     }
-    searchResults && console.log(searchResults)
+    // searchResults && setCenter( [0].coordinates)
     return (
         <div className="App">
             <BrowserRouter>
@@ -75,6 +75,7 @@ function App() {
                     setModalOpen={setModalOpen}
                     setModalTitle={setModalTitle}
                     setModalSubtitle={setModalSubtitle}
+                    setSearchResults={setSearchResults}
                     setUser={setUser}
                     whereTo={whereTo}
                     user={user}

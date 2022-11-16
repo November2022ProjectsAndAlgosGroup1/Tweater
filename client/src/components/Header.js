@@ -28,9 +28,7 @@ const Header = (props) => {
                     </a>
 
                     <SearchBar
-                        page={page}
-                        search={search}
-                        setSearch={setSearch}
+                        type="header"
                         setSearchResults={setSearchResults}
                     />
                     <Login

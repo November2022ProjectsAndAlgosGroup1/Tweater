@@ -12,7 +12,7 @@ import axios from "axios"
 
 const SearchBar = (props) => {
     // console.log(props)
-    const { page, search, setSearch, setSearchResults } = props
+    const { type, setSearchResults, results, setResults } = props
     const { navigate } = useNavigate()
     const [value, setValue] = useState("")
 
@@ -21,8 +21,9 @@ const SearchBar = (props) => {
             .post("http://localhost:8000/api/yelp", { location: val })
             .then((res) => {
                 console.log("getYelp res.data", res.data)
-                setSearchResults(res.data)
-                // setSearch([])
+                type === "home"
+                    ? setSearchResults(res.data)
+                    : setResults(res.data)
             })
             .catch((err) => console.log(err))
     }
@@ -37,11 +38,11 @@ const SearchBar = (props) => {
         console.log(value)
         e.preventDefault()
         getYelp(value)
-        // setSearch(value)
+
         // TODO:  Navigate to search page
         // page !== "Explore" || page !== 'Modal' ? navigate(`/explore/`) : null
     }
-
+    results && console.log("results", results)
     return (
         <form className="serchForm " onSubmit={(e) => handleSearch(e)}>
             <InputGroup className="searchBtn">
@@ -54,7 +55,7 @@ const SearchBar = (props) => {
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
-                    defaultValue={page === "Explore" ? { search } : null}
+                    // defaultValue={type !== "home" ? results[0].name : null}
                     onChange={(e) => setValue(e.target.value)}
                 />
 

@@ -115,8 +115,6 @@ module.exports = {
     },
     // get logged in user
     getLoggedUser: (req, res) => {
-        console.log("hello")
-
         const decodedJWT = jwt.decode(req.cookies.userToken, { complete: true })
         decodedJWT &&
             User.findById(decodedJWT.payload._id)
