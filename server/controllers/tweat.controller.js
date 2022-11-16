@@ -88,13 +88,13 @@ module.exports = {
                 { $pull: { tweats: deletedTweat._id } }
             )
             //delete all user likes
-            const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
+            // const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
             //delete all user replies
-            const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
+            // const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
 
             res.status(200).json({
                 deletedTweat: deletedTweat,
-                updatedUser: updatedUser,
+                // updatedUser: updatedUser,
             })
         } catch (error) {
             res.status(400).json(error)

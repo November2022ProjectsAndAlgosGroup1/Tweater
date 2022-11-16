@@ -12,7 +12,7 @@ const Tweat = (props) => {
                 const tweats = allTweats.filter(
                     (tweat) => tweat._id !== deletedTweat._id
                 )
-                setAllTweats([tweats])
+                setAllTweats(tweats)
                 console.log("tweat deleted", res)
             })
             .catch((err) => console.log(err))
