@@ -3,8 +3,7 @@ import axios from "axios"
 import Tweat from "./Tweat"
 
 const Feeds = (props) => {
-    const { page, user } = props
-    const [allTweats, setAllTweats] = useState([])
+    const { user, allTweats, setAllTweats } = props
 
     //TODO Get tweats...This is not working for some odd reason - JG
     useEffect(() => {
@@ -29,12 +28,15 @@ const Feeds = (props) => {
             <div className="container comments">
                 {allTweats && allTweats.length > 0 ? (
                     allTweats.map((tweat, i) => {
-                        return <Tweat
-                            key={i}
-                            tweat={tweat}
-                            user={user}
-                            allTweats={allTweats}
-                            setAllTweats={setAllTweats} />
+                        return (
+                            <Tweat
+                                key={i}
+                                tweat={tweat}
+                                user={user}
+                                allTweats={allTweats}
+                                setAllTweats={setAllTweats}
+                            />
+                        )
                     })
                 ) : (
                     <h3>No TwEATs</h3>
