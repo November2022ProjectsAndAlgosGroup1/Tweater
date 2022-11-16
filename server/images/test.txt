@@ -1,0 +1,1 @@
+This file is only here to force the images folder to track changes.  The empty images folder did not cause git to track changes.
