@@ -97,13 +97,13 @@ module.exports = {
             )
             console.log('Just updated this user:', updatedUser)
             //delete all user likes
-            // const tweatLikes = await Like.deleteMany({ tweatID: deletedTweat._id })
+            // const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
             //delete all user replies
-            // const tweatReplies = await Reply.deleteMany({ tweatID: deletedTweat._id })
+            // const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
 
             res.status(200).json({
                 deletedTweat: deletedTweat,
-                updatedUser: updatedUser,
+                // updatedUser: updatedUser,
             })
         } catch (error) {
             res.status(400).json(error)
