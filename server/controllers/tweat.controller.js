@@ -14,7 +14,7 @@ module.exports = {
         const tweatData = {
             userID,
             text,
-            image
+            image,
         }
         try {
             const newTweat = await Tweat.create(tweatData)
@@ -23,8 +23,11 @@ module.exports = {
                 { $push: { tweats: newTweat._id } },
                 { new: true }
             )
-            res.status(200).json({ updatedUserObj: updatedUserWithTweat })
-
+            res.status(200).json({
+                successMessage: "Success! You Tweated!",
+                newTweat: newTweat,
+                updatedUserObj: updatedUserWithTweat,
+            })
         } catch (error) {
             res.status(400).json(error)
         }
