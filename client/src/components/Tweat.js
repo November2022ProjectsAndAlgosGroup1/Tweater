@@ -8,7 +8,7 @@ const Tweat = (props) => {
                     <h5>{tweat.userID && tweat.userID.name}</h5>
                     <h5 className="ms-3 me-3">
                         @{tweat.userID && tweat.userID.userName}
-                    </h5>{" "}
+                    </h5>
                     {/* TODO hyperlink to the user's profile route*/}
                     <h5>- time posted</h5>
                 </div>
