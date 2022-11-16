@@ -12,7 +12,7 @@ import axios from "axios"
 
 const SearchBar = (props) => {
     // console.log(props)
-    const { type, setSearchResults, results, setResults } = props
+    const { type, setSearchResults, setOptions, setResults } = props
     const { navigate } = useNavigate()
     const [value, setValue] = useState("")
 
@@ -34,6 +34,11 @@ const SearchBar = (props) => {
         return <Icon as={BsSearch} />
     }
 
+    const handleChange = (e) => {
+        setValue(e.target.value)
+        setOptions([])
+    }
+
     const handleSearch = (e) => {
         console.log(value)
         e.preventDefault()
@@ -42,7 +47,6 @@ const SearchBar = (props) => {
         // TODO:  Navigate to search page
         // page !== "Explore" || page !== 'Modal' ? navigate(`/explore/`) : null
     }
-    results && console.log("results", results)
     return (
         <form className="serchForm " onSubmit={(e) => handleSearch(e)}>
             <InputGroup className="searchBtn">
@@ -56,7 +60,7 @@ const SearchBar = (props) => {
                     placeholder="Search"
                     aria-label="Search"
                     // defaultValue={type !== "home" ? results[0].name : null}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={(e) => handleChange(e)}
                 />
 
                 <Button
