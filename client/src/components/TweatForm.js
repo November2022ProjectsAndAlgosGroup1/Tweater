@@ -1,32 +1,40 @@
 import { useCallback, useState, useEffect } from "react"
 import axios from "axios"
-import { Button, Textarea, Icon, Tooltip } from "@chakra-ui/react"
+import {
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
+    Button,
+    Textarea,
+    Icon,
+    Tooltip,
+} from "@chakra-ui/react"
 import { BsFillCameraFill } from "react-icons/bs"
 import Select from "react-select"
 import SearchBar from "./SearchBar"
 
-// TODO when the tweet is created we need the text of it and user id and the restraunt id
-
 const TweatForm = (props) => {
-    const { user } = props
+    const { user, setMessage, setModalTitle, setAllTweats, allTweats } = props
     const [results, setResults] = useState([])
     const [options, setOptions] = useState([])
     const [selectedOption, setSelectedOption] = useState(null)
+    const [error, setError] = useState("")
 
     const [tweat, setTweat] = useState({
         userID: `${user._id}`,
         restaurantInfo: {
-            name: '',
-            latitude: '',
-            logitude: '',
+            name: "",
+            latitude: "",
+            logitude: "",
         },
         text: "",
         image: "",
     })
 
     const handleTextArea = (e) => {
+        setError("")
         setTweat({ ...tweat, [e.target.name]: e.target.value })
-        console.log(tweat)
     }
     const handleImage = (e) => {
         setTweat({ ...tweat, image: e.target.files[0] })
@@ -35,13 +43,12 @@ const TweatForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
         const formData = new FormData()
         formData.append("text", tweat.text)
         formData.append("userID", tweat.userID)
         formData.append("image", tweat.image)
 
-        console.log("The image File information is below")
-        console.log(tweat.image)
         for (const value of formData.values()) {
             console.log(value)
         }
@@ -49,10 +56,19 @@ const TweatForm = (props) => {
         axios
             .post("http://localhost:8000/api/tweats", formData)
             .then((res) => {
-                console.log(res)
+                const newTweat = res.data.newTweat
+                newTweat.userID = {
+                    _id: user._id,
+                    username: user.userName,
+                    name: user.name,
+                }
+                setAllTweats([res.data.newTweat, ...allTweats])
+                setMessage(res.data.successMessage)
+                setModalTitle("Success")
             })
             .catch((err) => {
-                console.log(err)
+                console.error(err)
+                setError(err.response.data.message)
             })
     }
 
@@ -75,6 +91,7 @@ const TweatForm = (props) => {
     results && handleOptions()
 
     const handleSelect = (selected) => {
+        setError("")
         setSelectedOption(selected)
         const id = selected.value
         const details = results.filter((result) => result.id === id)
@@ -87,7 +104,6 @@ const TweatForm = (props) => {
         setTweat({ ...tweat, restaurantInfo: restuarantInfo })
     }
 
-    tweat && console.log(tweat)
     return (
         <>
             <label htmlFor="search" className="mb-2">
@@ -125,6 +141,13 @@ const TweatForm = (props) => {
                         />
                     </Tooltip>
                 </Button>
+                {error && (
+                    <Alert status="error">
+                        <AlertIcon />
+                        <AlertTitle>Error!</AlertTitle>
+                        <AlertDescription>{error}</AlertDescription>
+                    </Alert>
+                )}
                 <Button
                     className="btn btn-info ms-3"
                     type="submit"

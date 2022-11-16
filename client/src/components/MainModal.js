@@ -16,17 +16,19 @@ import ModalSuccess from "./ModalSuccess"
 const MainModal = (props) => {
     const { onOpen, isOpen, onClose } = useDisclosure()
     const {
-        user,
-        setUser,
+        allTweats,
+        loggedin,
         modalOpen,
         modalSubtitle,
-        setModalOpen,
-        loggedin,
-        setloggedin,
         modalTitle,
-        setModalTitle,
+        setAllTweats,
+        setloggedin,
+        setModalOpen,
         setModalSubtitle,
+        setModalTitle,
         setSearchResults,
+        setUser,
+        user,
         whereTo,
     } = props
     const [message, setMessage] = useState(null)
@@ -53,8 +55,12 @@ const MainModal = (props) => {
                 <ModalBody>
                     {modalTitle === "Tweat" ? (
                         <TweatForm
-                            user={user}
+                            allTweats={allTweats}
+                            setAllTweats={setAllTweats}
+                            setMessage={setMessage}
+                            setModalTitle={setModalTitle}
                             setSearchResults={setSearchResults}
+                            user={user}
                         />
                     ) : modalTitle === "Success" ? (
                         <ModalSuccess message={message} onClose={onClose} />
