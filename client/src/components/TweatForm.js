@@ -19,7 +19,7 @@ const TweatForm = (props) => {
             name: '',
             latitude: '',
             logitude: '',
-          },
+        },
         text: "",
         image: "",
     })

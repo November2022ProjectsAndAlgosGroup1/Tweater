@@ -25,8 +25,6 @@ function App() {
   const [modalTitle, setModalTitle] = useState("");
   const [modalSubtitle, setModalSubtitle] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [search, setSearch] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
   const [user, setUser] = useState({});
   const [whereTo, setWhereTo] = useState({});
 
