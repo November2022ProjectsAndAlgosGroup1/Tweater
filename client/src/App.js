@@ -1,54 +1,54 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Feeds from "./components/Feeds"
-import Header from "./components/Header"
-import Main from "./components/Main"
-import MainModal from "./components/MainModal"
-import Map from "./components/Map"
-import Profile from "./components/Profile"
-import ResultsList from "./components/ResultsList"
-import Sidebar from "./components/Sidebar"
-import "./App.css"
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Feeds from "./components/Feeds";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import MainModal from "./components/MainModal";
+import Map from "./components/Map";
+import Profile from "./components/Profile";
+import ResultsList from "./components/ResultsList";
+import Sidebar from "./components/Sidebar";
+import "./App.css";
 
 function App() {
-    //This fixes missing cookie issue
-    axios.defaults.withCredentials = true
-    //THIS IS THE YELP API KEY
-    // const yelpApiKey = process.env.REACT_APP_API_KEY_YELP
-    // console.log('The Yelp API Key is defined in App.js.  You can find it at the top of the App component:  ' + yelpApiKey)
-    const [center, setCenter] = useState({
-        lat: 36.0014242,
-        lng: -79.1964102,
-    })
-    const [loggedin, setloggedin] = useState(false)
-    const [modalTitle, setModalTitle] = useState("")
-    const [modalSubtitle, setModalSubtitle] = useState("")
-    const [modalOpen, setModalOpen] = useState(false)
-    const [search, setSearch] = useState([])
-    const [searchResults, setSearchResults] = useState([])
-    const [user, setUser] = useState({})
-    const [whereTo, setWhereTo] = useState({})
+  //This fixes missing cookie issue
+  axios.defaults.withCredentials = true;
+  //THIS IS THE YELP API KEY
+  // const yelpApiKey = process.env.REACT_APP_API_KEY_YELP
+  // console.log('The Yelp API Key is defined in App.js.  You can find it at the top of the App component:  ' + yelpApiKey)
+  const [center, setCenter] = useState({
+    lat: 36.0014242,
+    lng: -79.1964102,
+  });
+  const [loggedin, setloggedin] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalSubtitle, setModalSubtitle] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [search, setSearch] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [user, setUser] = useState({});
+  const [whereTo, setWhereTo] = useState({});
 
-    // const getUser= ()=>{
-    //     axios.get("http://localhost:8000/api/users/")
-    // }
-    const logged = () => {
-        axios
-            .get("http://localhost:8000/api/users/getLoggedUser", {
-                withCredentials: true,
-            })
+  // const getUser= ()=>{
+  //     axios.get("http://localhost:8000/api/users/")
+  // }
+  const logged = () => {
+    axios
+      .get("http://localhost:8000/api/users/getLoggedUser", {
+        withCredentials: true,
+      })
 
-            .then((res) => {
-                setloggedin(true)
-                setUser(res.data)
-            })
-            .catch((err) => console.log(err))
-    }
+      .then((res) => {
+        setloggedin(true);
+        setUser(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
-    useEffect(() => {
-        logged()
-    }, [])
+  useEffect(() => {
+    logged();
+  }, []);
 
     const handleLogout = (e) => {
         //TODO:  Logout user route
@@ -187,4 +187,4 @@ function App() {
     )
 }
 
-export default App
+export default App;
