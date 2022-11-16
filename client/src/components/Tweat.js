@@ -31,30 +31,33 @@ const Tweat = (props) => {
                     <h5>- time posted</h5>
                 </div>
                 <p className="card-text mb-3 mt-3">{tweat.text}</p>
-                <div className="feedOptions w-50 border-2 p-2  mx-auto d-flex justify-content-between">
+                <div className="feedOptions w-50 border-2 p-2  mx-auto d-flex justify-content-around">
                     <a href="/">
-                        <i className="fa fa-reply" aria-hidden="true"></i> Reply
+                        <i className="fa fa-reply" aria-hidden="true"></i> 
+                        {/* Reply */}
                         <span>{tweat.replies && tweat.replies.length}</span>
                     </a>
-                    <a href="/">
+                    {/* <a href="/">
                         <i className="fa fa-share" aria-hidden="true"></i>{" "}
-                        ReTweat
+                        ReTweat 
                         <span>{tweat.retweats && tweat.retweats.length}</span>
-                    </a>
+                    </a> */}
                     <a href="/">
                         <i className="fa fa-heart-o" aria-hidden="true"></i>{" "}
-                        Like
+                        {/* Like */}
                         {tweat.likes && tweat.likes.length}
                     </a>
-                    <button onClick={editHandler}>
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </button>
-                    {/* {user._id && user._id === tweat.userID ? */}
-                    <button onClick={deleteHandler}>
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                    {/* : null */}
-                    {/* } */}
+                    {user._id && user._id === tweat.userID._id ?
+                        <>
+                            <button onClick={editHandler}>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button onClick={deleteHandler}>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </>
+                        : null
+                    }
 
                 </div>
             </div>
