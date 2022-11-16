@@ -60,16 +60,16 @@ const SearchBar = (props) => {
                     children={<SearchIcon />}
                 />
                 <Input
-                    className="form-control"
+                    className="form-control border border-secondary"
                     type="search"
-                    placeholder="Search"
+                    placeholder="First tell me where is your location?"
                     aria-label="Search"
                     // defaultValue={type !== "home" ? results[0].name : null}
                     onChange={(e) => handleChange(e)}
                 />
 
                 <Button
-                    className="searchBtn ms-2"
+                    className="searchBtn ms-2 border border-secondary"
                     type="submit"
                     variant="outline"
                 >

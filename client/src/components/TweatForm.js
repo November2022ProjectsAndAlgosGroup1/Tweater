@@ -123,12 +123,12 @@ const TweatForm = (props) => {
                     name="text"
                     rows="3"
                     placeholder="What are you eating?"
-                    className="mt-2 mb-2"
+                    className="mt-2 mb-2 ee border border-dark"
                     onChange={handleTextArea}
                     disabled={selectedOption ? false : true}
                 />
                 <Button>
-                    <label htmlFor="image">
+                    <label htmlFor="image" className="me-2">
                         <Icon as={BsFillCameraFill} />
                     </label>
                     <Tooltip label="Attach a photo" fontSize="md">
@@ -149,7 +149,7 @@ const TweatForm = (props) => {
                     </Alert>
                 )}
                 <Button
-                    className="btn btn-info ms-3"
+                    className="btn btn-info ms-3 mt-3"
                     type="submit"
                     disabled={selectedOption ? false : true}
                 >
