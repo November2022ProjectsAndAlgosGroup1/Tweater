@@ -10,22 +10,24 @@ import {
 import { BsSearch } from "react-icons/bs"
 import axios from "axios"
 
-const Search = (props) => {
+const SearchBar = (props) => {
     // console.log(props)
-    const { page, search, setSearch } = props
+    const { page, search, setSearch, setSearchResults } = props
     const { navigate } = useNavigate()
     const [value, setValue] = useState("")
 
-    const getYelp = () => {
+    const getYelp = (val) => {
         axios
-            .post("http://localhost:8000/api/yelp", { location: search })
+            .post("http://localhost:8000/api/yelp", { location: val })
             .then((res) => {
-                console.log(res.data)
+                console.log("getYelp res.data", res.data)
+                setSearchResults(res.data)
+                // setSearch([])
             })
             .catch((err) => console.log(err))
     }
 
-    search && getYelp()
+    // search && getYelp()
 
     const SearchIcon = () => {
         return <Icon as={BsSearch} />
@@ -34,7 +36,8 @@ const Search = (props) => {
     const handleSearch = (e) => {
         console.log(value)
         e.preventDefault()
-        setSearch(value)
+        getYelp(value)
+        // setSearch(value)
         // TODO:  Navigate to search page
         // page !== "Explore" || page !== 'Modal' ? navigate(`/explore/`) : null
     }
@@ -67,4 +70,4 @@ const Search = (props) => {
     )
 }
 
-export default Search
+export default SearchBar

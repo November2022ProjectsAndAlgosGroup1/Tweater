@@ -4,8 +4,8 @@ const ResultsList = ({ results }) => {
     return (
         <div className="results-list">
             <h3>Restuarants Nearby</h3>
-            {results.map((result) => (
-                <ResultItem result={result} />
+            {results.map((result, i) => (
+                <ResultItem result={result} key={i} />
             ))}
         </div>
     )

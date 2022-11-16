@@ -1,6 +1,6 @@
 import React from "react"
 import Login from "./Login"
-import Search from "./Search"
+import SearchBar from "./SearchBar"
 
 const Header = (props) => {
     const {
@@ -27,7 +27,7 @@ const Header = (props) => {
                         TwEater
                     </a>
 
-                    <Search
+                    <SearchBar
                         page={page}
                         search={search}
                         setSearch={setSearch}
