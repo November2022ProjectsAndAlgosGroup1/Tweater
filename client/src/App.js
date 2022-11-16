@@ -21,6 +21,7 @@ function App() {
         lat: 36.0014242,
         lng: -79.1964102,
     })
+    const [updateTweat, setUpdateTweat] = useState()
     const [loggedin, setloggedin] = useState(false)
     const [modalTitle, setModalTitle] = useState("")
     const [modalSubtitle, setModalSubtitle] = useState("")
@@ -78,14 +79,16 @@ function App() {
                     modalOpen={modalOpen}
                     modalSubtitle={modalSubtitle}
                     modalTitle={modalTitle}
+                    setAllTweats={setAllTweats}
                     setloggedin={setloggedin}
                     setModalOpen={setModalOpen}
                     setModalTitle={setModalTitle}
                     setModalSubtitle={setModalSubtitle}
                     setSearchResults={setSearchResults}
-                    setAllTweats={setAllTweats}
+                    setUpdateTweat={setUpdateTweat}
                     setUser={setUser}
                     whereTo={whereTo}
+                    updateTweat={updateTweat}
                     user={user}
                 />
                 <Header
@@ -130,10 +133,13 @@ function App() {
                                             setWhereTo={setWhereTo}
                                         />
                                         <Feeds
-                                            page={"home"}
                                             user={user}
                                             allTweats={allTweats}
                                             setAllTweats={setAllTweats}
+                                            setModalOpen={setModalOpen}
+                                            setModalTitle={setModalTitle}
+                                            setModalSubtitle={setModalSubtitle}
+                                            setUpdateTweat={setUpdateTweat}
                                         />
                                     </div>
                                 </div>
@@ -168,7 +174,15 @@ function App() {
                                             setWhereTo={setWhereTo}
                                         />
 
-                                        <Feeds page={"explore"} user={user} />
+                                        <Feeds
+                                            user={user}
+                                            allTweats={allTweats}
+                                            setAllTweats={setAllTweats}
+                                            setModalOpen={setModalOpen}
+                                            setModalTitle={setModalTitle}
+                                            setModalSubtitle={setModalSubtitle}
+                                            setUpdateTweat={setUpdateTweat}
+                                        />
                                     </div>
                                 </div>
                             </Main>
@@ -179,19 +193,27 @@ function App() {
                         element={
                             <Main>
                                 <div className="mainPage w-100">
-                                   <div className="d-flex mt-3 p-2">
-                                   <Sidebar
-                                        user={user}
-                                        loggedin={loggedin}
-                                        setModalOpen={setModalOpen}
-                                        modalTitle={modalTitle}
-                                        setModalTitle={setModalTitle}
-                                        setModalSubtitle={setModalSubtitle}
-                                        setWhereTo={setWhereTo}
-                                    />
-                                    <Profile user={user} />
-                                    <Feeds page={"explore"} user={user} />
-                                   </div>
+                                    <div className="d-flex mt-3 p-2">
+                                        <Sidebar
+                                            user={user}
+                                            loggedin={loggedin}
+                                            setModalOpen={setModalOpen}
+                                            modalTitle={modalTitle}
+                                            setModalTitle={setModalTitle}
+                                            setModalSubtitle={setModalSubtitle}
+                                            setWhereTo={setWhereTo}
+                                        />
+                                        <Profile user={user} />
+                                        <Feeds
+                                            user={user}
+                                            allTweats={allTweats}
+                                            setAllTweats={setAllTweats}
+                                            setModalOpen={setModalOpen}
+                                            setModalTitle={setModalTitle}
+                                            setModalSubtitle={setModalSubtitle}
+                                            setUpdateTweat={setUpdateTweat}
+                                        />
+                                    </div>
                                 </div>
                             </Main>
                         }

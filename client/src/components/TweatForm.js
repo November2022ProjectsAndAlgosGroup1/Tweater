@@ -52,7 +52,6 @@ const TweatForm = (props) => {
         for (const value of formData.values()) {
             console.log(value)
         }
-
         axios
             .post("http://localhost:8000/api/tweats", formData)
             .then((res) => {

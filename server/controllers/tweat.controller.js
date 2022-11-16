@@ -5,15 +5,18 @@ module.exports = {
     //creates new tweat and adds it to the user's tweat array and adds the tweat's ID to the user's tweat array
     addTweat: async (req, res) => {
         // console.log('Adding the tweat!')
-        console.log('Here is the request body when a tweat is created:', req.body)
-        console.log('Here is the file', req.file)
+        console.log(
+            "Here is the request body when a tweat is created:",
+            req.body
+        )
+        console.log("Here is the file", req.file)
 
         const userID = req.body.userID
         const text = req.body.text
-        const image = ''
+        const image = ""
 
         //If there is a photo in the file, set the image field
-        if(req.file !== undefined) {
+        if (req.file !== undefined) {
             const image = req.file.filename
         }
 
@@ -29,11 +32,12 @@ module.exports = {
                 { $push: { tweats: newTweat._id } },
                 { new: true }
             )
+            console.log(updatedUserWithTweat)
             res.status(200).json({
-                successMessage: "Success! You Tweated!", 
-                newTweat: newTweat, 
-                updatedUserObj: updatedUserWithTweat})
-
+                successMessage: "Success! You Tweated!",
+                newTweat: newTweat,
+                updatedUserObj: updatedUserWithTweat,
+            })
         } catch (error) {
             res.status(400).json(error)
         }
@@ -88,14 +92,14 @@ module.exports = {
             const deletedTweat = await Tweat.findOneAndRemove({
                 _id: req.params.id,
             })
-            console.log('Just deleted this tweat:', deletedTweat)
-            console.log('Deleted Tweet ID:', deletedTweat._id)
+            console.log("Just deleted this tweat:", deletedTweat)
+            console.log("Deleted Tweet ID:", deletedTweat._id)
             //Update the User to remove the tweat
             const updatedUser = await User.findOneAndUpdate(
                 { _id: deletedTweat.userID },
                 { $pull: { tweats: deletedTweat._id } }
             )
-            console.log('Just updated this user:', updatedUser)
+            console.log("Just updated this user:", updatedUser)
             //delete all user likes
             // const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
             //delete all user replies
