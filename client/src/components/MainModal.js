@@ -12,6 +12,7 @@ import {
 import LoginRegForm from "./LoginRegForm"
 import TweatForm from "./TweatForm"
 import ModalSuccess from "./ModalSuccess"
+import ModalEdit from "./ModalEdit"
 
 const MainModal = (props) => {
     const { onOpen, isOpen, onClose } = useDisclosure()
@@ -27,7 +28,9 @@ const MainModal = (props) => {
         setModalSubtitle,
         setModalTitle,
         setSearchResults,
+        setUpdateTweat,
         setUser,
+        updateTweat,
         user,
         whereTo,
     } = props
@@ -64,6 +67,15 @@ const MainModal = (props) => {
                         />
                     ) : modalTitle === "Success" ? (
                         <ModalSuccess message={message} onClose={onClose} />
+                    ) : modalTitle === "Edit" ? (
+                        <ModalEdit
+                            allTweats={allTweats}
+                            updateTweat={updateTweat}
+                            setAllTweats={setAllTweats}
+                            setModalTitle={setModalTitle}
+                            setModalSubtitle={setModalSubtitle}
+                            setUpdateTweat={setUpdateTweat}
+                        />
                     ) : (
                         <LoginRegForm
                             loggedin={loggedin}

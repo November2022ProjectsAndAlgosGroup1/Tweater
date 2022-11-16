@@ -3,7 +3,15 @@ import axios from "axios"
 import Tweat from "./Tweat"
 
 const Feeds = (props) => {
-    const { user, allTweats, setAllTweats } = props
+    const {
+        user,
+        allTweats,
+        setAllTweats,
+        setUpdateTweat,
+        setModalOpen,
+        setModalTitle,
+        setModalSubtitle,
+    } = props
 
     //TODO Get tweats...This is not working for some odd reason - JG
     useEffect(() => {
@@ -35,6 +43,10 @@ const Feeds = (props) => {
                                 user={user}
                                 allTweats={allTweats}
                                 setAllTweats={setAllTweats}
+                                setUpdateTweat={setUpdateTweat}
+                                setModalOpen={setModalOpen}
+                                setModalTitle={setModalTitle}
+                                setModalSubtitle={setModalSubtitle}
                             />
                         )
                     })

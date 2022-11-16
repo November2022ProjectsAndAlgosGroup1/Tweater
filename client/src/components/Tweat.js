@@ -2,7 +2,16 @@ import axios from "axios"
 import { Icon } from "@chakra-ui/react"
 import { FaPencilAlt, FaTrash } from "react-icons/fa"
 const Tweat = (props) => {
-    const { tweat, user, allTweats, setAllTweats } = props
+    const {
+        tweat,
+        user,
+        allTweats,
+        setAllTweats,
+        setUpdateTweat,
+        setModalOpen,
+        setModalTitle,
+        setModalSubtitle,
+    } = props
 
     const deleteHandler = () => {
         const deletedTweat = tweat
@@ -18,7 +27,12 @@ const Tweat = (props) => {
             .catch((err) => console.log(err))
     }
 
-    const editHandler = () => {}
+    const editHandler = () => {
+        setUpdateTweat(tweat)
+        setModalOpen(true)
+        setModalTitle("Edit")
+        setModalSubtitle("Edit your Tweat")
+    }
     console.log("tweat", tweat)
     return (
         <div className="card d-flex flex-row">
