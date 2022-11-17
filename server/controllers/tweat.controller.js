@@ -58,7 +58,7 @@ module.exports = {
             .populate({
                 path: "userID",
                 select: "name userName",
-            })
+            }).sort({ createdAt: 'desc' })
             .then((allTweats) => {
                 //map through tweats and attach the user object to each tweat
                 // const tweatsWithUsers = allTweats.map((tweat) => {
@@ -105,7 +105,7 @@ module.exports = {
             //delete all tweat likes
             const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
             //delete all tweat replies
-            const tweatReplies = await Reply.deleteMany({ tweatID: tweatID }) 
+            const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
 
             res.status(200).json({
                 deletedTweat: deletedTweat,
