@@ -64,15 +64,15 @@ const Tweat = (props) => {
                 console.log(res)
             })
             .catch((error) => console.log(error))
+    }
+
+    const dislikeHandler = (e) => {
+        e.preventDefault()
+        const data = {
+            tweatID: tweat._id,
+            userID: user._id
         }
-        
-        const dislikeHandler = (e) => {
-            e.preventDefault()
-            const data = {
-                tweatID: tweat._id,
-                userID: user._id
-            }
-            axios.put("http://localhost:8000/api/tweats/dislike", data)
+        axios.put("http://localhost:8000/api/tweats/dislike", data)
             .then((res) => {
                 setIsLiked(false)
                 setLikeCount((likeCount) => likeCount - 1)
@@ -110,16 +110,18 @@ const Tweat = (props) => {
                         ReTweat 
                         <span>{tweat.retweats && tweat.retweats.length}</span>
                     </a> */}
-                    {!isLiked ? <button onClick={e => likeHandler(e)}>
-                        {/* <i className="fa fa-heart-o" aria-hidden="true"></i>{" "} */}
-                        <Icon as={FaRegHeart} />
-                        {/* Like */}
-                    </button> : <button onClick={e => dislikeHandler(e)}>
-                        <Icon as={FaHeart} />
-                        {/* <i className="fa fa-heart-o" aria-hidden="true"></i>{" "} */}
-                        {/* Like */}
-                    </button>}
-                    {likeCount}
+                    <div>{!isLiked ?
+                        <button onClick={e => likeHandler(e)}>
+                            <Icon as={FaRegHeart} />
+                            {/* Like */}
+                        </button>
+                        :
+                        <button onClick={e => dislikeHandler(e)}>
+                            <Icon as={FaHeart} />
+                            {/* Dislike */}
+                        </button>}
+                        <span className="ms-2">{likeCount}</span>
+                    </div>
                     {/* {tweat.likes && tweat.likes.length} */}
                     {user._id && user._id === tweat.userID._id ? (
                         <>
