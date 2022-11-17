@@ -11,6 +11,11 @@
 # production
 /build
 
+#Ignores all the image files...
+**/images/*.png
+**/images/*.jpg
+**/images/*.jpeg
+
 # misc
 .DS_Store
 .env.local
