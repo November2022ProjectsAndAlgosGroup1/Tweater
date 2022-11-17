@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Link} from 'react-router-dom'
 const Profile = ({ user }) => {
   return (
     <div className="container profile w-25 p-4 d-flex flex-column align-items-center ms-2 me-2">
@@ -17,7 +17,7 @@ const Profile = ({ user }) => {
           <span>{user.likes.length}</span> Tweats Liked
         </div>
       </div>
-      <button className="btn btn-warning w-50">Edit</button>
+      <Link to={`/edit-profile/${user._id}`} className="btn btn-warning w-50">Edit</Link>
     </div>
   );
 };
