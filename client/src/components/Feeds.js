@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import axios from "axios"
 import Tweat from "./Tweat"
 
@@ -31,7 +31,9 @@ const Feeds = (props) => {
     return (
         <div className="feedSection container p-4">
             <h2 className="fs-4 mb-3 text-light">
-                What your friends are eating
+                {` What ${
+                    user?.name ? user.name + "'s" : "your"
+                } friends are eating`}
             </h2>
             <div className="container comments">
                 {allTweats && allTweats.length > 0 ? (

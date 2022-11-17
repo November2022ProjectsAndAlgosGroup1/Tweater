@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { Icon } from "@chakra-ui/react"
-import { FaPencilAlt, FaTrash, FaHeart, FaRegHeart } from "react-icons/fa"
+import { FaHeart, FaPencilAlt, FaReply, FaTrash, FaRegHeart } from "react-icons/fa"
 const Tweat = (props) => {
     const {
         tweat,
@@ -51,6 +51,32 @@ const Tweat = (props) => {
         setModalSubtitle("Edit your Tweat")
     }
 
+    const timeSincePosted = () => {
+        const now = new Date()
+        const posted = new Date(tweat.createdAt)
+        const diff = now - posted
+        const seconds = Math.floor(diff / 1000)
+        const minutes = Math.floor(seconds / 60)
+        const hours = Math.floor(minutes / 60)
+        const days = Math.floor(hours / 24)
+        const months = Math.floor(days / 30)
+        const years = Math.floor(months / 12)
+        if (seconds < 60) {
+            return seconds + " seconds ago"
+        } else if (minutes < 60) {
+            return minutes + " minutes ago"
+        } else if (hours < 24) {
+            return hours + " hours ago"
+        } else if (days < 30) {
+            return days + " days ago"
+        } else if (months < 12) {
+            return months + " months ago"
+        } else {
+            return years + " years ago"
+        }
+    }
+
+
     const likeHandler = (e) => {
         e.preventDefault()
         const data = {
@@ -96,12 +122,17 @@ const Tweat = (props) => {
                         @{tweat.userID && tweat.userID.userName}
                     </h5>
                     {/* TODO hyperlink to the user's profile route*/}
-                    <h5>- time posted</h5>
+                    <h5> - {timeSincePosted()}</h5>
                 </div>
-                <p className="card-text mb-3 mt-3">{tweat.text}</p>
+                <p className="card-text">
+                    Restaurant: <b>{tweat.restaurantName}</b>
+                </p>
+                <p className="card-text mb-3 mt-3">
+                    Comment: <i>{tweat.text}</i>
+                </p>
                 <div className="feedOptions w-50 border-2 p-2  mx-auto d-flex justify-content-around">
                     <a href="/">
-                        <i className="fa fa-reply" aria-hidden="true"></i>
+                        <Icon as={FaReply} />
                         {/* Reply */}
                         <span>{tweat.replies && tweat.replies.length}</span>
                     </a>

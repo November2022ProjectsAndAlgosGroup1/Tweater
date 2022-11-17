@@ -3,6 +3,7 @@ import axios from "axios"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Feeds from "./components/Feeds"
 import Header from "./components/Header"
+import Hero from "./components/Hero"
 import Main from "./components/Main"
 import MainModal from "./components/MainModal"
 import Map from "./components/Map"
@@ -96,11 +97,9 @@ function App() {
                     loggedin={loggedin}
                     searchResults={searchResults}
                     setloggedin={setloggedin}
-                    setUser={setUser}
                     setModalOpen={setModalOpen}
                     setModalTitle={setModalTitle}
                     setSearchResults={setSearchResults}
-                    user={user}
                     setWhereTo={setWhereTo}
                 />
                 <Routes>
@@ -110,17 +109,7 @@ function App() {
                             <Main>
                                 <div className="mainPage">
                                     <div className="title-container container-fluid pe-5 ps-5 mt-3 text-light">
-                                        <h1 className="text-center">Title</h1>
-                                        <p>
-                                            Lorem ipsum dolor sit amet
-                                            consectetur adipisicing elit. Veniam
-                                            dolorum suscipit fugit dignissimos
-                                            quisquam voluptates necessitatibus
-                                            aliquid perferendis, id facilis
-                                            dolores explicabo, fugiat alias
-                                            labore possimus iure voluptatem
-                                            aspernatur minus!
-                                        </p>
+                                        <Hero title={"twEater"} />
                                     </div>
                                     <div className="d-flex mt-4">
                                         <Sidebar
@@ -191,31 +180,38 @@ function App() {
                     <Route
                         path="/profile/:id"
                         element={
-                            <Main>
-                                <div className="mainPage w-100">
-                                    <div className="d-flex mt-3 p-2">
-                                        <Sidebar
-                                            user={user}
-                                            loggedin={loggedin}
-                                            setModalOpen={setModalOpen}
-                                            modalTitle={modalTitle}
-                                            setModalTitle={setModalTitle}
-                                            setModalSubtitle={setModalSubtitle}
-                                            setWhereTo={setWhereTo}
-                                        />
-                                        <Profile user={user} />
-                                        <Feeds
-                                            user={user}
-                                            allTweats={allTweats}
-                                            setAllTweats={setAllTweats}
-                                            setModalOpen={setModalOpen}
-                                            setModalTitle={setModalTitle}
-                                            setModalSubtitle={setModalSubtitle}
-                                            setUpdateTweat={setUpdateTweat}
-                                        />
+                            <>
+                                <Hero title={"Profile"} />
+                                <Main>
+                                    <div className="mainPage w-100">
+                                        <div className="d-flex mt-3 p-2">
+                                            <Sidebar
+                                                user={user}
+                                                loggedin={loggedin}
+                                                setModalOpen={setModalOpen}
+                                                modalTitle={modalTitle}
+                                                setModalTitle={setModalTitle}
+                                                setModalSubtitle={
+                                                    setModalSubtitle
+                                                }
+                                                setWhereTo={setWhereTo}
+                                            />
+                                            <Profile user={user} />
+                                            <Feeds
+                                                user={user}
+                                                allTweats={allTweats}
+                                                setAllTweats={setAllTweats}
+                                                setModalOpen={setModalOpen}
+                                                setModalTitle={setModalTitle}
+                                                setModalSubtitle={
+                                                    setModalSubtitle
+                                                }
+                                                setUpdateTweat={setUpdateTweat}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            </Main>
+                                </Main>
+                            </>
                         }
                     />
                     {/* <Route path="/edit-profile/:id"/> */}

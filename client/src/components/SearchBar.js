@@ -62,7 +62,7 @@ const SearchBar = (props) => {
                 <Input
                     className="form-control border border-secondary"
                     type="search"
-                    placeholder="First tell me where is your location?"
+                    placeholder="Where do you want to eat?"
                     aria-label="Search"
                     // defaultValue={type !== "home" ? results[0].name : null}
                     onChange={(e) => handleChange(e)}

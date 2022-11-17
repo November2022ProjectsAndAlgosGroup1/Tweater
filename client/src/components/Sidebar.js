@@ -1,8 +1,12 @@
-import { Button } from "@chakra-ui/react"
+import { Button, Divider, Icon } from "@chakra-ui/react"
+import { AiFillHome } from "react-icons/ai"
+import { FaMap, FaUserCircle } from "react-icons/fa"
+import { RiTwitterFill } from "react-icons/ri"
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Sidebar = (props) => {
+    const navigate = useNavigate()
     const {
         loggedin,
         setModalOpen,
@@ -23,16 +27,43 @@ const Sidebar = (props) => {
         setWhereTo(where)
     }
 
+    const handleProfile = (e) => {
+        e.preventDefault()
+        if (user) {
+            navigate(`/profile/${user._id}`)
+        } else {
+            setModalOpen(true)
+            setModalTitle("Login")
+            setModalSubtitle("to continue, please login or create an account")
+            setWhereTo("profile")
+        }
+    }
+
     return (
-        <div className="sideBar container d-flex flex-column align-items-center justify-content-around p-4">
-            <div className="container sidebarLinks d-flex flex-column align-items-center justify-content-between p-3">
-                <Link to="/">Home</Link>
-                <Link to="/explore">Explore</Link>
-                <Link to={user && `/profile/${user._id}`}>Profile</Link>
+        <div className="sideBar container d-flex flex-column">
+            <div className="container sidebarLinks d-flex flex-column">
+                <Button>
+                    <Icon as={AiFillHome} />
+                    <Link to="/">Home</Link>
+                </Button>
+                <Divider />
+                <Button>
+                    <Icon as={FaMap} />
+                    <Link to="/explore">Explore</Link>
+                </Button>
+                <Divider />
+                <Button onClick={(e) => handleProfile(e)}>
+                    <Icon as={FaUserCircle} />
+                    <span>Profile</span>
+                </Button>
+                <Button
+                    className="btn btn-info"
+                    onClick={(e) => handleTweat(e)}
+                >
+                    <Icon as={RiTwitterFill} />
+                    twEAT
+                </Button>
             </div>
-            <Button className="btn btn-info" onClick={(e) => handleTweat(e)}>
-                twEAT
-            </Button>
         </div>
     )
 }
