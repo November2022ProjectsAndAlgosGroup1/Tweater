@@ -24,6 +24,7 @@ const TweatSchema = mongoose.Schema(
         text: {
             type: String,
             required: [true, "Text is required"],
+            maxLength: [500, "Max Characters is 500"]
         },
         replies: [
             {
