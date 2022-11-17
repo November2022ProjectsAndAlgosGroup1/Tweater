@@ -1,4 +1,5 @@
 import { useCallback, useRef, useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import { CloseButton } from "@chakra-ui/react"
 import { GoogleMap, useLoadScript } from "@react-google-maps/api"
 import { Marker, InfoBox } from "@react-google-maps/api"
@@ -12,7 +13,8 @@ const options = {
 }
 
 const Map = (props) => {
-    const { page, searchResults, center, setCenter } = props
+    const { searchResults, center, setCenter } = props
+    const { pathname } = useLocation()
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     })
@@ -21,12 +23,9 @@ const Map = (props) => {
         show: false,
         id: null,
     })
-
-    // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-
     const mapContainerStyle = {
-        height: "250px",
-        width: page === "Explore" ? "75vw" : "100vw",
+        height: "380px",
+        width: pathname === "/explore" ? "75vw" : "100vw",
     }
 
     const mapRef = useRef()
@@ -60,7 +59,6 @@ const Map = (props) => {
         setShowInfoWindow({ show: false, id: null })
     }
 
-    console.log(searchResults)
     if (loadError) return "Error"
     if (!isLoaded) return "Loading..."
     return (
@@ -69,7 +67,7 @@ const Map = (props) => {
             id="map"
             mapContainerStyle={mapContainerStyle}
             zoom={zoom}
-            center={center}
+            center={!center ? { lat: 51.509865, lng: -0.118092 } : center}
             options={options}
             onLoad={onMapLoad}
             zIndex="0"

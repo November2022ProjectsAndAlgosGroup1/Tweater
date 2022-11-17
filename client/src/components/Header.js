@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import React from "react"
 import Login from "./Login"
 import SearchBar from "./SearchBar"
@@ -6,26 +7,21 @@ const Header = (props) => {
     const {
         loggedin,
         handleLogout,
-        page,
-        user,
-        setUser,
-        search,
-        setSearch,
         setSearchResults,
         setModalOpen,
         setModalTitle,
     } = props
 
     return (
-        <div className="container-fluid  ">
+        <div>
             <nav className="header container-fluid navbar navbar-expand-lg navbar-light p-3">
                 <div className="container-fluid d-flex justify-content-between align-items-center">
-                    <a
-                        href="/"
+                    <Link
+                        to="/"
                         className="navbar-brang logo d-flex justify-content-center align-items-center logoFont"
                     >
                         TwEater
-                    </a>
+                    </Link>
 
                     <SearchBar
                         type="header"
