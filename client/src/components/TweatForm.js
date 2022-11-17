@@ -47,6 +47,7 @@ const TweatForm = (props) => {
         const formData = new FormData()
         formData.append("text", tweat.text)
         formData.append("userID", tweat.userID)
+        formData.append("restaurantInfo", tweat.restaurantInfo)
         formData.append("image", tweat.image)
 
         for (const value of formData.values()) {
