@@ -218,6 +218,7 @@ function App() {
                             </Main>
                         }
                     />
+                    {/* <Route path="/edit-profile/:id"/> */}
                 </Routes>
             </BrowserRouter>
         </div>
