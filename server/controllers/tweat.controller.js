@@ -58,7 +58,8 @@ module.exports = {
             .populate({
                 path: "userID",
                 select: "name userName",
-            }).sort({ createdAt: 'desc' })
+            })
+            .sort({ createdAt: "desc" })
             .then((allTweats) => {
                 //map through tweats and attach the user object to each tweat
                 // const tweatsWithUsers = allTweats.map((tweat) => {
@@ -86,6 +87,7 @@ module.exports = {
     },
 
     //deletes a single tweat in the database and user's tweat array
+    //deletes a single tweat in the database and user's tweat array
     deleteTweat: async (req, res) => {
         const tweatID = req.params.id
         try {
@@ -100,12 +102,12 @@ module.exports = {
                 { _id: deletedTweat.userID },
                 { $pull: { tweats: deletedTweat._id } }
             )
-            console.log('Just updated this user:', updatedUser)
+            console.log("Just updated this user:", updatedUser)
 
             //delete all tweat likes
-            const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
+            // const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
             //delete all tweat replies
-            const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
+            // const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
 
             res.status(200).json({
                 deletedTweat: deletedTweat,

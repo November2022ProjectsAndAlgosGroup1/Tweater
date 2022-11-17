@@ -55,7 +55,7 @@ function App() {
                 withCredentials: true,
             })
             .then((res) => {
-                console.log(res)
+                setUser({})
                 setloggedin(false)
             })
             .catch((err) => console.log(err))

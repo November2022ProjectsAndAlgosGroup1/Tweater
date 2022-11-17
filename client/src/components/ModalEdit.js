@@ -1,5 +1,12 @@
 import { useState } from "react"
-import { Button, Textarea } from "@chakra-ui/react"
+import {
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
+    Button,
+    Textarea,
+} from "@chakra-ui/react"
 import axios from "axios"
 
 const ModalEdit = (props) => {
@@ -11,7 +18,7 @@ const ModalEdit = (props) => {
         setModalTitle,
         setModalSubtitle,
     } = props
-    const [error, setError] = useState({})
+    const [error, setError] = useState("")
 
     const handleTextArea = (e) => {
         setError("")
@@ -38,7 +45,7 @@ const ModalEdit = (props) => {
                 setModalSubtitle("Your Tweat has been updated!")
             })
             .catch((err) => {
-                console.log(err)
+                setError(err.response.data.errors.text.message)
             })
     }
     return (
@@ -51,6 +58,13 @@ const ModalEdit = (props) => {
                 onChange={handleTextArea}
                 defaultValue={updateTweat.text}
             />
+            {error && (
+                <Alert status="error">
+                    <AlertIcon />
+                    <AlertTitle>Error!</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                </Alert>
+            )}
             <Button className="btn btn-info ms-3 mt-3" type="submit">
                 Edit
             </Button>

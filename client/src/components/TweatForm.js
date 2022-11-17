@@ -58,7 +58,7 @@ const TweatForm = (props) => {
                 const newTweat = res.data.newTweat
                 newTweat.userID = {
                     _id: user._id,
-                    username: user.userName,
+                    userName: user.userName,
                     name: user.name,
                 }
                 setAllTweats([res.data.newTweat, ...allTweats])
@@ -67,7 +67,7 @@ const TweatForm = (props) => {
             })
             .catch((err) => {
                 console.error(err)
-                setError(err.response.data.message)
+                setError(err.response.data.errors.text.message)
             })
     }
 
