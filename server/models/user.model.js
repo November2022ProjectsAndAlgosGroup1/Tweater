@@ -37,7 +37,7 @@ const UserSchema = mongoose.Schema(
         }],
         likes: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Like'
+            // ref: 'Like'
             // ref: 'User'  //We could just create an array of user references here instead of creating a separate model for likes.
         }],
 

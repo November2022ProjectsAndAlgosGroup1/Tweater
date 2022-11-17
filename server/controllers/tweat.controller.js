@@ -67,6 +67,7 @@ module.exports = {
                 path: "userID",
                 select: "name userName",
             })
+            .populate("likes")
             .sort({ createdAt: "desc" })
             .then((allTweats) => {
                 //map through tweats and attach the user object to each tweat
@@ -95,12 +96,11 @@ module.exports = {
     },
 
     //deletes a single tweat in the database and user's tweat array
-    //deletes a single tweat in the database and user's tweat array
     deleteTweat: async (req, res) => {
         const tweatID = req.params.id
         try {
             //Delete the tweat from the Tweat collection
-            const deletedTweat = await Tweat.findOneAndRemove({
+            const deletedTweat = await Tweat.findOneAndDelete({
                 _id: tweatID,
             })
             console.log("Just deleted this tweat:", deletedTweat)
@@ -112,10 +112,6 @@ module.exports = {
             )
             console.log("Just updated this user:", updatedUser)
 
-            //delete all tweat likes
-            // const tweatLikes = await Like.deleteMany({ tweatID: tweatID })
-            //delete all tweat replies
-            // const tweatReplies = await Reply.deleteMany({ tweatID: tweatID })
 
             res.status(200).json({
                 deletedTweat: deletedTweat,
@@ -125,6 +121,48 @@ module.exports = {
             res.status(400).json(error)
         }
     },
+
+    likeTweat: async (req, res) => {
+
+        console.log("liked")
+        const tweatID = req.body.tweatID
+        const userID = req.body.userID
+        console.log(`tweatID: ${tweatID}, userID: ${userID}`)
+        try {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: userID },
+                { $push: { likes: tweatID } },
+                { new: true }
+            )
+            const updatedTweat = await Tweat.findOneAndUpdate(
+                { _id: tweatID },
+                { $push: { likes: userID } },
+                { new: true }
+            )
+            res.status(200).json({ updatedUser: updatedUser, updatedTweat: updatedTweat })
+        } catch (error) {
+            res.status(400).json(error)
+        }
+    },
+    dislikeTweat: async (req, res) => {
+        console.log("disliked")
+        const tweatID = req.body.tweatID
+        const userID = req.body.userID
+        console.log(`tweatID: ${tweatID}, userID: ${userID}`)
+        try {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: userID },
+                { $pull: { likes: tweatID } },
+            )
+            const updatedTweat = await Tweat.findOneAndUpdate(
+                { _id: tweatID },
+                { $pull: { likes: userID } },
+            )
+            res.status(200).json({ updatedUser: updatedUser, updatedTweat: updatedTweat })
+        } catch (error) {
+            res.status(400).json(error)
+        }
+    }
 }
 //TODO:  For retweat, I think that we can just route to '/api/tweats/'
 // to add a new tweat and pass in a Tweat Schema to the retweat field in originalTweat field through

@@ -1,6 +1,7 @@
 import axios from "axios"
+import { useState, useEffect } from "react"
 import { Icon } from "@chakra-ui/react"
-import { FaPencilAlt, FaTrash } from "react-icons/fa"
+import { FaPencilAlt, FaTrash, FaHeart, FaRegHeart } from "react-icons/fa"
 const Tweat = (props) => {
     const {
         tweat,
@@ -12,6 +13,22 @@ const Tweat = (props) => {
         setModalTitle,
         setModalSubtitle,
     } = props
+
+    const [isLiked, setIsLiked] = useState(false)
+    const [likeCount, setLikeCount] = useState()
+
+    useEffect(() => {
+        setIsLiked(tweat.likes.includes(user._id))
+        setLikeCount(tweat.likes.length)
+    }, [])
+
+    // useEffect(() => {
+    //     console.log("length", tweat.likes.length)
+    // }, [isLiked])
+
+
+
+
 
     const deleteHandler = () => {
         const deletedTweat = tweat
@@ -33,6 +50,37 @@ const Tweat = (props) => {
         setModalTitle("Edit")
         setModalSubtitle("Edit your Tweat")
     }
+
+    const likeHandler = (e) => {
+        e.preventDefault()
+        const data = {
+            tweatID: tweat._id,
+            userID: user._id
+        }
+        axios.put("http://localhost:8000/api/tweats/like", data)
+            .then((res) => {
+                setIsLiked(true)
+                setLikeCount((likeCount) => likeCount + 1)
+                console.log(res)
+            })
+            .catch((error) => console.log(error))
+        }
+        
+        const dislikeHandler = (e) => {
+            e.preventDefault()
+            const data = {
+                tweatID: tweat._id,
+                userID: user._id
+            }
+            axios.put("http://localhost:8000/api/tweats/dislike", data)
+            .then((res) => {
+                setIsLiked(false)
+                setLikeCount((likeCount) => likeCount - 1)
+                console.log(res)
+            })
+            .catch((error) => console.log(error))
+    }
+
     console.log("tweat", tweat)
     return (
         <div className="card d-flex flex-row">
@@ -62,11 +110,17 @@ const Tweat = (props) => {
                         ReTweat 
                         <span>{tweat.retweats && tweat.retweats.length}</span>
                     </a> */}
-                    <a href="/">
-                        <i className="fa fa-heart-o" aria-hidden="true"></i>{" "}
+                    {!isLiked ? <button onClick={e => likeHandler(e)}>
+                        {/* <i className="fa fa-heart-o" aria-hidden="true"></i>{" "} */}
+                        <Icon as={FaRegHeart} />
                         {/* Like */}
-                        {tweat.likes && tweat.likes.length}
-                    </a>
+                    </button> : <button onClick={e => dislikeHandler(e)}>
+                        <Icon as={FaHeart} />
+                        {/* <i className="fa fa-heart-o" aria-hidden="true"></i>{" "} */}
+                        {/* Like */}
+                    </button>}
+                    {likeCount}
+                    {/* {tweat.likes && tweat.likes.length} */}
                     {user._id && user._id === tweat.userID._id ? (
                         <>
                             <button onClick={editHandler}>

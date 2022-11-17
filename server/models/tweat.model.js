@@ -34,7 +34,7 @@ const TweatSchema = mongoose.Schema(
         likes: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Like",
+                // ref: "Like",
             },
         ],
         retweat: [
@@ -54,6 +54,14 @@ const TweatSchema = mongoose.Schema(
     { timestamps: true }
 )
 
+// TweatSchema.pre('delete', async function (next) {
+//     try {
+//         console.log('hi')
+//         next()
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
 const Tweat = mongoose.model("Tweat", TweatSchema)
 
 module.exports = { Tweat }

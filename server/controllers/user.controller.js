@@ -1,5 +1,4 @@
 const { Tweat } = require("../models/tweat.model")
-const { Like } = require("../models/like.model")
 const { User } = require("../models/user.model")
 const { Reply } = require("../models/reply.model")
 const bcrypt = require("bcrypt")
@@ -65,16 +64,17 @@ module.exports = {
             .catch((error) => res.status(400).json(error))
     },
 
+    //!Doesn't delete associated data from other modules
     //deletes a single user and all of the user's tweats, likes, and replies from the db
     deleteUser: async (req, res) => {
         const userID = req.params.id
         try {
             //delete all user tweats
-            const userTweats = await Tweat.deleteMany({ userID: userID })
-            //delete all user likes
-            const userLikes = await Like.deleteMany({ userID: userID })
-            //delete all user replies
-            const userReplies = await Reply.deleteMany({ userID: userID })
+            // const userTweats = await Tweat.deleteMany({ userID: userID })
+            // //delete all user likes
+            // const userLikes = await Like.deleteMany({ userID: userID })
+            // //delete all user replies
+            // const userReplies = await Reply.deleteMany({ userID: userID })
             //delete the user
             await User.findByIdAndDelete(userID)
             res.json({ successMessage: "User deleted", deletedUserID: userID })
