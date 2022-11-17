@@ -41,7 +41,7 @@ const Sidebar = (props) => {
 
     return (
         <div className="sideBar container d-flex flex-column">
-            <div className="container sidebarLinks d-flex flex-column">
+            <div className="container sidebarLinks d-flex flex-column align-items-center">
                 <Button>
                     <Icon as={AiFillHome} />
                     <Link to="/">Home</Link>
@@ -57,7 +57,8 @@ const Sidebar = (props) => {
                     <span>Profile</span>
                 </Button>
                 <Button
-                    className="btn btn-info"
+                    id="tweatButton"
+                    className="btn"
                     onClick={(e) => handleTweat(e)}
                 >
                     <Icon as={RiTwitterFill} />

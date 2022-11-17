@@ -71,8 +71,9 @@ h2.chakra-heading span svg {
 }
 
 .title-container {
-    background-image: url("/public/images/restaurant2.jpg");
-    background-position: bottom;
+    /* background-image: url("/public/images/restaurant2.jpg"); */
+    background-image: url("https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-position: bottom left;
     background-repeat: no-repeat;
     height: 380px;
 }
@@ -80,29 +81,38 @@ h2.chakra-heading span svg {
 .sideBar {
     width: 25%;
 }
+
 .feedSection {
     width: 70%;
     min-height: 60vh;
     /* background-color: #234a7a; */
-    border: 3px solid #e84646;
+    /* border: 3px solid #e84646; */
+    /* border: 3px solid orange; */
     border-radius: 1rem;
 }
 
 .feedSection .container.comments {
     padding: 1rem;
     border-radius: 1rem;
-    background-color: #2c2f4b;
+    height: 90%;
+    /* background-color: #2c2f4b; */
+
 }
 .sideBar {
     padding: 0;
-    /* min-height: 60vh;
-    background-color: #435a76; */
+    /* min-height: 60vh; */
+    /* background-color: #435a76; */
+    border-right: 5px dotted white;
 }
 .sidebarLinks {
-    align-items: flex-start;
+    /* align-items: flex-start; */
     padding: 0;
-    /* min-height: 25vh;
-    border: 1px solid #eee; */
+    /* min-height: 25vh; */
+    /* border: 1px solid #eee; */
+}
+
+#tweatButton {
+    background-color: orange;
 }
 
 .sidebarLinks button {
@@ -110,11 +120,14 @@ h2.chakra-heading span svg {
     color: #fff;
     font-size: 1.25rem;
     text-align: left;
+    margin: 1rem 1.5rem;
     padding: 2rem 1.5rem;
-    width: 100%;
+    /* width: 100%; */
+    width: auto;
     display: flex;
     justify-content: flex-start;
-    border-radius: 0;
+    /* border-radius: 0; */
+    border-radius: 50px;
 }
 
 .sidebarLinks button:hover {
@@ -128,7 +141,8 @@ h2.chakra-heading span svg {
 .sidebarLinks hr {
     height: 3px;
     border-bottom: #962c2c;
-    color: #e84646;
+    /* color: #e84646; */
+    color: transparent
 }
 .sidebarLinks .btn-info:hover {
     animation: glowinfo 0.25s linear 1;
@@ -171,11 +185,24 @@ h2.chakra-heading span svg {
     /* background-color: #ccc; */
 }
 
-.profileImg,
+/* .profileImg,
 .card > img {
     width: 100px;
     height: 100px;
     border: 1px solid #ccc;
+} */
+
+#tweatImage {
+    width: auto;
+    height: 40vh;
+}
+
+#tweatCaption {
+    width: 40%;
+}
+
+#tweatText {
+    /* margin: 15%; */
 }
 
 .mapContainer {
@@ -269,8 +296,13 @@ h2.chakra-heading span svg {
 }
 
 .comments .card {
-    background-color: #2c2f4b;
+    /* background-color: #2c2f4b; */
+    background-color: transparent;
     color: #fff;
+    margin-bottom: 10px;
+    /* border-bottom: 3px solid white;
+    padding-bottom: 10px; */
+    
 }
 
 .hero > chakra-container > .chakra-stack {
