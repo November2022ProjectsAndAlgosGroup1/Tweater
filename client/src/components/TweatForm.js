@@ -23,11 +23,10 @@ const TweatForm = (props) => {
 
     const [tweat, setTweat] = useState({
         userID: `${user._id}`,
-        restaurantInfo: {
-            name: "",
-            latitude: "",
-            logitude: "",
-        },
+        yelpID: "",
+        restaurantName: "",
+        restLatitude: "",
+        restLogitude: "",
         text: "",
         image: "",
     })
@@ -35,6 +34,7 @@ const TweatForm = (props) => {
     const handleTextArea = (e) => {
         setError("")
         setTweat({ ...tweat, [e.target.name]: e.target.value })
+        console.log(tweat)
     }
     const handleImage = (e) => {
         setTweat({ ...tweat, image: e.target.files[0] })
@@ -47,7 +47,10 @@ const TweatForm = (props) => {
         const formData = new FormData()
         formData.append("text", tweat.text)
         formData.append("userID", tweat.userID)
-        formData.append("restaurantInfo", tweat.restaurantInfo)
+        formData.append("yelpID", tweat.yelpID)
+        formData.append("restaurantName", tweat.restaurantName)
+        formData.append("restLatitude", tweat.restLatitude)
+        formData.append("restLogitude", tweat.restLogitude)
         formData.append("image", tweat.image)
 
         for (const value of formData.values()) {
@@ -95,13 +98,13 @@ const TweatForm = (props) => {
         setSelectedOption(selected)
         const id = selected.value
         const details = results.filter((result) => result.id === id)
-        const restuarantInfo = {
+        setTweat({
+            ...tweat,
             yelpID: details[0].id,
-            name: details[0].name,
-            latitude: details[0].coordinates.latitude,
-            longitude: details[0].coordinates.longitude,
-        }
-        setTweat({ ...tweat, restaurantInfo: restuarantInfo })
+            restaurantName: details[0].name,
+            restLatitude: details[0].coordinates.latitude,
+            restLogitude: details[0].coordinates.longitude,
+        })
     }
 
     return (

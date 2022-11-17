@@ -12,9 +12,13 @@ module.exports = {
         console.log("Here is the file", req.file)
 
         const userID = req.body.userID
+        const yelpID = req.body.yelpID
+        const restaurantName = req.body.restaurantName
+        const restLatitude = req.body.restLatitude
+        const restLogitude = req.body.restLogitude
+
         const text = req.body.text
         let image = ""
-
         //If there is a photo in the file, set the image field
         if (req.file !== undefined) {
             image = req.file.filename
@@ -22,6 +26,10 @@ module.exports = {
 
         const tweatData = {
             userID,
+            yelpID,
+            restaurantName,
+            restLatitude,
+            restLogitude,
             text,
             image,
         }

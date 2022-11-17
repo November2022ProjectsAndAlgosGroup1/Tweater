@@ -7,22 +7,19 @@ const TweatSchema = mongoose.Schema(
             required: [true, "User ID is required"],
             ref: "User",
         },
-
         //This is a Map. I'm not really sure what that means, and I'm too tired to figure it out tonight
-        restaurantInfo: {
-            yelpID: String,
-            name: {
-                type: String,
-                // required: [true, "Restaurant name is required"],
-            },
-            latitude: {
-                type: Number,
-                // required: [true],
-            },
-            logitude: {
-                type: Number,
-                // required: [true],
-            },
+        yelpID: String,
+        restaurantName: {
+            type: String,
+            // required: [true, "Restaurant name is required"],
+        },
+        restLatitude: {
+            type: Number,
+            // required: [true],
+        },
+        restLogitude: {
+            type: Number,
+            // required: [true],
         },
         text: {
             type: String,
@@ -51,7 +48,7 @@ const TweatSchema = mongoose.Schema(
             ref: "Tweat",
         },
         image: {
-            type: String
+            type: String,
         },
     },
     { timestamps: true }
