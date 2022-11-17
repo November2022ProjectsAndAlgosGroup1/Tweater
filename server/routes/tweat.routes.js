@@ -1,6 +1,7 @@
 const TweatController = require("../controllers/tweat.controller");
 const { addTweat, findTweat, findAllTweats, updateTweat, deleteTweat, likeTweat, dislikeTweat } = TweatController;
 const multer = require('multer')
+const { authenticate } = require("../config/jwt.config");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -29,8 +30,8 @@ module.exports = (app) => {
     app.post("/api/tweats/", upload.single('image'), addTweat); //adds a tweat to database
     app.get("/api/tweats/:id", findTweat); //finds a single tweat
     app.get("/api/tweats/", findAllTweats); //finds all tweats
-    app.put("/api/tweats/like/", likeTweat); //likes/dislikes a tweat
-    app.put("/api/tweats/dislike/", dislikeTweat); //likes/dislikes a tweat
+    app.put("/api/tweats/like/", authenticate, likeTweat); //likes/dislikes a tweat
+    app.put("/api/tweats/dislike/", authenticate, dislikeTweat); //likes/dislikes a tweat
     app.put("/api/tweats/:id", updateTweat); //updates a single tweat
     app.delete("/api/tweats/:id", deleteTweat); //deletes a single tweat
     // /*need controller for retweat */ app.post('/api/tweats/:id', retweat)
