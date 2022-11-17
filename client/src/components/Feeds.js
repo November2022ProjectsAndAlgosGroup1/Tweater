@@ -35,7 +35,7 @@ const Feeds = (props) => {
                     user?.name ? user.name + "'s" : "your"
                 } friends are eating`}
             </h2>
-            <div className="container comments">
+            <div className="container comments overflow-auto">
                 {allTweats && allTweats.length > 0 ? (
                     allTweats.map((tweat, i) => {
                         return (
