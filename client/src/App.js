@@ -19,8 +19,8 @@ function App() {
     // const yelpApiKey = process.env.REACT_APP_API_KEY_YELP
     // console.log('The Yelp API Key is defined in App.js.  You can find it at the top of the App component:  ' + yelpApiKey)
     const [center, setCenter] = useState({
-        lat: 36.0014242,
-        lng: -79.1964102,
+        lat: 51.509865,
+        lng: -0.118092,
     })
     const [updateTweat, setUpdateTweat] = useState()
     const [loggedin, setloggedin] = useState(false)
@@ -108,7 +108,7 @@ function App() {
                         element={
                             <Main>
                                 <div className="mainPage">
-                                    <div className="title-container container-fluid pe-5 ps-5 mt-3 text-light">
+                                    <div className="title-container container-fluid pe-5 ps-5 text-light">
                                         <Hero title={"twEater"} />
                                     </div>
                                     <div className="d-flex mt-4">
@@ -146,8 +146,8 @@ function App() {
                                     >
                                         <Map
                                             center={center}
-                                            page={"Explore"}
                                             searchResults={searchResults}
+                                            setSearchResults={setSearchResults}
                                             setCenter={setCenter}
                                         />
                                         <ResultsList results={searchResults} />
@@ -181,7 +181,12 @@ function App() {
                         path="/profile/:id"
                         element={
                             <>
-                                <Hero title={"Profile"} />
+                                <Hero
+                                    title={"Profile"}
+                                    center={center}
+                                    searchResults={searchResults}
+                                    setCenter={setCenter}
+                                />
                                 <Main>
                                     <div className="mainPage w-100">
                                         <div className="d-flex mt-3 p-2">

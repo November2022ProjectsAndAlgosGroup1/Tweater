@@ -1,7 +1,16 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Icon } from "@chakra-ui/react"
-import { FaHeart, FaPencilAlt, FaReply, FaTrash, FaRegHeart } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import { Flex, Icon, Avatar, Wrap, WrapItem } from "@chakra-ui/react"
+import {
+    FaHeart,
+    FaPencilAlt,
+    // FaReply,
+    FaTrash,
+    FaRegHeart,
+} from "react-icons/fa"
+import UserAvatar from "./UserAvatar"
+
 const Tweat = (props) => {
     const {
         tweat,
@@ -25,10 +34,6 @@ const Tweat = (props) => {
     // useEffect(() => {
     //     console.log("length", tweat.likes.length)
     // }, [isLiked])
-
-
-
-
 
     const deleteHandler = () => {
         const deletedTweat = tweat
@@ -76,14 +81,14 @@ const Tweat = (props) => {
         }
     }
 
-
     const likeHandler = (e) => {
         e.preventDefault()
         const data = {
             tweatID: tweat._id,
-            userID: user._id
+            userID: user._id,
         }
-        axios.put("http://localhost:8000/api/tweats/like", data)
+        axios
+            .put("http://localhost:8000/api/tweats/like", data)
             .then((res) => {
                 setIsLiked(true)
                 setLikeCount((likeCount) => likeCount + 1)
@@ -96,47 +101,39 @@ const Tweat = (props) => {
         e.preventDefault()
         const data = {
             tweatID: tweat._id,
-            userID: user._id
+            userID: user._id,
         }
-        axios.put("http://localhost:8000/api/tweats/dislike", data)
+        axios
+            .put("http://localhost:8000/api/tweats/dislike", data)
             .then((res) => {
                 setIsLiked(false)
                 setLikeCount((likeCount) => likeCount - 1)
-                console.log(res)
+                // console.log(res)
             })
             .catch((error) => console.log(error))
     }
 
-    console.log("tweat", tweat)
     return (
         <div className="card d-flex flex-row">
             <div className="card-body">
-                <div className="card-title d-flex justify-content-between">
-                    <div className="d-flex">
-                        <h5>{tweat.userID && tweat.userID.name}</h5>
-                        <h5 className="ms-3 me-3">
-                            @{tweat.userID && tweat.userID.userName}
-                        </h5>
-                        {/* TODO hyperlink to the user's profile route*/}
-                        <h5> - {timeSincePosted()}</h5>
-                        {user._id && user._id === tweat.userID._id ? (
-                            <>
-                                <button onClick={editHandler} className="ms-5 me-5">
-                                    <Icon as={FaPencilAlt} />
-                                </button>
-                                <button onClick={deleteHandler}>
-                                    <Icon as={FaTrash} />
-                                </button>
-                            </>
-                        ) : null}
-                    </div>
-                </div>
-                <div className="d-flex">
-                    <div id="tweatCaption" className="w-50 px-4 bg-white text-black border rounded">
-                        <p className="card-text me-4">
-                            {/* Restaurant:  */}
-                            <b>{tweat.restaurantName}</b>
-                        </p>
+                <Flex>
+                    <div
+                        id="tweatCaption"
+                        className="bg-white text-black border rounded"
+                    >
+                        <Flex align="center">
+                            <UserAvatar user={tweat.userID} size="xl" />
+                            <p className="card-text right-profile">
+                                <span>
+                                    {tweat.userID && tweat.userID.name}
+                                    <Link to={"/profile/" + tweat.userID._id}>
+                                        @{tweat.userID && tweat.userID.userName}{" "}
+                                    </Link>
+                                </span>
+                                ate at <b>{tweat.restaurantName}</b>
+                                <span>{timeSincePosted()}</span>
+                            </p>
+                        </Flex>
                         <p id="tweatText" className="card-text mt-3">
                             {/* Comment:  */}
                             <i>{tweat.text}</i>
@@ -144,19 +141,42 @@ const Tweat = (props) => {
                         <div className="feedOptions d-flex mt-3 mb-3">
                             {/* Like */}
 
-                            <div>{!isLiked ?
-                                <button onClick={e => likeHandler(e)}>
-                                    <Icon as={FaRegHeart} w={10} h={10}/>
-                                    {/* Like */}
-                                </button>
-                                :
-                                <button onClick={e => dislikeHandler(e)}>
-                                    <Icon as={FaHeart} w={10} h={10}/>
-                                    {/* Dislike */}
-                                </button>}
-                                <span className="mt-4 ms-4">{likeCount} Likes</span>
+                            <div className="option">
+                                {!isLiked ? (
+                                    <button onClick={(e) => likeHandler(e)}>
+                                        <Icon as={FaRegHeart} w={10} h={10} />
+                                        {/* Like */}
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="liked"
+                                        onClick={(e) => dislikeHandler(e)}
+                                    >
+                                        <Icon as={FaHeart} w={10} h={10} />
+                                        {/* Dislike */}
+                                    </button>
+                                )}
+                                <span className="mt-4 ms-4">
+                                    {likeCount} Likes
+                                </span>
                             </div>
-
+                            {user._id && user._id === tweat.userID._id ? (
+                                <>
+                                    <div className="option">
+                                        <button
+                                            onClick={editHandler}
+                                            className="ms-5 me-5"
+                                        >
+                                            <Icon as={FaPencilAlt} />
+                                        </button>
+                                    </div>
+                                    <div className="option">
+                                        <button onClick={deleteHandler}>
+                                            <Icon as={FaTrash} />
+                                        </button>
+                                    </div>
+                                </>
+                            ) : null}
                             {/*
                                 <a href="/" className="ms-4 me-4">
                                     //Reply
@@ -169,23 +189,21 @@ const Tweat = (props) => {
                                     <i className="fa fa-share" aria-hidden="true"></i>{" "}
                                 </a> 
                             */}
-                            
                         </div>
                     </div>
-                    <div className="d-flex justify-content-end">
-                        {tweat.image &&
+                    <div className="d-flex tweat-image">
+                        {tweat.image && (
                             <img
-                                id='tweatImage'
+                                id="tweatImage"
                                 src={`http://localhost:8000/images/${tweat.image}`}
                                 // className="card-img-top"
                                 alt={`${tweat.image}`}
                             />
-                        }
+                        )}
                     </div>
-                </div>
+                </Flex>
             </div>
         </div>
-
     )
 }
 export default Tweat

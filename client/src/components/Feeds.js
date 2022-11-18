@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { useLocation, useParams } from "react-router-dom"
 import axios from "axios"
 import Tweat from "./Tweat"
 
@@ -13,29 +14,48 @@ const Feeds = (props) => {
         setModalSubtitle,
     } = props
 
-    //TODO Get tweats...This is not working for some odd reason - JG
+    const { pathname } = useLocation()
+    const { id } = useParams()
+
     useEffect(() => {
         const getTweats = () => {
             axios
                 .get("http://localhost:8000/api/tweats/")
                 .then((res) => {
-                    console.log("The axios request went returned something.")
-                    console.log(res.data)
-                    setAllTweats(res.data)
+                    if (pathname.includes("profile")) {
+                        console.log("id", id)
+
+                        const userTweats = res.data.filter(
+                            (tweat) => tweat.userID._id === id
+                        )
+                        setAllTweats(userTweats)
+                    } else {
+                        setAllTweats(res.data)
+                    }
                 })
                 .catch((err) => console.log(err))
         }
         getTweats()
     }, [])
 
+    const feedTitle = () => {
+        if (pathname.includes("profile")) {
+            return "Tweats"
+        } else {
+            return `What ${
+                user?.name ? user.name + "'s" : "your"
+            } friends are eating`
+        }
+    }
+
     return (
-        <div className="feedSection container p-4">
-            <h2 className="fs-4 mb-3 text-light">
-                {` What ${
-                    user?.name ? user.name + "'s" : "your"
-                } friends are eating`}
-            </h2>
-            <div className="container comments overflow-auto">
+        <div
+            className={`feedSection container ${
+                pathname.includes("profile") && "profile-page"
+            }`}
+        >
+            <h2 className="fs-4 mb-3 text-light">{feedTitle()}</h2>
+            <div className="container comments">
                 {allTweats && allTweats.length > 0 ? (
                     allTweats.map((tweat, i) => {
                         return (

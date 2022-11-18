@@ -45,7 +45,6 @@ const MainModal = (props) => {
             handleModal()
         }
     }, [modalOpen, setModalOpen, onOpen])
-    console.log(modalTitle)
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />

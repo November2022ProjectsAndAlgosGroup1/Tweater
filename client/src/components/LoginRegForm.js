@@ -5,6 +5,10 @@ import { useNavigate, useParams } from "react-router-dom"
 
 const LoginRegForm = (props) => {
     const {
+        Alert,
+        AlertIcon,
+        AlertTitle,
+        AlertDescription,
         setUser,
         setloggedin,
         setMessage,
@@ -62,7 +66,7 @@ const LoginRegForm = (props) => {
             })
             .catch((err) => {
                 console.log(err)
-                setLoginError(err.response.data.errorMessage)
+                setLoginError(err.response.data.error)
             })
     }
 
