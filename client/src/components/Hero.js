@@ -3,10 +3,16 @@ import { BsHeart } from "react-icons/bs"
 import Map from "./Map"
 
 const Hero = (props) => {
-    const { title } = props
+    const { title, center, searchResults, setCenter } = props
     return (
         <div className="hero">
-            {title === "Profile" && <Map />}
+            {title === "Profile" && (
+                <Map
+                    center={center}
+                    searchResults={searchResults}
+                    setCenter={setCenter}
+                />
+            )}
             <Container maxW={"3xl"}>
                 <Stack
                     as={Box}

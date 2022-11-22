@@ -1,7 +1,9 @@
+import axios from "axios"
 import { useCallback, useRef, useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { CloseButton } from "@chakra-ui/react"
 import { GoogleMap, useLoadScript } from "@react-google-maps/api"
+import Geocode from "react-geocode"
 import { Marker, InfoBox } from "@react-google-maps/api"
 import fontawesome from "fontawesome-markers"
 import MapStyles from "./MapStyles"
@@ -13,11 +15,16 @@ const options = {
 }
 
 const Map = (props) => {
-    const { searchResults, center, setCenter } = props
+    const [location, setLocation] = useState({})
+    const [geocode, setGeocode] = useState({})
+    const { searchResults, setSearchResults, center, setCenter } = props
     const { pathname } = useLocation()
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     })
+
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+
     const [zoom, setZoom] = useState(10)
     const [showInfoWindow, setShowInfoWindow] = useState({
         show: false,
@@ -58,6 +65,38 @@ const Map = (props) => {
     const handleClose = () => {
         setShowInfoWindow({ show: false, id: null })
     }
+
+    useEffect(() => {
+        const getLocation = () => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                Geocode.fromLatLng(
+                    position && position.coords.latitude,
+                    position.coords.longitude
+                )
+                    .then((response) => {
+                        getLocalBusinesses(
+                            response.results[0].formatted_address
+                        )
+                    })
+                    .catch((error) => console.log(error))
+            })
+        }
+
+        const getLocalBusinesses = (location) => {
+            axios
+                .post("http://localhost:8000/api/yelp", {
+                    location: location,
+                })
+                .then((res) => {
+                    console.log(res)
+                    setSearchResults(res.data)
+                })
+                .catch((err) => console.log(err))
+        }
+        if (pathname.includes("/explore") && searchResults.length === 0) {
+            getLocation()
+        }
+    }, [pathname, setSearchResults, searchResults])
 
     if (loadError) return "Error"
     if (!isLoaded) return "Loading..."
