@@ -15,20 +15,10 @@ const Tweat = (props) => {
     } = props
 
     const [isLiked, setIsLiked] = useState(false)
-    const [likeCount, setLikeCount] = useState()
 
     useEffect(() => {
         setIsLiked(tweat.likes.includes(user._id))
-        setLikeCount(tweat.likes.length)
-    }, [])
-
-    // useEffect(() => {
-    //     console.log("length", tweat.likes.length)
-    // }, [isLiked])
-
-
-
-
+    }, [allTweats, user])
 
     const deleteHandler = () => {
         const deletedTweat = tweat
@@ -79,35 +69,50 @@ const Tweat = (props) => {
 
     const likeHandler = (e) => {
         e.preventDefault()
-        const data = {
-            tweatID: tweat._id,
-            userID: user._id
+        if(user._id) {
+            const data = {
+                tweatID: tweat._id,
+                userID: user._id
+            }
+            axios.put("http://localhost:8000/api/tweats/like", data)
+                .then((res) => {
+                    tweat.likes.push(user._id)
+                    console.log("Liked Tweat in state:", tweat)
+                    setAllTweats(
+                        initialAllTweats => initialAllTweats.map(initialTweat => {
+                            if (initialTweat._id === tweat._id) {
+                                initialTweat = tweat
+                            }
+                            return initialTweat
+                    }))
+                })
+                .catch((error) => console.log(error))
         }
-        axios.put("http://localhost:8000/api/tweats/like", data)
-            .then((res) => {
-                setIsLiked(true)
-                setLikeCount((likeCount) => likeCount + 1)
-                console.log(res)
-            })
-            .catch((error) => console.log(error))
     }
 
     const dislikeHandler = (e) => {
         e.preventDefault()
-        const data = {
-            tweatID: tweat._id,
-            userID: user._id
+        if(user._id) {
+            const data = {
+                tweatID: tweat._id,
+                userID: user._id
+            }
+            axios.put("http://localhost:8000/api/tweats/dislike", data)
+                .then((res) => {
+                    tweat.likes = tweat.likes.filter(userIDInList => userIDInList !== user._id)
+                    console.log("Disliked Tweat in state:", tweat)
+                    setAllTweats(
+                        initialAllTweats => initialAllTweats.map(initialTweat => {
+                            if (initialTweat._id === tweat._id) {
+                                initialTweat = tweat
+                            }
+                            return initialTweat   
+                    }))
+                })
+                .catch((error) => console.log(error))
         }
-        axios.put("http://localhost:8000/api/tweats/dislike", data)
-            .then((res) => {
-                setIsLiked(false)
-                setLikeCount((likeCount) => likeCount - 1)
-                console.log(res)
-            })
-            .catch((error) => console.log(error))
     }
 
-    console.log("tweat", tweat)
     return (
         <div className="card d-flex flex-row">
             <div className="card-body">
@@ -154,7 +159,7 @@ const Tweat = (props) => {
                                     <Icon as={FaHeart} w={10} h={10}/>
                                     {/* Dislike */}
                                 </button>}
-                                <span className="mt-4 ms-4">{likeCount} Likes</span>
+                                <span className="mt-4 ms-4">{tweat.likes.length} Likes</span>
                             </div>
 
                             {/*
