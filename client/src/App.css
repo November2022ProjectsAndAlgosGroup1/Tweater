@@ -80,6 +80,17 @@ h2.chakra-heading span svg {
     background-position: bottom left;
     background-repeat: no-repeat;
     height: 380px;
+    position: relative;
+}
+.title-container::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 380px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .sideBar {
@@ -291,9 +302,9 @@ h2.chakra-heading span svg {
     width: 80%;
     height: 45px;
 }
-.ee {
+/* .ee {
     border: 1px solid #000;
-}
+} */
 
 .hero {
     position: relative;
