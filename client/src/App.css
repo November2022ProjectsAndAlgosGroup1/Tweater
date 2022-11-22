@@ -1,86 +1,86 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Libre Franklin", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Libre Franklin", sans-serif;
 }
 
 #root {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 h2.chakra-heading {
-    font-size: 5rem;
-    font-weight: 400;
-    font-family: "Satisfy", cursive;
-    text-shadow: 3px 3px 3px #1d9bf0, -1px -1px 0 #000, 1px -1px 0 #000,
-        -1px 1px 0 #000, 1px 1px 0 #000;
+  font-size: 5rem;
+  font-weight: 400;
+  font-family: "Satisfy", cursive;
+  text-shadow: 3px 3px 3px #1d9bf0, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 h2.chakra-heading span {
-    font-size: 2rem;
-    font-weight: bolder;
-    font-family: "Libre Franklin", sans-serif;
-    text-shadow: none;
+  font-size: 2rem;
+  font-weight: bolder;
+  font-family: "Libre Franklin", sans-serif;
+  text-shadow: none;
 }
 h2.chakra-heading span svg {
-    margin: 0 0.75rem;
+  margin: 0 0.75rem;
 }
 .logoFont {
-    font-family: "Satisfy", cursive;
+  font-family: "Satisfy", cursive;
 }
 .pink {
-    background-color: pink;
+  background-color: pink;
 }
 .green {
-    background-color: green;
+  background-color: green;
 }
 .blue {
-    background-color: dodgerblue;
+  background-color: dodgerblue;
 }
 .gold {
-    color: #a3a20b;
+  color: #a3a20b;
 }
 .header {
-    background-color: #2c2f4b;
+  background-color: #2c2f4b;
 }
 
 .header input {
-    background-color: #565877;
-    color: #fff;
+  background-color: #565877;
+  color: #fff;
 }
 
 /* Style header input placeholder */
 .header input::placeholder {
-    color: #fff;
+  color: #fff;
 }
 
 .header svg {
-    color: #fff;
+  color: #fff;
 }
 
 .header button {
-    background-color: #565877;
-    color: #fff;
+  background-color: #565877;
+  color: #fff;
 }
 .logo {
-    color: gold;
-    font-size: 1.6rem;
-    font-weight: bolder;
+  color: gold;
+  font-size: 1.6rem;
+  font-weight: bolder;
 }
 .mainPage {
-    width: 100vw;
+  width: 100vw;
 }
 
 .title-container {
-    /* background-image: url("/public/images/restaurant2.jpg"); */
-    background-image: url("https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-    background-position: bottom left;
-    background-repeat: no-repeat;
-    height: 380px;
-    position: relative;
+  /* background-image: url("/public/images/restaurant2.jpg"); */
+  background-image: url("https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  height: 380px;
+  position: relative;
 }
 .title-container::before {
   content: "";
@@ -94,120 +94,121 @@ h2.chakra-heading span svg {
 }
 
 .sideBar {
-    width: 25%;
+  width: 25%;
 }
 
 .feedSection {
-    width: 70%;
-    min-height: 60vh;
-    /* background-color: #234a7a; */
-    /* border: 3px solid #e84646; */
-    /* border: 3px solid orange; */
-    margin-left: 2rem;
-    margin-top: 1rem;
-    padding-left: 0;
+  width: 70%;
+  min-height: 60vh;
+  /* background-color: #234a7a; */
+  /* border: 3px solid #e84646; */
+  /* border: 3px solid orange; */
+  margin-left: 2rem;
+  margin-top: 1rem;
+  padding-left: 0;
 }
 
 .feedSection.profile-page {
-    width: 60%;
+  width: 60%;
 }
 
 .feedSection .container.comments {
-    padding: 0 1rem 1rem 0;
-    margin: 0 auto;
-    /* background-color: #2c2f4b; */
+  padding: 0 1rem 1rem 0;
+  margin: 0 auto;
+  /* background-color: #2c2f4b; */
 }
 
 .feedSection .card-body {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 .sideBar {
-    padding: 0;
-    /* min-height: 60vh; */
-    /* background-color: #435a76; */
-    border-right: 5px dotted white;
+  padding: 0;
+  /* min-height: 60vh; */
+  /* background-color: #435a76; */
+  border-right: 5px dotted white;
 }
 .sidebarLinks {
-    /* align-items: flex-start; */
-    padding: 0;
-    /* min-height: 25vh; */
-    /* border: 1px solid #eee; */
+  /* align-items: flex-start; */
+  padding: 0;
+  /* min-height: 25vh; */
+  /* border: 1px solid #eee; */
 }
 
 #tweatButton {
-    background-color: orange;
-    color: #040523;
+  background-color: orange;
+  color: #040523;
 }
 
 .sidebarLinks button {
-    background-color: transparent;
-    color: #fff;
-    font-size: 1.25rem;
-    text-align: left;
-    margin: 1rem 1.5rem;
-    padding: 2rem 1.5rem;
-    /* width: 100%; */
-    width: auto;
-    display: flex;
-    justify-content: flex-start;
-    /* border-radius: 0; */
-    border-radius: 50px;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.25rem;
+  text-align: left;
+  margin: 1rem 1.5rem;
+  padding: 2rem 1.5rem;
+  /* width: 100%; */
+  width: auto;
+  display: flex;
+  justify-content: flex-start;
+  /* border-radius: 0; */
+  border-radius: 50px;
 }
 
 .sidebarLinks button:hover {
-    background-color: #2c2f4b;
-    color: gold;
+  background-color: #2c2f4b;
+  color: gold;
 }
 .sidebarLinks button svg {
-    margin-right: 1rem;
-    font-size: 2rem;
+  margin-right: 1rem;
+  font-size: 2rem;
 }
 .sidebarLinks hr {
-    height: 3px;
-    border-bottom: #962c2c;
-    /* color: #e84646; */
-    color: transparent;
+  height: 3px;
+  border-bottom: #962c2c;
+  /* color: #e84646; */
+  color: transparent;
 }
 .sidebarLinks .btn-info:hover {
-    animation: glowinfo 0.25s linear 1;
+  animation: glowinfo 0.25s linear 1;
 }
 @keyframes glowinfo {
-    0% {
-        background: rgb(0, 212, 255);
-        background: linear-gradient(
-            90deg,
-            rgba(0, 212, 255, 1) 0%,
-            rgba(2, 0, 36, 1) 50%,
-            rgba(4, 5, 35, 1) 100%
-        );
-    }
-    50% {
-        background: rgb(2, 0, 36);
-        background: linear-gradient(
-            90deg,
-            rgba(2, 0, 36, 1) 0%,
-            rgba(0, 212, 255, 1) 50%,
-            rgba(4, 5, 35, 1) 100%
-        );
-    }
-    100% {
-        background: rgb(2, 0, 36);
-        background: linear-gradient(
-            90deg,
-            rgba(2, 0, 36, 1) 0%,
-            rgba(4, 5, 35, 1) 50%,
-            rgba(0, 212, 255, 1) 100%
-        );
-    }
+  0% {
+    background: rgb(0, 212, 255);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 212, 255, 1) 0%,
+      rgba(2, 0, 36, 1) 50%,
+      rgba(4, 5, 35, 1) 100%
+    );
+  }
+  50% {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(0, 212, 255, 1) 50%,
+      rgba(4, 5, 35, 1) 100%
+    );
+  }
+  100% {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(4, 5, 35, 1) 50%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  }
 }
 
 .serchForm {
-    min-width: 50%;
+  min-width: 50%;
 }
 .searchBtn {
-    color: grey;
-    /* background-color: #ccc; */
+  color: grey;
+  margin-left: 5px;
+  /* background-color: #ccc; */
 }
 
 /* .profileImg,
@@ -227,164 +228,205 @@ h2.chakra-heading span svg {
 } */
 
 #tweatText {
-    /* margin: 15%; */
+  /* margin: 15%; */
 }
 
 .mapContainer {
-    width: 100%;
+  width: 100%;
 }
 .mainPage {
-    background-color: #040523;
-    min-height: 100vh;
+  background-color: #040523;
+  min-height: 100vh;
 }
 .chakra-modal__body .success-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .chakra-modal__body .success {
-    color: green;
-    font-size: 5rem;
-    font-weight: bolder;
+  color: green;
+  font-size: 5rem;
+  font-weight: bolder;
 }
 
 .infoBox {
-    background-color: #fff;
-    color: #16213e;
-    padding: 7px;
-    border-radius: 5px;
-    width: 120px !important;
-    height: 70px;
-    font-size: 14px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: #fff;
+  color: #16213e;
+  padding: 7px;
+  border-radius: 5px;
+  width: 120px !important;
+  height: 70px;
+  font-size: 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .infoBox h3 {
-    z-index: 1;
+  z-index: 1;
 }
 
 .infoBox button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #fff;
-    color: rgb(66, 66, 66);
-    border: none;
-    font-size: 0.5rem;
-    font-weight: bolder;
-    padding: 1px;
-    cursor: pointer;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  color: rgb(66, 66, 66);
+  border: none;
+  font-size: 0.5rem;
+  font-weight: bolder;
+  padding: 1px;
+  cursor: pointer;
+  z-index: -1;
 }
 
 .infoBox > img {
-    display: none;
+  display: none;
 }
 .results-list {
-    background-color: #eee;
-    height: 380px;
-    overflow: scroll;
+  background-color: #eee;
+  height: 380px;
+  overflow: scroll;
 }
 .result-item {
-    background-color: #16213ee1;
-    color: #eee;
-    border: 1px solid #000;
+  background-color: #16213ee1;
+  color: #eee;
+  border: 1px solid #000;
 }
 .profile {
-    color: #eee;
-    /* border: 2px solid #ccc; */
+  color: #eee;
+  /* border: 2px solid #ccc; */
 }
 .profileNameContainer {
-    width: 80%;
-    height: 45px;
+  width: 80%;
+  height: 45px;
 }
 /* .ee {
     border: 1px solid #000;
 } */
 
 .hero {
-    position: relative;
-    z-index: 0;
+  position: relative;
+  z-index: 0;
 }
 .hero #map {
-    position: absolute !important;
-    z-index: 0;
+  position: absolute !important;
+  z-index: 0;
 }
 
 .hero .chakra-container {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .comments .card {
-    /* background-color: #2c2f4b; */
-    background-color: transparent;
-    color: #fff;
-    margin-bottom: 10px;
-    /* border-bottom: 3px solid white;
+  /* background-color: #2c2f4b; */
+  background-color: transparent;
+  color: #fff;
+  margin-bottom: 10px;
+  /* border-bottom: 3px solid white;
     padding-bottom: 10px; */
 }
 
 .hero > chakra-container > .chakra-stack {
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
 
 .card-title + .d-flex {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .card-body .right-profile {
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 .card-body .right-profile a {
-    margin-left: 1rem;
-    color: purple;
+  margin-left: 1rem;
+  color: purple;
 }
 #tweatCaption {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 0 2rem;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 2rem;
 }
 
 #tweatCaption > .chakra-wrap {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 .tweat-image {
-    width: 40%;
-    flex-direction: column;
-    justify-content: center;
+  width: 40%;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .tweat-image img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    flex-grow: 1;
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  flex-grow: 1;
 }
 
 .card-title {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .folder-tab {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 30px;
-    padding: 3px 15px;
-    background: #2c2f4b;
-    border-radius: 5px 5px 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+  padding: 3px 15px;
+  background: #2c2f4b;
+  border-radius: 5px 5px 0 0;
 }
 
 .liked {
-    color: #e84646;
+  color: #e84646;
+}
+
+/* responsive */
+@media screen and (max-width: 767px) {
+  .header {
+    padding: 0px;
+  }
+  .logo {
+    font-size: 1.3rem;
+  }
+  .header input {
+    width: 85%;
+    font-size: 0.7rem;
+  }
+  .header svg {
+    font-size: 0.7rem;
+  }
+  .header button {
+    width: 20%;
+    font-size: 0.7rem;
+    margin-left: 2px;
+  }
+  .loginBrnContainer {
+    width: 13%;
+  }
+}
+@media screen and (max-width: 424px) {
+  .logo {
+    width: 100%;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .loginBrnContainer {
+    width: 16%;
+  }
+}
+@media screen and (max-width: 374px) {
+  .loginBrnContainer {
+    margin-top: 4px;
+    width: 100%;
+  }
 }

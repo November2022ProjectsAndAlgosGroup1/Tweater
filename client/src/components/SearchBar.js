@@ -69,7 +69,7 @@ const SearchBar = (props) => {
                 />
 
                 <Button
-                    className="searchBtn ms-2 border border-secondary"
+                    className="searchBtn border border-secondary"
                     type="submit"
                     variant="outline"
                 >

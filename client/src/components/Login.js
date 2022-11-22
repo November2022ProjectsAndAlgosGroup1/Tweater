@@ -14,13 +14,13 @@ const Login = (props) => {
         }
     }
     return (
-        <div className="d-flex">
+        <div className="d-flex loginBrnContainer">
             {!props.loggedin ? (
-                <Button as="a" name="Login" onClick={(e) => handleClick(e)}>
+                <Button as="a" name="Login" className="loginBtn" onClick={(e) => handleClick(e)}>
                     Login
                 </Button>
             ) : (
-                <Button as="a" name="logout" onClick={(e) => handleClick(e)}>
+                <Button as="a" name="logout" className="loginBtn" onClick={(e) => handleClick(e)}>
                     Logout
                 </Button>
             )}
