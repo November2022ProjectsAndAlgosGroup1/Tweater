@@ -79,32 +79,36 @@ const Tweat = (props) => {
 
     const likeHandler = (e) => {
         e.preventDefault()
-        const data = {
-            tweatID: tweat._id,
-            userID: user._id
+        if(user._id) {
+            const data = {
+                tweatID: tweat._id,
+                userID: user._id
+            }
+            axios.put("http://localhost:8000/api/tweats/like", data)
+                .then((res) => {
+                    setIsLiked(true)
+                    setLikeCount((likeCount) => likeCount + 1)
+                    console.log(res)
+                })
+                .catch((error) => console.log(error))
         }
-        axios.put("http://localhost:8000/api/tweats/like", data)
-            .then((res) => {
-                setIsLiked(true)
-                setLikeCount((likeCount) => likeCount + 1)
-                console.log(res)
-            })
-            .catch((error) => console.log(error))
     }
 
     const dislikeHandler = (e) => {
         e.preventDefault()
-        const data = {
-            tweatID: tweat._id,
-            userID: user._id
+        if(user._id) {
+            const data = {
+                tweatID: tweat._id,
+                userID: user._id
+            }
+            axios.put("http://localhost:8000/api/tweats/dislike", data)
+                .then((res) => {
+                    setIsLiked(false)
+                    setLikeCount((likeCount) => likeCount - 1)
+                    console.log(res)
+                })
+                .catch((error) => console.log(error))
         }
-        axios.put("http://localhost:8000/api/tweats/dislike", data)
-            .then((res) => {
-                setIsLiked(false)
-                setLikeCount((likeCount) => likeCount - 1)
-                console.log(res)
-            })
-            .catch((error) => console.log(error))
     }
 
     console.log("tweat", tweat)
