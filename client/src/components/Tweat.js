@@ -20,7 +20,7 @@ const Tweat = (props) => {
     useEffect(() => {
         setIsLiked(tweat.likes.includes(user._id))
         setLikeCount(tweat.likes.length)
-    }, [allTweats])
+    }, [allTweats, user])
 
     // useEffect(() => {
     //     console.log("length", tweat.likes.length)
