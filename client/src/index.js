@@ -7,10 +7,10 @@ import { ChakraProvider, theme } from "@chakra-ui/react";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-<ChakraProvider theme={theme}>
+  <ChakraProvider theme={theme}>
     <App />
   </ChakraProvider>
- 
+
 );
 
 // If you want to start measuring performance in your app, pass a function

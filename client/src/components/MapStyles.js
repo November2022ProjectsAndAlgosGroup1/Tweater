@@ -18,6 +18,15 @@ const MapStyles = [
         ],
     },
     {
+        featureType: "administrative.locality",
+        elementType: "labels.text",
+        stylers: [
+            {
+                visibility: "on",
+            },
+        ],
+    },
+    {
         featureType: "landscape",
         elementType: "all",
         stylers: [
@@ -79,7 +88,7 @@ const MapStyles = [
         elementType: "all",
         stylers: [
             {
-                color: "#ffffff",
+                color: "#2c2f4b",
             },
             {
                 visibility: "on",
