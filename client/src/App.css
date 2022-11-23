@@ -75,8 +75,8 @@ h2.chakra-heading span svg {
 }
 
 .title-container {
-  /* background-image: url("/public/images/restaurant2.jpg"); */
-  background-image: url("https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-image: url("/public/images/plates-img.jpeg");
+  /* background-image: url("https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"); */
   background-position: bottom left;
   background-repeat: no-repeat;
   height: 380px;
@@ -86,7 +86,7 @@ h2.chakra-heading span svg {
   content: "";
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
-  height: 380px;
+  height: inherit;
   display: block;
   position: absolute;
   top: 0;
@@ -303,13 +303,13 @@ h2.chakra-heading span svg {
   width: 80%;
   height: 45px;
 }
-/* .ee {
-    border: 1px solid #000;
-} */
+
 
 .hero {
   position: relative;
   z-index: 0;
+  height: 380px;
+
 }
 .hero #map {
   position: absolute !important;
@@ -413,6 +413,50 @@ h2.chakra-heading span svg {
   .loginBrnContainer {
     width: 13%;
   }
+  .title-container{
+    background-position: 35% 85%;
+    height: 200px;
+  }
+  .heroContainer{
+    height: 200px;
+
+  }
+  .heroContainer .stackContainer{
+    height: 100%;
+  }
+  .titleCss{
+    position: absolute;
+    top: 25%;
+    left: 17%;
+  }
+  h2.chakra-heading{
+    font-size: 3.4rem;
+    font-weight: 300;
+  }
+  
+}
+@media screen and (max-width: 652px){
+  .title-container{
+    background-position: 25% 72%;
+    height: 150px;
+  }
+  .heroContainer{
+    height: 150px;
+  }
+  .heroContainer .stackContainer{
+    height: 100%;
+  }
+  .titleCss{
+    position: absolute;
+    top: 10%;
+    left: 17%;
+  }
+  h2.chakra-heading{
+    font-size: 2.2rem;
+  }
+  h2.chakra-heading span {
+    font-size: 1.2rem;
+  }
 }
 @media screen and (max-width: 424px) {
   .logo {
@@ -423,6 +467,7 @@ h2.chakra-heading span svg {
   .loginBrnContainer {
     width: 16%;
   }
+  
 }
 @media screen and (max-width: 374px) {
   .loginBrnContainer {

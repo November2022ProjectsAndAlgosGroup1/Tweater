@@ -108,7 +108,7 @@ function App() {
                         element={
                             <Main>
                                 <div className="mainPage">
-                                    <div className="title-container container-fluid pe-5 ps-5 text-light">
+                                    <div className="title-container container-fluid pe-5">
                                         <Hero title={"twEater"} />
                                     </div>
                                     <div className="d-flex mt-4">

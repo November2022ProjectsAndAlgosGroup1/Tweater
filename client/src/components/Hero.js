@@ -13,17 +13,19 @@ const Hero = (props) => {
                     setCenter={setCenter}
                 />
             )}
-            <Container maxW={"3xl"}>
+            <Container maxW={"3xl"} className="heroContainer">
                 <Stack
                     as={Box}
                     textAlign={"center"}
                     spacing={{ base: 8, md: 14 }}
                     py={{ base: 20, md: 36 }}
+                   className="stackContainer"
                 >
                     <Heading
                         fontWeight={600}
                         lineHeight={"110%"}
                         color={"gold"}
+                        className="titleCss "
                     >
                         {title} <br />
                         {title !== "Profile" && (
