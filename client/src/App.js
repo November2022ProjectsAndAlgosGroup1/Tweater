@@ -107,7 +107,7 @@ function App() {
                         path="/"
                         element={
                             <Main>
-                                <div className="mainPage">
+                                <div className="mainPage ">
                                     <div className="title-container container-fluid pe-5">
                                         <Hero title={"twEater"} />
                                     </div>

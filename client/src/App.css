@@ -72,6 +72,8 @@ h2.chakra-heading span svg {
 }
 .mainPage {
   width: 100vw;
+  background-color: #040523;
+  min-height: 100vh;
 }
 
 .title-container {
@@ -120,6 +122,7 @@ h2.chakra-heading span svg {
 
 .feedSection .card-body {
   padding-left: 0;
+  min-height: 30vh;
 }
 
 .sideBar {
@@ -129,10 +132,7 @@ h2.chakra-heading span svg {
   border-right: 5px dotted white;
 }
 .sidebarLinks {
-  /* align-items: flex-start; */
   padding: 0;
-  /* min-height: 25vh; */
-  /* border: 1px solid #eee; */
 }
 
 #tweatButton {
@@ -208,36 +208,15 @@ h2.chakra-heading span svg {
 .searchBtn {
   color: grey;
   margin-left: 5px;
-  /* background-color: #ccc; */
 }
-
-/* .profileImg,
-.card > img {
-    width: 100px;
-    height: 100px;
-    border: 1px solid #ccc;
-} */
-
-/* #tweatImage {
-    width: auto;
-    height: 40vh;
-} */
-/* 
-#tweatCaption {
-    width: 40%;
-} */
-
-#tweatText {
-  /* margin: 15%; */
+.userAvator{
+  overflow: visible !important;
 }
 
 .mapContainer {
   width: 100%;
 }
-.mainPage {
-  background-color: #040523;
-  min-height: 100vh;
-}
+
 .chakra-modal__body .success-content {
   display: flex;
   flex-direction: column;
@@ -304,12 +283,10 @@ h2.chakra-heading span svg {
   height: 45px;
 }
 
-
 .hero {
   position: relative;
   z-index: 0;
   height: 380px;
-
 }
 .hero #map {
   position: absolute !important;
@@ -339,6 +316,7 @@ h2.chakra-heading span svg {
 }
 
 .card-body .right-profile {
+  margin-top: 1rem;
   margin-left: 2rem;
   display: flex;
   flex-direction: column;
@@ -348,7 +326,7 @@ h2.chakra-heading span svg {
   color: purple;
 }
 #tweatCaption {
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -364,12 +342,12 @@ h2.chakra-heading span svg {
   flex-direction: column;
   justify-content: center;
 }
-
-.tweat-image img {
-  width: 100%;
-  height: 350px;
+#tweatImage {
+  width: auto;
+  height: 30vh;
   object-fit: cover;
   flex-grow: 1;
+  border-radius: .2rem;
 }
 
 .card-title {
@@ -388,6 +366,9 @@ h2.chakra-heading span svg {
 
 .liked {
   color: #e84646;
+}
+.likeStyle{
+  font-size: 1.7em;
 }
 
 /* responsive */
@@ -413,45 +394,59 @@ h2.chakra-heading span svg {
   .loginBrnContainer {
     width: 13%;
   }
-  .title-container{
+  .title-container {
     background-position: 35% 85%;
     height: 200px;
   }
-  .heroContainer{
+  .heroContainer {
     height: 200px;
-
   }
-  .heroContainer .stackContainer{
+  .heroContainer .stackContainer {
     height: 100%;
   }
-  .titleCss{
+  .titleCss {
     position: absolute;
     top: 25%;
     left: 17%;
   }
-  h2.chakra-heading{
+  h2.chakra-heading {
     font-size: 3.4rem;
     font-weight: 300;
   }
-  
+  .sidebarLinks button {
+    font-size: 1rem;
+    padding: 1.5rem 1rem;
+    /* background-color: red; */
+  }
+  .sidebarLinks button svg {
+    font-size: 1.5rem;
+  }
+  .card-body .right-profile  {
+    margin-left: 1rem;
+  }
+  #tweatCaption {
+    width: 70%;
+    padding: 1rem 1rem;
+  }
+ 
 }
-@media screen and (max-width: 652px){
-  .title-container{
+@media screen and (max-width: 652px) {
+  .title-container {
     background-position: 25% 72%;
     height: 150px;
   }
-  .heroContainer{
+  .heroContainer {
     height: 150px;
   }
-  .heroContainer .stackContainer{
+  .heroContainer .stackContainer {
     height: 100%;
   }
-  .titleCss{
+  .titleCss {
     position: absolute;
     top: 10%;
     left: 17%;
   }
-  h2.chakra-heading{
+  h2.chakra-heading {
     font-size: 2.2rem;
   }
   h2.chakra-heading span {
@@ -467,7 +462,6 @@ h2.chakra-heading span svg {
   .loginBrnContainer {
     width: 16%;
   }
-  
 }
 @media screen and (max-width: 374px) {
   .loginBrnContainer {

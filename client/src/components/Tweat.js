@@ -9,6 +9,7 @@ import {
     FaTrash,
     FaRegHeart,
 } from "react-icons/fa"
+import { useBreakpointValue } from '@chakra-ui/media-query'
 import UserAvatar from "./UserAvatar"
 
 const Tweat = (props) => {
@@ -24,6 +25,8 @@ const Tweat = (props) => {
     } = props
 
     const [isLiked, setIsLiked] = useState(false)
+
+    const avatarSize = useBreakpointValue({ base: 'lg', md: 'xl' })
 
     useEffect(() => {
         setIsLiked(tweat.likes.includes(user._id))
@@ -125,14 +128,14 @@ const Tweat = (props) => {
         <div className="card d-flex flex-row">
             <div className="card-body">
                 <Flex>
-                    <div id="tweatCaption" className="bg-white text-black border rounded">
+                    <div id="tweatCaption" className="bg-white text-black border rounded ">
                         <Flex align="center">
-                            <UserAvatar user={tweat.userID} size="xl" />
+                            <UserAvatar user={tweat.userID}  size={avatarSize} />
                             <p className="card-text right-profile">
                                 <span>
                                     {tweat.userID && tweat.userID.name}
                                     <Link to={"/profile/" + tweat.userID._id}>
-                                        @{tweat.userID && tweat.userID.userName}{" "}
+                                        @{tweat.userID && tweat.userID.userName}
                                     </Link>
                                 </span>
                                 ate at <b>{tweat.restaurantName}</b>
@@ -149,7 +152,7 @@ const Tweat = (props) => {
                             <div className="option">
                                 {!isLiked ? (
                                     <button onClick={(e) => likeHandler(e)}>
-                                        <Icon as={FaRegHeart} w={10} h={10} />
+                                        <Icon as={FaRegHeart}  className="likeStyle"/>
                                         {/* Like */}
                                     </button>
                                 ) : (
@@ -157,7 +160,7 @@ const Tweat = (props) => {
                                         className="liked"
                                         onClick={(e) => dislikeHandler(e)}
                                     >
-                                        <Icon as={FaHeart} w={10} h={10} />
+                                        <Icon as={FaHeart}  className="likeStyle"/>
                                         {/* Dislike */}
                                     </button>
                                 )}
