@@ -139,7 +139,7 @@ const Tweat = (props) => {
                                     </Link>
                                 </span>
                                 ate at <b>{tweat.restaurantName}</b>
-                                <span>{timeSincePosted()}</span>
+                                <span className="tweatTime">{timeSincePosted()}</span>
                             </p>
                         </Flex>
                         <p id="tweatText" className="card-text mt-3">

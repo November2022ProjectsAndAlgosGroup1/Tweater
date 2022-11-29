@@ -94,11 +94,9 @@ h2.chakra-heading span svg {
   top: 0;
   left: 0;
 }
-
-.sideBar {
-  width: 25%;
+.homePageContainer{
+margin-top: 1.2rem;
 }
-
 .feedSection {
   width: 70%;
   min-height: 60vh;
@@ -126,13 +124,17 @@ h2.chakra-heading span svg {
 }
 
 .sideBar {
+  width: 25%;
   padding: 0;
+  flex-direction: column;
   /* min-height: 60vh; */
   /* background-color: #435a76; */
   border-right: 5px dotted white;
 }
 .sidebarLinks {
   padding: 0;
+  flex-direction: column;
+  align-items: center;
 }
 
 #tweatButton {
@@ -209,7 +211,7 @@ h2.chakra-heading span svg {
   color: grey;
   margin-left: 5px;
 }
-.userAvator{
+.userAvator {
   overflow: visible !important;
 }
 
@@ -347,7 +349,7 @@ h2.chakra-heading span svg {
   height: 30vh;
   object-fit: cover;
   flex-grow: 1;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
 }
 
 .card-title {
@@ -367,8 +369,11 @@ h2.chakra-heading span svg {
 .liked {
   color: #e84646;
 }
-.likeStyle{
-  font-size: 1.7em;
+.likeStyle {
+  font-size: 1.5em;
+}
+.tweatTime {
+  font-size: 0.7em;
 }
 
 /* responsive */
@@ -421,14 +426,16 @@ h2.chakra-heading span svg {
   .sidebarLinks button svg {
     font-size: 1.5rem;
   }
-  .card-body .right-profile  {
+  .card-body .right-profile {
     margin-left: 1rem;
   }
   #tweatCaption {
     width: 70%;
     padding: 1rem 1rem;
   }
- 
+  .likeStyle {
+    font-size: 1.3em;
+  }
 }
 @media screen and (max-width: 652px) {
   .title-container {
@@ -453,7 +460,7 @@ h2.chakra-heading span svg {
     font-size: 1.2rem;
   }
 }
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 425px) {
   .logo {
     width: 100%;
     display: block;
@@ -462,10 +469,58 @@ h2.chakra-heading span svg {
   .loginBrnContainer {
     width: 16%;
   }
+  .mobileResponsive {
+    flex-direction: column;
+  }
+  .homePageContainer{
+    margin-top: 0;
+    }
+  .sideBar {
+    width: 100%;
+    flex-direction: row;
+    border-right: none;
+    border-bottom: 3px dotted white;
+    /* padding: .5rem; */
+  }
+  .sidebarLinks {
+    flex-direction: row;
+    
+  }
+  .sidebarLinks button {
+    display: flex;
+    justify-content:center;
+    margin: 1rem;
+    font-size: .8rem;
+    padding: .7rem 2.3rem;
+  }
+
+  .sidebarLinks button svg {
+    font-size: 1rem;
+  }
+
 }
-@media screen and (max-width: 374px) {
+@media screen and (max-width: 375px) {
   .loginBrnContainer {
     margin-top: 4px;
-    width: 100%;
   }
+    .sidebarLinks{
+      justify-content:space-evenly;
+    }
+  .sidebarLinks button {
+    margin: .7rem;
+    font-size: .75rem;
+    padding: .5rem 2.2rem;
+  }
+
+  .sidebarLinks button svg {
+    font-size: .8rem;
+  }
+}
+@media screen and (max-width: 375px){
+  .sidebarLinks button {
+    margin: .3rem;
+    font-size: .75rem;
+    padding: .5rem 2rem;
+  }
+
 }

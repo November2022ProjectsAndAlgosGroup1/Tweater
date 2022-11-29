@@ -111,7 +111,7 @@ function App() {
                                     <div className="title-container container-fluid pe-5">
                                         <Hero title={"twEater"} />
                                     </div>
-                                    <div className="d-flex mt-4">
+                                    <div className="d-flex homePageContainer mobileResponsive">
                                         <Sidebar
                                             user={user}
                                             loggedin={loggedin}

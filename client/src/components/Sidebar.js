@@ -40,14 +40,14 @@ const Sidebar = (props) => {
     }
 
     return (
-        <div className="sideBar container d-flex flex-column">
-            <div className="container sidebarLinks d-flex flex-column align-items-center">
+        <div className="sideBar d-flex">
+            <div className="container sidebarLinks d-flex ">
                 <Button>
                     <Icon as={AiFillHome} />
                     <Link to="/">Home</Link>
                 </Button>
                 <Divider />
-                <Button>
+                <Button >
                     <Icon as={FaMap} />
                     <Link to="/explore">Explore</Link>
                 </Button>
