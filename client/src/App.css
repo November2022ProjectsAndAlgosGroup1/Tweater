@@ -121,14 +121,14 @@ margin-top: 1.2rem;
 .feedSection .card-body {
   padding-left: 0;
   min-height: 30vh;
+  display: flex;
+  /* background-color: pink; */
 }
 
 .sideBar {
   width: 25%;
   padding: 0;
   flex-direction: column;
-  /* min-height: 60vh; */
-  /* background-color: #435a76; */
   border-right: 5px dotted white;
 }
 .sidebarLinks {
@@ -203,7 +203,15 @@ margin-top: 1.2rem;
     );
   }
 }
-
+.card-text{
+  margin-top: .5rem;
+}
+.feedOptions{
+  margin-top: .6rem;
+}
+.option{
+  padding: 0 2rem;
+}
 .serchForm {
   min-width: 50%;
 }
@@ -327,13 +335,17 @@ margin-top: 1.2rem;
   margin-left: 1rem;
   color: purple;
 }
+.tweetProfileAlign{
+  display: flex;
+  align-items: center;
+}
 #tweatCaption {
   width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
 }
 
 #tweatCaption > .chakra-wrap {
@@ -371,6 +383,9 @@ margin-top: 1.2rem;
 }
 .likeStyle {
   font-size: 1.5em;
+}
+.like-span{
+  margin-left: .5rem;
 }
 .tweatTime {
   font-size: 0.7em;
@@ -497,7 +512,51 @@ margin-top: 1.2rem;
   .sidebarLinks button svg {
     font-size: 1rem;
   }
-
+  .feedSection{
+    width: 100%;
+  }
+  .card-body{
+    padding: 0;
+    min-height: 40vh;
+    
+  }
+  #tweatCaption {
+    width: 55%;
+    align-items: center;
+    justify-content: space-between;
+    padding: .2rem .3rem;
+  }
+  .card-body .right-profile {
+    margin-top: .5rem;
+    align-items: center;
+  }
+  .card-body .right-profile a {
+    margin-left: .3rem;
+  }
+  .tweetProfileAlign{
+    justify-content:flex-start;
+  }
+  .tweat-image {
+    width: 40%;
+  }
+  .card-text{
+    margin-top: .2rem;
+  }
+  .feedOptions{
+    margin-top: .3rem;
+  }
+  .option{
+    padding: 0 .9rem;
+  }
+  .likeStyle {
+    font-size: 1.1em;
+  }
+  .like-span{
+    margin-left: .3rem;
+  }
+  .option-icon{
+    font-size: 1em;
+  }
 }
 @media screen and (max-width: 375px) {
   .loginBrnContainer {
@@ -507,7 +566,7 @@ margin-top: 1.2rem;
       justify-content:space-evenly;
     }
   .sidebarLinks button {
-    margin: .7rem;
+    margin: .3rem;
     font-size: .75rem;
     padding: .5rem 2.2rem;
   }
@@ -515,12 +574,6 @@ margin-top: 1.2rem;
   .sidebarLinks button svg {
     font-size: .8rem;
   }
+  
 }
-@media screen and (max-width: 375px){
-  .sidebarLinks button {
-    margin: .3rem;
-    font-size: .75rem;
-    padding: .5rem 2rem;
-  }
 
-}
