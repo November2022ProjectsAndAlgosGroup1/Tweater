@@ -139,7 +139,7 @@ function App() {
                         path="/explore"
                         element={
                             <Main>
-                                <div className="mainPage w-100">
+                                <div className="mainPage">
                                     <div
                                         className="location-results d-flex mb-2 mapContainer"
                                         id="map"
@@ -152,7 +152,7 @@ function App() {
                                         />
                                         <ResultsList results={searchResults} />
                                     </div>
-                                    <div className="d-flex justify-content-between">
+                                    <div className="d-flex homePageContainer mobileResponsive">
                                         <Sidebar
                                             user={user}
                                             loggedin={loggedin}
@@ -189,7 +189,7 @@ function App() {
                                 />
                                 <Main>
                                     <div className="mainPage w-100">
-                                        <div className="d-flex mt-3 p-2">
+                                        <div className="d-flex mt-3 p-2 homePageContainer mobileResponsive profile-responsive">
                                             <Sidebar
                                                 user={user}
                                                 loggedin={loggedin}

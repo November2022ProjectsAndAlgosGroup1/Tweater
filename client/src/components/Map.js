@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useCallback, useRef, useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
-import { CloseButton } from "@chakra-ui/react"
+import { CloseButton, useBreakpoint } from "@chakra-ui/react"
 import { GoogleMap, useLoadScript } from "@react-google-maps/api"
 import Geocode from "react-geocode"
 import { Marker, InfoBox } from "@react-google-maps/api"
@@ -102,7 +102,7 @@ const Map = (props) => {
     if (!isLoaded) return "Loading..."
     return (
         <GoogleMap
-            className="mt-5"
+            className="mt-5 google-map"
             id="map"
             mapContainerStyle={mapContainerStyle}
             zoom={zoom}

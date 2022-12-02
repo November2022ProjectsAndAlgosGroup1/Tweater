@@ -2,8 +2,10 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import UserAvatar from "./UserAvatar"
+import { useBreakpointValue } from "@chakra-ui/media-query";
 
 const Profile = ({ user }) => {
+    const avatarSize = useBreakpointValue({ base: "lg", md: "2xl" });
     const [profileUser, setProfileUser] = useState({})
     let { id } = useParams()
     useEffect(() => {
@@ -21,9 +23,9 @@ const Profile = ({ user }) => {
 
     console.log(id)
     return (
-        <div className="container profile w-25 p-4 d-flex flex-column align-items-center ms-2 me-2">
+        <div className="container profile d-flex flex-column align-items-center">
             {/* source image in public folder */}
-            <UserAvatar user={profileUser} size="2xl" />
+            <UserAvatar user={profileUser} size={avatarSize} />
             <div className="usersName d-flex flex-column align-items-center justify-content-between profileNameContainer mt-3">
                 <h4>{profileUser.name}</h4>
                 <h5>@{profileUser.userName}</h5>

@@ -286,7 +286,12 @@ margin-top: 1.2rem;
 }
 .profile {
   color: #eee;
+  width: 25%;
+  padding: 1.5rem;
   /* border: 2px solid #ccc; */
+  box-shadow: 2px 2px 2px 2px #777;
+  justify-content: space-evenly;
+  margin: 0 .7rem;
 }
 .profileNameContainer {
   width: 80%;
@@ -514,11 +519,13 @@ margin-top: 1.2rem;
   }
   .feedSection{
     width: 100%;
+    /* background-color: red; */
+    margin: .7rem auto;
+    padding: 0 .5rem;
   }
   .card-body{
     padding: 0;
     min-height: 40vh;
-    
   }
   #tweatCaption {
     width: 55%;
@@ -537,7 +544,7 @@ margin-top: 1.2rem;
     justify-content:flex-start;
   }
   .tweat-image {
-    width: 40%;
+    flex-grow: 1;
   }
   .card-text{
     margin-top: .2rem;
@@ -556,6 +563,35 @@ margin-top: 1.2rem;
   }
   .option-icon{
     font-size: 1em;
+  }
+  .mapContainer {
+    display: flex;
+    flex-direction: column;
+    border-color: pink;
+    /* justify-content: start; */
+    /* align-items: center; */
+  }
+  .google-map{
+    width: 100%;
+    background-color: red;
+  }
+  .profile-responsive{
+    align-items: center;
+    /* justify-content: center; */
+  }
+  .profile{
+    width: 95%;
+    padding: 1rem;
+    margin-top: .5rem;
+  }
+  .profile >button{
+    margin-top: 1.2rem;
+  }
+  .feedSection.profile-page {
+    width: 100%;
+  }
+  .feedSection .container.comments {
+    padding: 0;
   }
 }
 @media screen and (max-width: 375px) {
