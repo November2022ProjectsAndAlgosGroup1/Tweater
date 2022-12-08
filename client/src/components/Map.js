@@ -26,14 +26,15 @@ const Map = (props) => {
     Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
     const [zoom, setZoom] = useState(10)
+    const [windowSize, setWindowSize] = useState(getWindowSize());
     const [showInfoWindow, setShowInfoWindow] = useState({
         show: false,
         id: null,
     })
-    const mapContainerStyle = {
-        height: "380px",
-        width: pathname === "/explore" ? "75vw" : "100vw",
-    }
+    function getWindowSize() {
+        const {innerWidth, innerHeight} = window;
+        return {innerWidth, innerHeight};
+      }
 
     const mapRef = useRef()
     const onMapLoad = useCallback((map) => {
@@ -104,7 +105,10 @@ const Map = (props) => {
         <GoogleMap
             className="mt-5 google-map"
             id="map"
-            mapContainerStyle={mapContainerStyle}
+            mapContainerStyle={{              
+                height:  windowSize && windowSize.innerHeight<=424 ? '200px' : '380px',
+                width: pathname === "/explore" &&  windowSize && windowSize.innerwidth>=424 ? "75vw" : "100vw",
+            }}
             zoom={zoom}
             center={!center ? { lat: 51.509865, lng: -0.118092 } : center}
             options={options}

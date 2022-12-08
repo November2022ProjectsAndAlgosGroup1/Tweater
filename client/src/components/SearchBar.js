@@ -53,7 +53,7 @@ const SearchBar = (props) => {
         // page !== "Explore" || page !== 'Modal' ? navigate(`/explore/`) : null
     }
     return (
-        <form className="serchForm " onSubmit={(e) => handleSearch(e)}>
+        <form className="serchForm" onSubmit={(e) => handleSearch(e)}>
             <InputGroup className="searchBtn">
                 <InputLeftElement
                     pointerEvents="none"

@@ -54,7 +54,7 @@ const Feeds = (props) => {
                 pathname.includes("profile") && "profile-page"
             }`}
         >
-            <h2 className="fs-4 mb-3 text-light">{feedTitle()}</h2>
+            <h2 className=" mb-3 text-light tweat-title">{feedTitle()}</h2>
             <div className="container comments">
                 {allTweats && allTweats.length > 0 ? (
                     allTweats.map((tweat, i) => {

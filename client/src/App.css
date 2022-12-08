@@ -278,6 +278,7 @@ margin-top: 1.2rem;
   background-color: #eee;
   height: 380px;
   overflow: scroll;
+  margin-left: .8rem;
 }
 .result-item {
   background-color: #16213ee1;
@@ -395,6 +396,9 @@ margin-top: 1.2rem;
 .tweatTime {
   font-size: 0.7em;
 }
+.tweat-title{
+  font-size: 1.6rem;
+}
 
 /* responsive */
 @media screen and (max-width: 767px) {
@@ -484,6 +488,7 @@ margin-top: 1.2rem;
   .logo {
     width: 100%;
     display: block;
+  font-size: 1.7rem;
     margin-bottom: 4px;
   }
   .loginBrnContainer {
@@ -593,6 +598,26 @@ margin-top: 1.2rem;
   .feedSection .container.comments {
     padding: 0;
   }
+  .tweat-title{
+    font-size: 1.2rem;
+  }
+  .header input {
+    width: 85%;
+    font-size: 0.8rem;
+  }
+  .serchForm {
+    min-width: 75%;
+  }
+  .results-list{
+    height: 200px;
+  margin-left: 0;
+
+  }
+  .hero{
+    height: 200px;
+
+  }
+
 }
 @media screen and (max-width: 375px) {
   .loginBrnContainer {
@@ -610,6 +635,11 @@ margin-top: 1.2rem;
   .sidebarLinks button svg {
     font-size: .8rem;
   }
-  
+  .option{
+    padding: 0 .7rem;
+  }
+  /* .loginBtn{
+    padding: 0 5rem;
+  } */
 }
 
